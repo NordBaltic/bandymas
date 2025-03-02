@@ -1,42 +1,73 @@
+/* 🎩 PRABANGŪS MYGTUKAI BLACK/GOLD UI */
+
+/* 🔥 PIRMINIS MYGTUKAS */
 .primary-button {
     width: 100%;
     padding: 14px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
-    background: var(--button-primary);
-    color: var(--button-text);
+    background: var(--accent-color);
+    color: var(--primary-color);
     cursor: pointer;
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(181, 148, 16, 0.2);
 }
 
 .primary-button:hover {
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: var(--neon-glow);
+    background: #926F0D;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(181, 148, 16, 0.4);
 }
 
+/* 🔹 WALLET PRISIJUNGIMO MYGTUKAS */
 .wallet-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 122, 255, 0.7);
-    color: white;
+    background: var(--glass-bg);
+    color: var(--text-color);
     padding: 14px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 6px;
-    border: none;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
     cursor: pointer;
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(181, 148, 16, 0.2);
 }
 
 .wallet-button:hover {
-    background: rgba(0, 122, 255, 1);
-    box-shadow: var(--neon-glow);
+    background: rgba(181, 148, 16, 0.15);
+    box-shadow: 0px 0px 20px rgba(181, 148, 16, 0.4);
+    transform: scale(1.05);
 }
 
+/* 🔹 WALLET MYGTUKO IKONA */
 .wallet-button .button-icon {
-    width: 20px;
+    width: 22px;
     margin-right: 8px;
+}
+
+/* 🔹 NEON BUTTON (SPECIALIAM NAUDOJIMUI) */
+.neon-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(90deg, #B59410, #926F0D);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 15px rgba(181, 148, 16, 0.3);
+}
+
+.neon-button:hover {
+    background: linear-gradient(90deg, #926F0D, #B59410);
+    box-shadow: 0px 0px 25px rgba(181, 148, 16, 0.5);
+    transform: scale(1.08);
 }

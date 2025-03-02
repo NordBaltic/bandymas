@@ -1,12 +1,12 @@
-/* 🎨 PRABANGUS AUKSINIO JUODO STILIAUS UI */
+/* === 💎 PREMIUM BLACK/GOLD DESIGN === */
 :root {
-    --primary-color: #000000;  /* Juodas fonas */
-    --accent-color: #B59410;  /* Auksinė */
-    --text-color: #FFFFF4;  /* Baltas auksas */
-    --input-bg: rgba(255, 255, 255, 0.05); /* Subtilus stiklo efektas */
+    --primary-color: #000000; /* Juodas fonas */
+    --accent-color: #B59410; /* Auksinė */
+    --text-color: #FFFFF4; /* Baltas auksas */
+    --input-bg: rgba(255, 255, 255, 0.05); /* Stiklo efektas */
     --input-border: rgba(255, 255, 255, 0.15); /* Subtilūs rėmeliai */
     --glass-border: rgba(181, 148, 16, 0.3); /* Auksinis subtilus glow */
-    --shadow-glow: rgba(181, 148, 16, 0.2); /* Vos matomas glow efektas */
+    --shadow-glow: rgba(181, 148, 16, 0.15); /* Vos matomas glow */
     --btn-gradient: linear-gradient(145deg, #9C7400, #FFD700);
 }
 
@@ -37,7 +37,7 @@ html, body {
     box-shadow: 0px 8px 20px rgba(181, 148, 16, 0.4);
 }
 
-/* 🔥 MYGTUKAI - PRABANGUS UI */
+/* 🔥 PREMIUM MYGTUKAI */
 button {
     font-size: 18px;
     font-weight: bold;
@@ -79,7 +79,7 @@ input:focus {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* 🔹 NAVBAR PRABANGIAM STILIUI */
+/* 🔹 PRABANGUS NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -109,24 +109,24 @@ input:focus {
     text-shadow: 0px 4px 14px rgba(181, 148, 16, 0.7);
 }
 
-/* 🔹 MOBILUS MENIU */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding: 12px;
-    }
-    
-    .navbar a {
-        font-size: 16px;
-        padding: 10px;
-    }
-}
-
-/* ✅ FOOTER */
+/* 🔹 FOOTER */
 .footer {
     text-align: center;
     padding: 20px;
     margin-top: 40px;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
+}
+
+/* ✅ MOBILUS MENIU */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        padding: 10px;
+    }
 }

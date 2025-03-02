@@ -1,5 +1,4 @@
-/* --- LOGIN PAGE STYLES --- */
-
+/* === 💎 PREMIUM BLACK/GOLD LOGIN UI === */
 .login-container {
     display: flex;
     flex-direction: column;
@@ -7,42 +6,46 @@
     justify-content: center;
     height: 100vh;
     width: 100%;
-    background: linear-gradient(135deg, #0A1F44, #1A3C70);
+    background: linear-gradient(135deg, #000000, #1A1A1A);
     animation: fadeIn 1s ease-in-out;
 }
 
+/* ✅ LOGOTIPO DIZAINAS */
 .logo-container {
     margin-bottom: 20px;
 }
 
 .logo-svg {
-    width: 120px;
+    width: 130px;
     height: auto;
     animation: fadeInScale 1s ease-in-out;
+    filter: drop-shadow(0px 0px 12px rgba(181, 148, 16, 0.7));
 }
 
-/* --- LOGIN BOX --- */
+/* ✅ LOGIN BOX */
 .login-box {
-    width: 380px;
+    width: 400px;
     max-width: 90%;
-    padding: 30px;
+    padding: 35px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 18px;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(181, 148, 16, 0.4);
+    box-shadow: 0px 10px 35px rgba(181, 148, 16, 0.5);
     animation: fadeIn 1s ease-in-out;
 }
 
+/* ✅ ANTRAŠTĖS */
 .subheading {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
     margin-bottom: 15px;
+    text-shadow: 0px 0px 12px rgba(181, 148, 16, 0.6);
 }
 
-/* --- INPUT STYLES --- */
+/* ✅ INPUT LAUKAI */
 .input-group {
     width: 100%;
     margin-bottom: 15px;
@@ -50,85 +53,95 @@
 
 .input-group input {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(181, 148, 16, 0.3);
     background: rgba(255, 255, 255, 0.1);
-    color: white;
+    color: var(--text-color);
     outline: none;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
 }
 
 .input-group input:focus {
-    border-color: #FFD700;
-    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 0px 18px rgba(181, 148, 16, 0.8);
 }
 
-/* --- BUTTONS --- */
+/* ✅ LOGIN MYGTUKAS */
 .login-button {
     width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
-    background: linear-gradient(45deg, #FFD700, #FF8C00);
+    background: linear-gradient(135deg, #B59410, #FFD700);
     color: black;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0px 6px 20px rgba(181, 148, 16, 0.6);
+    text-transform: uppercase;
 }
 
 .login-button:hover {
-    background: linear-gradient(45deg, #FF8C00, #FFD700);
+    background: linear-gradient(135deg, #FFD700, #B59410);
+    box-shadow: 0px 10px 30px rgba(181, 148, 16, 1);
+    transform: scale(1.05);
 }
 
-/* --- WALLET CONNECT BUTTON --- */
+/* ✅ WALLET CONNECT MYGTUKAS */
 .wallet-button {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 12px;
+    gap: 12px;
+    padding: 14px;
     margin-top: 15px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background: linear-gradient(45deg, #4C9AFF, #007AFF);
-    color: white;
+    background: linear-gradient(135deg, #B59410, #FFD700);
+    color: black;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.6);
 }
 
 .wallet-button:hover {
-    background: linear-gradient(45deg, #007AFF, #4C9AFF);
+    background: linear-gradient(135deg, #FFD700, #B59410);
+    box-shadow: 0px 10px 30px rgba(181, 148, 16, 1);
+    transform: scale(1.05);
 }
 
+/* ✅ MYGTUKO IKONOS */
 .button-icon {
-    width: 22px;
+    width: 24px;
     height: auto;
 }
 
-/* --- FOOTER --- */
+/* ✅ FOOTER */
 .login-footer {
-    margin-top: 15px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
+    margin-top: 18px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
+/* ✅ SAUGUMO IKONOS */
 .secure-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 6px;
 }
 
 .secure-icon {
-    width: 16px;
+    width: 18px;
     height: auto;
 }
 
-/* --- ANIMATIONS --- */
+/* ✅ ANIMACIJOS */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -151,25 +164,25 @@
     }
 }
 
-/* --- RESPONSIVE --- */
+/* ✅ RESPONSIVE */
 @media (max-width: 768px) {
     .login-box {
-        width: 320px;
-        padding: 25px;
+        width: 350px;
+        padding: 30px;
     }
 }
 
 @media (max-width: 480px) {
     .login-box {
-        width: 280px;
-        padding: 20px;
+        width: 300px;
+        padding: 25px;
     }
 
     .subheading {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .login-button, .wallet-button {
-        font-size: 14px;
+        font-size: 15px;
     }
 }

@@ -5,139 +5,141 @@ import "./AdminUsers.css";
 
 export default function AdminUsers() {
     const [users, setUsers] = useState([]);
-    const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
-    const [amount, setAmount] = useState("");
     const [selectedUser, setSelectedUser] = useState(null);
-    const [actionType, setActionType] = useState("deposit"); // "deposit" arba "withdraw"
+    const [amount, setAmount] = useState("");
 
     useEffect(() => {
         fetchUsers();
     }, []);
 
-    // ✅ Gauti visus vartotojus iš Supabase
+    // ✅ Gauti vartotojus iš DB
     const fetchUsers = async () => {
-        setLoading(true);
-        let { data, error } = await supabase.from("users").select("*");
-
-        if (error) {
-            toast.error("Nepavyko gauti vartotojų duomenų.");
-            console.error(error);
-        } else {
+        try {
+            setLoading(true);
+            let { data, error } = await supabase.from("users").select("*");
+            if (error) throw error;
             setUsers(data);
-        }
-        setLoading(false);
-    };
-
-    // ✅ Balanso papildymas arba nuskaitymas
-    const handleBalanceChange = async () => {
-        if (!selectedUser || !amount) {
-            toast.error("Pasirinkite vartotoją ir įveskite sumą.");
-            return;
-        }
-
-        const numericAmount = parseFloat(amount);
-        if (isNaN(numericAmount) || numericAmount <= 0) {
-            toast.error("Netinkama suma.");
-            return;
-        }
-
-        const newBalance =
-            actionType === "deposit"
-                ? selectedUser.balance + numericAmount
-                : selectedUser.balance - numericAmount;
-
-        if (newBalance < 0) {
-            toast.error("Nepakankamas vartotojo balansas.");
-            return;
-        }
-
-        const { error } = await supabase
-            .from("users")
-            .update({ balance: newBalance })
-            .eq("id", selectedUser.id);
-
-        if (error) {
-            toast.error("Nepavyko atnaujinti balanso.");
+        } catch (error) {
+            toast.error("Nepavyko gauti vartotojų sąrašo.");
             console.error(error);
-        } else {
-            toast.success(
-                actionType === "deposit"
-                    ? `Balansas papildytas ${numericAmount} USD.`
-                    : `Iš vartotojo nuskaityta ${numericAmount} USD.`
-            );
-            fetchUsers();
-            setAmount("");
+        } finally {
+            setLoading(false);
         }
     };
 
-    // ✅ Pasirinkti vartotoją balanso operacijoms
-    const handleUserSelect = (user) => {
-        setSelectedUser(user);
-        setAmount("");
+    // ✅ Pridėti/panaikinti balansą
+    const adjustBalance = async (userId, wallet, type) => {
+        if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+            toast.error("Įveskite teisingą sumą.");
+            return;
+        }
+
+        const transactionAmount = type === "add" ? parseFloat(amount) : -parseFloat(amount);
+        const fee = transactionAmount * 0.03; // 3% fee adminui
+        const finalAmount = transactionAmount - fee;
+
+        try {
+            // Atnaujinti balansą Supabase duomenų bazėje
+            let { error } = await supabase
+                .from("users")
+                .update({ balance: supabase.raw("balance + ?", [finalAmount]) })
+                .eq("id", userId);
+
+            if (error) throw error;
+
+            // Pridėti transakciją
+            await supabase.from("transactions").insert([
+                {
+                    user: userId,
+                    recipient: wallet,
+                    amount: finalAmount.toFixed(4),
+                    type: type === "add" ? "Admin add funds" : "Admin deduct funds",
+                },
+            ]);
+
+            toast.success(`Balansas ${type === "add" ? "pridėtas" : "atimtas"} sėkmingai!`);
+            fetchUsers(); // Atnaujinti UI
+        } catch (error) {
+            toast.error("Klaida keičiant balansą.");
+            console.error(error);
+        }
+    };
+
+    // ✅ Blokuoti/atblokuoti vartotoją
+    const toggleUserStatus = async (userId, currentStatus) => {
+        try {
+            let { error } = await supabase
+                .from("users")
+                .update({ is_blocked: !currentStatus })
+                .eq("id", userId);
+
+            if (error) throw error;
+
+            toast.success(`Vartotojas ${!currentStatus ? "užblokuotas" : "atblokuotas"}!`);
+            fetchUsers(); // Atnaujinti UI
+        } catch (error) {
+            toast.error("Nepavyko pakeisti vartotojo statuso.");
+            console.error(error);
+        }
     };
 
     return (
         <div className="admin-users-container fade-in">
-            <h1 className="admin-title">👑 Vartotojų valdymas</h1>
-
-            <input
-                type="text"
-                placeholder="🔎 Ieškoti pagal el. paštą ar piniginę..."
-                className="search-input"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-
-            <div className="balance-action-container">
-                <select onChange={(e) => setActionType(e.target.value)}>
-                    <option value="deposit">💰 Papildyti balansą</option>
-                    <option value="withdraw">📉 Nuskaityti lėšas</option>
-                </select>
-                <input
-                    type="number"
-                    placeholder="Suma (USD)"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                />
-                <button onClick={handleBalanceChange} disabled={!selectedUser}>
-                    {actionType === "deposit" ? "Papildyti balansą" : "Nuskaityti lėšas"}
-                </button>
-            </div>
+            <h1 className="admin-title">👤 Vartotojų valdymas</h1>
 
             {loading ? (
-                <p className="loading-text">⏳ Kraunama...</p>
+                <p>Kraunama...</p>
             ) : (
                 <table className="users-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>El. paštas</th>
+                            <th>Vartotojas</th>
                             <th>Piniginė</th>
                             <th>Balansas</th>
+                            <th>Statusas</th>
                             <th>Veiksmai</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users
-                            .filter(
-                                (user) =>
-                                    user.email.toLowerCase().includes(search.toLowerCase()) ||
-                                    user.wallet.toLowerCase().includes(search.toLowerCase())
-                            )
-                            .map((user) => (
-                                <tr key={user.id} onClick={() => handleUserSelect(user)}>
-                                    <td>{user.id}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.wallet}</td>
-                                    <td>{user.balance} USD</td>
-                                    <td>
-                                        <button className="select-btn">Pasirinkti</button>
-                                    </td>
-                                </tr>
-                            ))}
+                        {users.map((user) => (
+                            <tr key={user.id}>
+                                <td>{user.email || "Web3 user"}</td>
+                                <td>{user.wallet}</td>
+                                <td>{user.balance.toFixed(4)} BNB</td>
+                                <td>{user.is_blocked ? "❌ Blokuotas" : "✅ Aktyvus"}</td>
+                                <td>
+                                    <button onClick={() => toggleUserStatus(user.id, user.is_blocked)}>
+                                        {user.is_blocked ? "Atblokuoti" : "Blokuoti"}
+                                    </button>
+                                    <button onClick={() => setSelectedUser(user)}>💰 Keisti balansą</button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
+            )}
+
+            {/* Modalas balansui redaguoti */}
+            {selectedUser && (
+                <div className="modal-overlay">
+                    <div className="modal glass-morph">
+                        <h2>Keisti balansą ({selectedUser.email || "Web3 user"})</h2>
+                        <input
+                            type="number"
+                            placeholder="Suma BNB"
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
+                        />
+                        <button onClick={() => adjustBalance(selectedUser.id, selectedUser.wallet, "add")}>
+                            ➕ Pridėti
+                        </button>
+                        <button onClick={() => adjustBalance(selectedUser.id, selectedUser.wallet, "deduct")}>
+                            ➖ Atimti
+                        </button>
+                        <button onClick={() => setSelectedUser(null)}>❌ Uždaryti</button>
+                    </div>
+                </div>
             )}
         </div>
     );

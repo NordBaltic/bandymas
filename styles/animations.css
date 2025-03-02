@@ -1,29 +1,91 @@
+/* 🎩 PRABANGIOS ANIMACIJOS BLACK/GOLD UI */
+
+/* 🔥 LYGUS ATSIRADIMAS */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
         transform: scale(1);
     }
 }
-
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* 🔥 SLIDE UP (MINKŠTAS PAKĖLIMAS) */
 @keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
 .slide-up {
     animation: slideUp 0.6s ease-out;
+}
+
+/* 🔥 GLOW PULSAVIMAS (AUKSINIS PULSUOJANTIS EFEKTAS) */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0px 0px 10px rgba(181, 148, 16, 0.15);
+    }
+    50% {
+        box-shadow: 0px 0px 20px rgba(181, 148, 16, 0.3);
+    }
+    100% {
+        box-shadow: 0px 0px 10px rgba(181, 148, 16, 0.15);
+    }
+}
+.glow-pulse {
+    animation: glowPulse 2s infinite ease-in-out;
+}
+
+/* 🔥 FADE + GLOW (LENGVAS ŠVYTĖJIMAS ATSIRANDANT) */
+@keyframes fadeGlow {
+    from {
+        opacity: 0;
+        text-shadow: none;
+    }
+    to {
+        opacity: 1;
+        text-shadow: 0px 0px 8px rgba(181, 148, 16, 0.3);
+    }
+}
+.fade-glow {
+    animation: fadeGlow 0.8s ease-in-out;
+}
+
+/* 🔥 BOUNCE IN (MINKŠTAS ATSIRADIMAS SU ŠOKTELĖJIMU) */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.bounce-in {
+    animation: bounceIn 0.6s ease-out;
+}
+
+/* 🔹 INTERAKTYVŪS HOVER EFEKTAI */
+.hover-scale:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hover-glow:hover {
+    box-shadow: 0px 0px 15px rgba(181, 148, 16, 0.3);
+    transition: box-shadow 0.3s ease-in-out;
 }

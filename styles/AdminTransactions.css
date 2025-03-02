@@ -1,95 +1,54 @@
-.admin-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px;
-  text-align: center;
+.admin-transactions-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
 }
 
 .admin-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--gold-color);
-  text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.6);
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.7);
 }
 
 .filter-container {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.filter-dropdown, .search-input {
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid var(--glass-border);
-  background: var(--input-bg);
-  color: var(--text-color);
+.search-input, .filter-select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 2px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: center;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
 }
 
 .transactions-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--input-bg);
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
 .transactions-table th, .transactions-table td {
-  padding: 15px;
-  border-bottom: 1px solid var(--glass-border);
+    padding: 10px;
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
 }
 
-.tx-type {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.tx-type.staking {
-  color: #FFD700;
-}
-
-.tx-type.swap {
-  color: #00C6FF;
-}
-
-.tx-type.donation {
-  color: #FF5733;
-}
-
-.tx-type.transfer {
-  color: #10B981;
-}
-
-.tx-status {
-  font-weight: bold;
-}
-
-.tx-status.pending {
-  color: #FFD700;
-}
-
-.tx-status.completed {
-  color: #10B981;
-}
-
-.tx-status.rejected {
-  color: #FF4444;
-}
-
-.approve-btn {
-  background: #10B981;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.reject-btn {
-  background: #FF4444;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+.loading-text {
+    font-size: 18px;
+    color: var(--text-color);
+    margin-top: 20px;
 }

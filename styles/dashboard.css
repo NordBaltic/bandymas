@@ -1,182 +1,106 @@
-/* === 💎 PRABANGUS DASHBOARD BLACK/GOLD UI === */
-
-/* 🔹 PAGRINDINĖ KONTEINERIO STRUKTŪRA */
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  animation: fadeInScale 1.5s ease-in-out;
-  background: var(--background-color);
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
 }
 
-/* ✅ NAVIGACIJA (Ultra-Glassmorphism 5.0) */
-.dashboard-navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  max-width: 1200px;
-  padding: 15px 20px;
-  background: rgba(0, 0, 0, 0.85);
-  border-bottom: 2px solid var(--accent-color);
-  backdrop-filter: blur(15px);
-  box-shadow: 0px 8px 25px rgba(181, 148, 16, 0.4);
-  border-radius: 15px;
-  transition: all 0.3s ease-in-out;
-}
-
-.dashboard-navbar:hover {
-  box-shadow: 0px 12px 35px rgba(181, 148, 16, 0.7);
-}
-
-/* ✅ LOGOTIPAS */
-.dashboard-logo {
-  width: 150px;
-  height: auto;
-  filter: drop-shadow(0px 0px 12px rgba(181, 148, 16, 0.6));
-  transition: filter 0.3s ease-in-out;
-}
-
-.dashboard-logo:hover {
-  filter: drop-shadow(0px 0px 30px rgba(181, 148, 16, 0.9));
-}
-
-/* ✅ LOGOUT MYGTUKAS */
-.logout-button {
-  padding: 14px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(145deg, #B59410, #926F0D);
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 6px 20px rgba(181, 148, 16, 0.6);
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.logout-button:hover {
-  transform: scale(1.07);
-  box-shadow: 0px 14px 38px rgba(181, 148, 16, 1);
-}
-
-/* ✅ DASHBOARD INFO BOX */
-.dashboard-box {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  padding: 45px;
-  border-radius: 20px;
-  box-shadow: 0px 10px 35px rgba(181, 148, 16, 0.5);
-  border: 2px solid var(--accent-color);
-  width: 90%;
-  max-width: 650px;
-  margin-top: 35px;
-  animation: floatBox 3s infinite ease-in-out;
-}
-
-/* 🏆 3D FLOATING EFFECT (Info blokas atrodo kaip kybantis) */
-@keyframes floatBox {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-/* ✅ TEKSTAI */
 .dashboard-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: var(--accent-color);
-  text-shadow: 0px 0px 15px rgba(181, 148, 16, 0.7);
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
 }
 
-.dashboard-subtitle {
-  font-size: 18px;
-  color: var(--text-color);
-  margin-top: 12px;
-  opacity: 0.9;
+/* 🔥 PINIGINĖS BLOKAS */
+.wallet-info {
+    background: var(--input-bg);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 6px 20px var(--shadow-glow);
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
 }
 
-/* ✅ WALLET INFO (Dynamic Glow Effect) */
-.dashboard-wallet {
-  font-size: 22px;
-  font-weight: bold;
-  color: var(--text-color);
-  margin-top: 8px;
-  text-shadow: 0px 0px 15px rgba(181, 148, 16, 0.4);
-  transition: text-shadow 0.3s ease-in-out;
+.wallet-info:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 8px 25px var(--shadow-glow);
 }
 
-.dashboard-wallet:hover {
-  text-shadow: 0px 0px 25px rgba(181, 148, 16, 0.9);
+/* 🔥 BALANSO RODMUO */
+.floating-balance {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0px 0px 15px var(--shadow-glow);
 }
 
-/* ✅ VEIKSMŲ MYGTUKAI */
-.dashboard-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
+/* 🔥 GRAFINIS RODMUO */
+.chart-box {
+    width: 100%;
+    height: 320px;
+    background: var(--input-bg);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 6px 18px var(--shadow-glow);
 }
 
-.dashboard-action-btn {
-  padding: 14px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background: var(--accent-color);
-  color: #000;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 4px 12px rgba(181, 148, 16, 0.4);
+/* 🔥 GREITŲ VEIKSMŲ MYGTUKAI */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-.dashboard-action-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0px 0px 20px rgba(181, 148, 16, 0.6);
-}
-
-/* === 📱 RESPONSIVE FIXES (MOBILIEMS) === */
-@media (max-width: 768px) {
-  .dashboard-navbar {
-    padding: 12px 15px;
-  }
-
-  .dashboard-box {
-    padding: 35px;
-    max-width: 500px;
-  }
-
-  .dashboard-title {
-    font-size: 28px;
-  }
-
-  .dashboard-wallet {
+.action-buttons button {
     font-size: 18px;
-  }
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    transition: all 0.3s ease-in-out;
+}
 
-  .logout-button {
-    font-size: 14px;
-    padding: 12px 20px;
-  }
+.action-buttons button:hover {
+    background: #926F0D;
+    box-shadow: 0px 8px 22px rgba(181, 148, 16, 0.5);
+}
 
-  .dashboard-actions {
-    flex-direction: column;
-    align-items: center;
-  }
+/* 🔥 TRANSAKCIJŲ ISTORIJA */
+.transactions-box {
+    margin-top: 40px;
+    padding: 25px;
+    border-radius: 15px;
+    background: var(--input-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+}
 
-  .dashboard-action-btn {
-    width: 80%;
-  }
+.transactions-box h3 {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.transactions-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transactions-box li {
+    padding: 12px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.transactions-box li:last-child {
+    border-bottom: none;
 }

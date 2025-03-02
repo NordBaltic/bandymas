@@ -2,38 +2,47 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { fetchBalanceData } from '../lib/api';
+import { useWallet } from '../lib/walletConnect';
+import { fetchBalanceData, fetchUserWallet } from '../lib/api';
 import ChartComponent from '../components/ChartComponent';
 import WalletStatus from '../components/WalletStatus';
 
 export default function Dashboard() {
     const router = useRouter();
     const { user } = useAuth();
+    const { address, isConnected } = useWallet();
     const [balance, setBalance] = useState(0);
     const [chartData, setChartData] = useState([]);
     const [currency, setCurrency] = useState('BNB/USD');
+    const [walletAddress, setWalletAddress] = useState(null);
     const [recentTransactions, setRecentTransactions] = useState([]);
 
     useEffect(() => {
-        if (!user) {
-            router.push('/');
-            return;
-        }
+        async function checkUserAccount() {
+            if (!user && !isConnected) {
+                router.push('/');
+                return;
+            }
 
-        async function getBalance() {
-            const walletAddress = user.wallet?.address;
-            if (!walletAddress) return;
+            let activeWallet = address;
+            if (!isConnected && user) {
+                const dbWallet = await fetchUserWallet(user.id);
+                if (dbWallet) activeWallet = dbWallet.address;
+            }
 
-            const data = await fetchBalanceData(walletAddress);
-            if (data) {
-                setBalance(data.balance);
-                setChartData(data.history);
-                setRecentTransactions(data.transactions);
+            if (activeWallet) {
+                setWalletAddress(activeWallet);
+                const data = await fetchBalanceData(activeWallet);
+                if (data) {
+                    setBalance(data.balance);
+                    setChartData(data.history);
+                    setRecentTransactions(data.transactions);
+                }
             }
         }
 
-        getBalance();
-    }, [user]);
+        checkUserAccount();
+    }, [user, isConnected]);
 
     return (
         <motion.div 
@@ -42,9 +51,10 @@ export default function Dashboard() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
         >
-            {/* Viršutinis informacijos blokas */}
+            {/* Wallet Info */}
             <motion.div className="wallet-info glass-morph">
                 <h2 className="floating-balance">Balance: {balance} {currency}</h2>
+                {walletAddress && <p className="wallet-address">Wallet: {walletAddress}</p>}
                 <WalletStatus />
                 <div className="currency-toggle">
                     <button className={`toggle-btn ${currency === 'BNB/USD' ? 'active' : ''}`} onClick={() => setCurrency('BNB/USD')}>BNB/USD</button>
@@ -52,12 +62,12 @@ export default function Dashboard() {
                 </div>
             </motion.div>
 
-            {/* Grafinis balanso atvaizdavimas */}
+            {/* Chart */}
             <motion.div className="chart-box glass-morph slide-up">
                 <ChartComponent data={chartData} currency={currency} />
             </motion.div>
 
-            {/* Pagrindiniai veiksmai */}
+            {/* Action Buttons */}
             <motion.div className="action-buttons">
                 <button onClick={() => router.push('/send')} className="action-btn">🚀 Send</button>
                 <button onClick={() => router.push('/receive')} className="action-btn">📥 Receive</button>

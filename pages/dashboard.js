@@ -1,92 +1,102 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
-import { useAuth } from '../context/AuthContext';
-import { useWallet } from '../lib/walletConnect';
-import { fetchBalanceData, fetchUserWallet } from '../lib/api';
-import ChartComponent from '../components/ChartComponent';
-import WalletStatus from '../components/WalletStatus';
+import React, { useState, useEffect } from "react";
+import { supabase } from "../lib/supabaseClient";
+import ChartComponent from "../components/ChartComponent";
+import WalletConnectButton from "../components/WalletConnectButton";
+import SendBscTransaction from "../components/SendBscTransaction";
+import SwapComponent from "../components/swap/SwapComponent";
+import DonateComponent from "../components/donate/DonateComponent";
+import StakeComponent from "../components/stake/StakeComponent";
+import toast from "react-hot-toast";
+import "./Dashboard.css";
 
 export default function Dashboard() {
-    const router = useRouter();
-    const { user } = useAuth();
-    const { address, isConnected } = useWallet();
     const [balance, setBalance] = useState(0);
-    const [chartData, setChartData] = useState([]);
-    const [currency, setCurrency] = useState('BNB/USD');
-    const [walletAddress, setWalletAddress] = useState(null);
-    const [recentTransactions, setRecentTransactions] = useState([]);
+    const [transactions, setTransactions] = useState([]);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function checkUserAccount() {
-            if (!user && !isConnected) {
-                router.push('/');
-                return;
-            }
+        fetchUserData();
+    }, []);
 
-            let activeWallet = address;
-            if (!isConnected && user) {
-                const dbWallet = await fetchUserWallet(user.id);
-                if (dbWallet) activeWallet = dbWallet.address;
-            }
+    // ✅ Gauna vartotojo informaciją iš Supabase
+    const fetchUserData = async () => {
+        const { data: session } = await supabase.auth.getSession();
+        if (!session) return;
 
-            if (activeWallet) {
-                setWalletAddress(activeWallet);
-                const data = await fetchBalanceData(activeWallet);
-                if (data) {
-                    setBalance(data.balance);
-                    setChartData(data.history);
-                    setRecentTransactions(data.transactions);
-                }
-            }
+        setUser(session.user);
+        const { data, error } = await supabase
+            .from("wallets")
+            .select("*")
+            .eq("user_id", session.user.id)
+            .single();
+
+        if (error) {
+            console.error("Klaida gaunant balansą:", error);
+            return;
         }
 
-        checkUserAccount();
-    }, [user, isConnected]);
+        setBalance(data.balance);
+        fetchTransactions(data.wallet_address);
+    };
+
+    // ✅ Gauna transakcijų istoriją
+    const fetchTransactions = async (walletAddress) => {
+        const { data, error } = await supabase
+            .from("transactions")
+            .select("*")
+            .eq("wallet_address", walletAddress)
+            .order("created_at", { ascending: false });
+
+        if (error) {
+            console.error("Klaida gaunant transakcijas:", error);
+            return;
+        }
+
+        setTransactions(data);
+        setLoading(false);
+    };
 
     return (
-        <motion.div 
-            className="dashboard-container fade-in"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-        >
-            {/* Wallet Info */}
-            <motion.div className="wallet-info glass-morph">
-                <h2 className="floating-balance">Balance: {balance} {currency}</h2>
-                {walletAddress && <p className="wallet-address">Wallet: {walletAddress}</p>}
-                <WalletStatus />
-                <div className="currency-toggle">
-                    <button className={`toggle-btn ${currency === 'BNB/USD' ? 'active' : ''}`} onClick={() => setCurrency('BNB/USD')}>BNB/USD</button>
-                    <button className={`toggle-btn ${currency === 'BNB/EUR' ? 'active' : ''}`} onClick={() => setCurrency('BNB/EUR')}>BNB/EUR</button>
-                </div>
-            </motion.div>
+        <div className="dashboard-container fade-in">
+            <h1 className="dashboard-title">🏦 Jūsų piniginė</h1>
 
-            {/* Chart */}
-            <motion.div className="chart-box glass-morph slide-up">
-                <ChartComponent data={chartData} currency={currency} />
-            </motion.div>
+            {/* 🔥 PINIGINĖS BALANSAS */}
+            <div className="wallet-info glass-morph">
+                <h2 className="floating-balance">💰 {balance} BNB</h2>
+                <WalletConnectButton />
+            </div>
 
-            {/* Action Buttons */}
-            <motion.div className="action-buttons">
-                <button onClick={() => router.push('/send')} className="action-btn">🚀 Send</button>
-                <button onClick={() => router.push('/receive')} className="action-btn">📥 Receive</button>
-                <button onClick={() => router.push('/stake')} className="action-btn">💰 Stake</button>
-                <button onClick={() => router.push('/donate')} className="action-btn">🎗️ Donate</button>
-                <button onClick={() => router.push('/swap')} className="action-btn">🔄 Swap</button>
-            </motion.div>
+            {/* 🔥 GRAFINIS RODMUO */}
+            <div className="chart-box">
+                <ChartComponent data={[0.5, 1.2, 2.5, balance]} currency="BNB" />
+            </div>
 
-            {/* Recent Transactions */}
-            <motion.div className="transactions-box glass-morph fade-in">
-                <h3>Recent Transactions</h3>
-                <ul>
-                    {recentTransactions.map((tx, index) => (
-                        <li key={index}>
-                            {tx.type} - {tx.amount} BNB - <span>{tx.status}</span>
-                        </li>
-                    ))}
-                </ul>
-            </motion.div>
-        </motion.div>
+            {/* 🔥 GREITI VEIKSMAI */}
+            <div className="action-buttons">
+                <SendBscTransaction senderAddress={user?.wallet_address} />
+                <SwapComponent />
+                <DonateComponent />
+                <StakeComponent />
+            </div>
+
+            {/* 🔥 TRANSAKCIJŲ ISTORIJA */}
+            <div className="transactions-box">
+                <h3>📜 Pavedimų istorija</h3>
+                {loading ? (
+                    <p>🔄 Kraunama...</p>
+                ) : transactions.length > 0 ? (
+                    <ul>
+                        {transactions.map((tx, index) => (
+                            <li key={index}>
+                                {tx.amount} BNB → {tx.to}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>❌ Transakcijų nėra</p>
+                )}
+            </div>
+        </div>
     );
 }

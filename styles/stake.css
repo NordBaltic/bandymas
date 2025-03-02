@@ -1,0 +1,35 @@
+.stake-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.stake-btn, .unstake-btn {
+    padding: 12px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 5px;
+}
+
+.stake-btn:hover, .unstake-btn:hover {
+    background: #ffd700;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-align: center;
+}

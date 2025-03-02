@@ -1,0 +1,93 @@
+/* 🎨 Globalūs stiliai */
+:root {
+    --primary-color: #0A1E3A; /* Coinbase mėlyna (7-10% tamsesnė) */
+    --accent-color: #FF9900; /* Akcentinė oranžinė */
+    --background-color: #0A1627; /* Tamsus fonas */
+    --text-color: #ffffff; /* Balta tekstui */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow-glow: rgba(255, 153, 0, 0.6);
+}
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* 🔹 Stiklinis efektas */
+.glass-morph {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+/* 🔥 Mygtukų dizainas */
+button {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.primary-btn {
+    background: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0px 4px 10px var(--shadow-glow);
+}
+
+.primary-btn:hover {
+    background: #cc7700;
+}
+
+/* 🔹 Interaktyvūs input laukai */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* 🔹 Navbar dizainas */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+/* 🔹 Mobilus meniu */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .navbar .menu {
+        display: none;
+    }
+}

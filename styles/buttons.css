@@ -1,0 +1,42 @@
+.primary-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    background: var(--button-primary);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.primary-button:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: var(--neon-glow);
+}
+
+.wallet-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 122, 255, 0.7);
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.wallet-button:hover {
+    background: rgba(0, 122, 255, 1);
+    box-shadow: var(--neon-glow);
+}
+
+.wallet-button .button-icon {
+    width: 20px;
+    margin-right: 8px;
+}

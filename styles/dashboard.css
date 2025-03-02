@@ -1,0 +1,145 @@
+/* === 💎 DASHBOARD STYLES === */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  animation: fadeInScale 1.5s ease-in-out;
+}
+
+/* ✅ NAVIGACIJA (Ultra-Glassmorphism 5.0) */
+.dashboard-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  padding: 15px 20px;
+  background: rgba(1, 10, 23, 0.95);
+  border-bottom: 2px solid var(--gold-color);
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 8px 25px rgba(255, 215, 0, 0.5);
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.dashboard-navbar:hover {
+  box-shadow: 0px 12px 35px rgba(255, 215, 0, 0.8);
+}
+
+/* ✅ LOGOTIPAS */
+.dashboard-logo {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0px 0px 15px var(--gold-color));
+  transition: filter 0.3s ease-in-out;
+}
+
+.dashboard-logo:hover {
+  filter: drop-shadow(0px 0px 30px var(--gold-color));
+}
+
+/* ✅ LOGOUT MYGTUKAS */
+.logout-button {
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(145deg, #9C7400, #FFD700);
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 6px 20px rgba(156, 116, 0, 0.6);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔥 Logout mygtuko Hover efektas */
+.logout-button:hover {
+  transform: scale(1.07);
+  box-shadow: 0px 14px 38px rgba(156, 116, 0, 1);
+}
+
+/* ✅ DASHBOARD INFO BOX */
+.dashboard-box {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 45px;
+  border-radius: 22px;
+  box-shadow: 0px 10px 35px rgba(255, 215, 0, 0.7);
+  border: 2px solid var(--gold-color);
+  width: 90%;
+  max-width: 650px;
+  margin-top: 35px;
+  animation: floatBox 3s infinite ease-in-out;
+}
+
+/* 🏆 3D FLOATING EFFECT (Info blokas atrodo kaip kybantis) */
+@keyframes floatBox {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* ✅ TEKSTAI */
+.dashboard-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--gold-color);
+  text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.7);
+}
+
+.dashboard-subtitle {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-top: 12px;
+  opacity: 0.9;
+}
+
+/* ✅ WALLET INFO (Dynamic Glow Effect) */
+.dashboard-wallet {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-top: 8px;
+  text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.dashboard-wallet:hover {
+  text-shadow: 0px 0px 25px rgba(255, 215, 0, 1);
+}
+
+/* === 📱 RESPONSIVE FIXES (MOBILIEMS) === */
+@media (max-width: 768px) {
+  .dashboard-navbar {
+    padding: 12px 15px;
+  }
+
+  .dashboard-box {
+    padding: 35px;
+    max-width: 500px;
+  }
+
+  .dashboard-title {
+    font-size: 26px;
+  }
+
+  .dashboard-wallet {
+    font-size: 18px;
+  }
+
+  .logout-button {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+}

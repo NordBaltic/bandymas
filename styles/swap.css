@@ -1,0 +1,32 @@
+
+.swap-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.swap-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 15px 0;
+    background: #ffcc00;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.swap-btn:hover {
+    background: #ffd700;
+}
+
+.pancake-iframe {
+    border: none;
+    border-radius: 12px;
+    margin-top: 20px;
+}

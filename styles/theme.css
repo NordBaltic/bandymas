@@ -1,0 +1,98 @@
+/* 🎨 Teminės spalvos */
+:root {
+    --primary-color: #0A1E3A;
+    --accent-color: #FF9900;
+    --background-color: #0A1627;
+    --text-color: #ffffff;
+    --input-bg: rgba(255, 255, 255, 0.1);
+    --input-border: rgba(255, 255, 255, 0.3);
+    --shadow-glow: rgba(255, 153, 0, 0.6);
+}
+
+/* 🔹 Dashboard specifiniai stiliai */
+.dashboard-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+    text-align: center;
+}
+
+.dashboard-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* 🔹 Grafinio rodymo laukai */
+.chart-box {
+    background: var(--input-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔥 Veiksmų mygtukai */
+.action-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.action-btn {
+    background: var(--accent-color);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: #cc7700;
+}
+
+/* 🔥 Input laukai */
+.input-box {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: #fff;
+    border-radius: 6px;
+}
+
+.input-box:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* 🔹 Prisijungimo langas */
+.login-box {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: var(--input-bg);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔥 Neoniniai efektai */
+.neon-glow {
+    text-shadow: 0px 0px 10px var(--shadow-glow);
+}
+
+/* 🔹 Staking puslapis */
+.stake-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 30px;
+}
+
+.stake-box {
+    background: var(--input-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}

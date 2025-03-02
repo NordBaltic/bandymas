@@ -1,0 +1,76 @@
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loading-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+}
+
+.loading-animation {
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+.loading-animation.small {
+  width: 30px;
+  height: 30px;
+}
+
+.loading-animation.medium {
+  width: 50px;
+  height: 50px;
+}
+
+.loading-animation.large {
+  width: 80px;
+  height: 80px;
+}
+
+/* 🔥 Liquid Gold efektas */
+.loading-animation.liquid-gold {
+  background: linear-gradient(45deg, #ffd700, #ff9100);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  animation: pulse 1.5s infinite alternate;
+}
+
+/* 💎 Neon Pulse efektas */
+.loading-animation.neon-pulse {
+  background: #0ff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  animation: glow 1.2s infinite alternate;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.8); }
+  to { box-shadow: 0 0 30px rgba(0, 255, 255, 1); }
+}
+
+.loading-fallback {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}

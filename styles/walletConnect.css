@@ -1,0 +1,53 @@
+.wallet-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.wallet-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #2D88FF, #3B3B98);
+  color: #fff;
+  border: none;
+}
+
+.wallet-button:hover {
+  background: linear-gradient(135deg, #3B3B98, #2D88FF);
+}
+
+.wallet-button.logout {
+  background: #ff4444;
+}
+
+.wallet-button.logout:hover {
+  background: #cc0000;
+}
+
+.wallet-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.wallet-address {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ddd;
+  margin-top: 5px;
+}
+
+.connected-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

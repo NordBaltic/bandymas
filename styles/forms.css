@@ -1,0 +1,17 @@
+.input-box {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--accent-color);
+    font-size: 16px;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+}
+
+.input-box:focus {
+    outline: none;
+    box-shadow: var(--neon-glow);
+}

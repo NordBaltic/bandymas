@@ -1,0 +1,175 @@
+/* --- LOGIN PAGE STYLES --- */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #0A1F44, #1A3C70);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo-svg {
+    width: 120px;
+    height: auto;
+    animation: fadeInScale 1s ease-in-out;
+}
+
+/* --- LOGIN BOX --- */
+.login-box {
+    width: 380px;
+    max-width: 90%;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.subheading {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+/* --- INPUT STYLES --- */
+.input-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+    border-color: #FFD700;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- BUTTONS --- */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(45deg, #FFD700, #FF8C00);
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-button:hover {
+    background: linear-gradient(45deg, #FF8C00, #FFD700);
+}
+
+/* --- WALLET CONNECT BUTTON --- */
+.wallet-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(45deg, #4C9AFF, #007AFF);
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.wallet-button:hover {
+    background: linear-gradient(45deg, #007AFF, #4C9AFF);
+}
+
+.button-icon {
+    width: 22px;
+    height: auto;
+}
+
+/* --- FOOTER --- */
+.login-footer {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.secure-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.secure-icon {
+    width: 16px;
+    height: auto;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .login-box {
+        width: 320px;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        width: 280px;
+        padding: 20px;
+    }
+
+    .subheading {
+        font-size: 18px;
+    }
+
+    .login-button, .wallet-button {
+        font-size: 14px;
+    }
+}

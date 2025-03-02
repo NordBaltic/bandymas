@@ -1,32 +1,31 @@
-/* === 💎 PREMIUM FORM INPUT DESIGN === */
+/* === 💎 PREMIUM BLACK/GOLD INPUT DESIGN === */
 .input-field {
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px 18px;
   margin: 12px 0;
-  border: 2px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.05); /* Cyber Glassmorphism */
+  border: 2px solid var(--glass-border);
+  background: var(--input-bg);
   color: var(--text-color);
-  font-size: 17px;
-  border-radius: 12px;
-  box-shadow: 0px 5px 15px rgba(156, 116, 0, 0.35);
+  font-size: 18px;
+  border-radius: 14px;
+  box-shadow: 0px 5px 15px rgba(181, 148, 16, 0.25);
   transition: all 0.3s ease-in-out;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(12px);
   position: relative;
-  overflow: hidden;
 }
 
 /* === ✨ INPUT FIELD HOVER EFFECT === */
 .input-field:hover {
-  border-color: rgba(255, 215, 0, 0.95);
-  box-shadow: 0px 0px 14px rgba(255, 215, 0, 0.7);
-  transform: scale(1.03);
+  border-color: rgba(255, 215, 0, 0.9);
+  box-shadow: 0px 0px 16px rgba(255, 215, 0, 0.5);
+  transform: scale(1.02);
 }
 
 /* === ✨ INPUT FIELD FOCUS (AKTYVUS) === */
 .input-field:focus {
   outline: none;
-  border-color: var(--gold-color);
-  box-shadow: 0px 0px 22px var(--gold-color);
+  border-color: var(--accent-color);
+  box-shadow: 0px 0px 24px var(--accent-color);
   transform: scale(1.05);
 }
 
@@ -105,35 +104,35 @@
 
 .input-wrapper .input-icon {
   position: absolute;
-  left: 15px;
+  left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  opacity: 0.8;
+  width: 26px;
+  height: 26px;
+  opacity: 0.85;
   transition: all 0.3s ease-in-out;
-  filter: drop-shadow(0px 0px 12px rgba(255, 215, 0, 0.6));
+  filter: drop-shadow(0px 0px 14px rgba(255, 215, 0, 0.7));
 }
 
 .input-field.with-icon {
-  padding-left: 50px;
+  padding-left: 55px;
 }
 
 .input-field:focus + .input-icon {
   opacity: 1;
-  transform: translateY(-50%) scale(1.1);
-  filter: drop-shadow(0px 0px 20px rgba(255, 215, 0, 1));
+  transform: translateY(-50%) scale(1.15);
+  filter: drop-shadow(0px 0px 22px rgba(255, 215, 0, 1));
 }
 
 /* === 📱 RESPONSIVE FIXES === */
 @media (max-width: 768px) {
   .input-field {
-    font-size: 15px;
-    padding: 12px;
+    font-size: 16px;
+    padding: 14px;
   }
 
   .input-wrapper .input-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 }

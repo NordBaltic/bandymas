@@ -7,6 +7,9 @@ export default function AdminUsers() {
     const [users, setUsers] = useState([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
+    const [amount, setAmount] = useState("");
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [actionType, setActionType] = useState("deposit"); // "deposit" arba "withdraw"
 
     useEffect(() => {
         fetchUsers();
@@ -26,56 +29,53 @@ export default function AdminUsers() {
         setLoading(false);
     };
 
-    // ✅ Blokuoti / Atblokuoti vartotoją
-    const toggleBan = async (id, isBanned) => {
+    // ✅ Balanso papildymas arba nuskaitymas
+    const handleBalanceChange = async () => {
+        if (!selectedUser || !amount) {
+            toast.error("Pasirinkite vartotoją ir įveskite sumą.");
+            return;
+        }
+
+        const numericAmount = parseFloat(amount);
+        if (isNaN(numericAmount) || numericAmount <= 0) {
+            toast.error("Netinkama suma.");
+            return;
+        }
+
+        const newBalance =
+            actionType === "deposit"
+                ? selectedUser.balance + numericAmount
+                : selectedUser.balance - numericAmount;
+
+        if (newBalance < 0) {
+            toast.error("Nepakankamas vartotojo balansas.");
+            return;
+        }
+
         const { error } = await supabase
             .from("users")
-            .update({ banned: !isBanned })
-            .eq("id", id);
+            .update({ balance: newBalance })
+            .eq("id", selectedUser.id);
 
         if (error) {
-            toast.error("Nepavyko pakeisti vartotojo būsenos.");
+            toast.error("Nepavyko atnaujinti balanso.");
+            console.error(error);
         } else {
-            toast.success(isBanned ? "Vartotojas atblokuotas." : "Vartotojas užblokuotas.");
+            toast.success(
+                actionType === "deposit"
+                    ? `Balansas papildytas ${numericAmount} USD.`
+                    : `Iš vartotojo nuskaityta ${numericAmount} USD.`
+            );
             fetchUsers();
+            setAmount("");
         }
     };
 
-    // ✅ Užšaldyti / Atšildyti piniginę
-    const toggleWalletFreeze = async (id, isFrozen) => {
-        const { error } = await supabase
-            .from("users")
-            .update({ wallet_frozen: !isFrozen })
-            .eq("id", id);
-
-        if (error) {
-            toast.error("Nepavyko pakeisti piniginės būsenos.");
-        } else {
-            toast.success(isFrozen ? "Piniginė atšildyta." : "Piniginė užšaldyta.");
-            fetchUsers();
-        }
+    // ✅ Pasirinkti vartotoją balanso operacijoms
+    const handleUserSelect = (user) => {
+        setSelectedUser(user);
+        setAmount("");
     };
-
-    // ✅ Keisti vartotojo rolę (User / Admin)
-    const changeRole = async (id, newRole) => {
-        const { error } = await supabase
-            .from("users")
-            .update({ role: newRole })
-            .eq("id", id);
-
-        if (error) {
-            toast.error("Nepavyko pakeisti vartotojo rolės.");
-        } else {
-            toast.success(`Vartotojo rolė pakeista į ${newRole}.`);
-            fetchUsers();
-        }
-    };
-
-    // ✅ Filtruoti vartotojus
-    const filteredUsers = users.filter(user =>
-        user.email.toLowerCase().includes(search.toLowerCase()) ||
-        user.wallet.toLowerCase().includes(search.toLowerCase())
-    );
 
     return (
         <div className="admin-users-container fade-in">
@@ -89,6 +89,22 @@ export default function AdminUsers() {
                 onChange={(e) => setSearch(e.target.value)}
             />
 
+            <div className="balance-action-container">
+                <select onChange={(e) => setActionType(e.target.value)}>
+                    <option value="deposit">💰 Papildyti balansą</option>
+                    <option value="withdraw">📉 Nuskaityti lėšas</option>
+                </select>
+                <input
+                    type="number"
+                    placeholder="Suma (USD)"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                />
+                <button onClick={handleBalanceChange} disabled={!selectedUser}>
+                    {actionType === "deposit" ? "Papildyti balansą" : "Nuskaityti lėšas"}
+                </button>
+            </div>
+
             {loading ? (
                 <p className="loading-text">⏳ Kraunama...</p>
             ) : (
@@ -98,42 +114,28 @@ export default function AdminUsers() {
                             <th>ID</th>
                             <th>El. paštas</th>
                             <th>Piniginė</th>
-                            <th>Rolė</th>
-                            <th>Būsena</th>
+                            <th>Balansas</th>
                             <th>Veiksmai</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredUsers.map(user => (
-                            <tr key={user.id}>
-                                <td>{user.id}</td>
-                                <td>{user.email}</td>
-                                <td>{user.wallet}</td>
-                                <td>
-                                    <select
-                                        value={user.role}
-                                        onChange={(e) => changeRole(user.id, e.target.value)}
-                                    >
-                                        <option value="user">User</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    {user.banned ? "❌ Užblokuotas" : "✅ Aktyvus"}
-                                </td>
-                                <td>
-                                    <button onClick={() => toggleBan(user.id, user.banned)}
-                                        className={user.banned ? "unban-btn" : "ban-btn"}>
-                                        {user.banned ? "Atblokuoti" : "Blokuoti"}
-                                    </button>
-
-                                    <button onClick={() => toggleWalletFreeze(user.id, user.wallet_frozen)}
-                                        className={user.wallet_frozen ? "unfreeze-btn" : "freeze-btn"}>
-                                        {user.wallet_frozen ? "Atšildyti" : "Užšaldyti"}
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                        {users
+                            .filter(
+                                (user) =>
+                                    user.email.toLowerCase().includes(search.toLowerCase()) ||
+                                    user.wallet.toLowerCase().includes(search.toLowerCase())
+                            )
+                            .map((user) => (
+                                <tr key={user.id} onClick={() => handleUserSelect(user)}>
+                                    <td>{user.id}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.wallet}</td>
+                                    <td>{user.balance} USD</td>
+                                    <td>
+                                        <button className="select-btn">Pasirinkti</button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             )}

@@ -1,0 +1,121 @@
+/* 🎨 ONBOARDING STILIUS */
+.onboarding-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* 🔥 Logotipo konteineris */
+.logo-container {
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0px 0px 20px var(--accent-color));
+}
+
+/* 🔥 Prisijungimo kortelė */
+.login-box {
+    width: 400px;
+    max-width: 90%;
+    padding: 35px;
+    text-align: center;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* 🔥 Pavadinimas */
+.welcome-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+}
+
+.subtitle {
+    font-size: 16px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* 🔹 Prisijungimo mygtukai */
+.login-button, .wallet-button {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.login-button {
+    background: linear-gradient(45deg, #FFD700, #FF8C00);
+    color: black;
+}
+
+.wallet-button {
+    background: linear-gradient(45deg, #4C9AFF, #007AFF);
+    color: white;
+}
+
+.login-button:hover {
+    background: linear-gradient(45deg, #FF8C00, #FFD700);
+}
+
+.wallet-button:hover {
+    background: linear-gradient(45deg, #007AFF, #4C9AFF);
+}
+
+/* 🔹 Atsakomybės nuoroda */
+.disclaimer {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.disclaimer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.disclaimer a:hover {
+    text-decoration: underline;
+}
+
+/* 🔥 ANIMACIJOS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 📱 RESPONSIVE FIXES */
+@media (max-width: 480px) {
+    .login-box {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .welcome-text {
+        font-size: 22px;
+    }
+}

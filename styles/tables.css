@@ -1,13 +1,110 @@
+/* === 💎 PREMIUM BLACK/GOLD TABLE DESIGN === */
+:root {
+    --primary-bg: #000000; /* Juodas fonas */
+    --glass-bg: rgba(255, 255, 255, 0.05); /* Stiklinis efektas */
+    --gold-color: #B59410; /* Auksiniai akcentai */
+    --text-color: #FFFFF4; /* Baltas auksas */
+    --border-color: rgba(181, 148, 16, 0.5); /* Auksinis rėmelis */
+    --hover-bg: rgba(181, 148, 16, 0.1); /* Švelnus hover efektas */
+    --shadow-glow: rgba(181, 148, 16, 0.3); /* Minimalus glow */
+}
+
+/* 🔹 LENGVESNĖ (ŠVIESI) TEMA */
 .light-mode {
-    --primary-bg: #004080; /* Šviesesnė tema */
-    --glass-bg: rgba(255, 255, 255, 0.3);
+    --primary-bg: #141414; /* Tamsiai pilkas */
+    --glass-bg: rgba(255, 255, 255, 0.15);
 }
 
+/* 🔹 TAMSIOJI (DARK) TEMA */
 .dark-mode {
-    --primary-bg: #002244; /* Tamsesnė tema */
-    --glass-bg: rgba(255, 255, 255, 0.1);
+    --primary-bg: #000000; /* Juodas fonas */
+    --glass-bg: rgba(255, 255, 255, 0.08);
 }
 
+/* === 🔥 LENTELĖS STILIAI === */
+.table-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    border: 2px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🔥 LENTELĖ */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 🔥 LENTELĖS ANTRAŠTĖS */
+.table thead {
+    background: var(--gold-color);
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+/* 🔥 LENTELĖS LĄSTELĖS */
+.table th,
+.table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+/* 🔥 LENTELĖS EILUTĖS HOVER */
+.table tbody tr:hover {
+    background: var(--hover-bg);
+    transition: background 0.3s ease-in-out;
+}
+
+/* 🔥 LENTELĖS PASKUTINĖ EILUTĖ */
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* === 🌟 MYGTUKAI LENTELĖJE === */
 .button-neon {
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.9);
+    display: inline-block;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background: linear-gradient(145deg, #9C7400, #FFD700);
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(181, 148, 16, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🔥 MYGTUKŲ HOVER */
+.button-neon:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 12px 28px rgba(181, 148, 16, 0.8);
+}
+
+/* ✅ RESPONSYVUMAS */
+@media (max-width: 768px) {
+    .table-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .button-neon {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
 }

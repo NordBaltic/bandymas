@@ -1,53 +1,96 @@
+/* === 💎 PREMIUM BLACK/GOLD WALLET CONNECT DESIGN === */
 .wallet-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  padding: 20px;
 }
 
+/* === 🔥 WALLET CONNECT BUTTONS === */
 .wallet-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px 20px;
-  font-size: 1rem;
+  gap: 12px;
+  padding: 14px 24px;
+  font-size: 16px;
   font-weight: bold;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, #2D88FF, #3B3B98);
-  color: #fff;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(145deg, #9C7400, #FFD700);
+  color: #000;
   border: none;
+  box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.5);
+  position: relative;
+  overflow: hidden;
 }
 
+/* === 🔥 BUTTON HOVER EFFECT === */
 .wallet-button:hover {
-  background: linear-gradient(135deg, #3B3B98, #2D88FF);
+  transform: scale(1.08);
+  box-shadow: 0px 12px 30px rgba(181, 148, 16, 0.8);
 }
 
+/* === 🔥 LOGOUT BUTTON === */
 .wallet-button.logout {
-  background: #ff4444;
+  background: linear-gradient(145deg, #a83232, #ff4444);
+  color: #fff;
+  box-shadow: 0px 6px 18px rgba(255, 68, 68, 0.5);
 }
 
+/* === 🔥 LOGOUT BUTTON HOVER EFFECT === */
 .wallet-button.logout:hover {
-  background: #cc0000;
+  transform: scale(1.08);
+  box-shadow: 0px 12px 30px rgba(255, 68, 68, 1);
 }
 
+/* === 🔥 DISABLED BUTTON === */
 .wallet-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-.wallet-address {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #ddd;
-  margin-top: 5px;
-}
-
+/* === 🔥 CONNECTED WALLET INFO BOX === */
 .connected-box {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.4);
+  border: 2px solid rgba(181, 148, 16, 0.5);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+/* === 🔥 WALLET ADDRESS STYLE === */
+.wallet-address {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-top: 8px;
+  text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.7);
+}
+
+/* === 🔥 WALLET ADDRESS HOVER EFFECT === */
+.wallet-address:hover {
+  text-shadow: 0px 0px 18px rgba(255, 215, 0, 1);
+  transform: scale(1.02);
+}
+
+/* ✅ RESPONSYVUMAS */
+@media (max-width: 768px) {
+  .wallet-button {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
+
+  .connected-box {
+    padding: 15px;
+  }
+
+  .wallet-address {
+    font-size: 14px;
+  }
 }

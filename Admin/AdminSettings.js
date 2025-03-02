@@ -1,92 +1,139 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import toast from "react-hot-toast";
 import "./AdminSettings.css";
 
 export default function AdminSettings() {
     const [settings, setSettings] = useState({
-        swapFee: 0.2,
+        minStake: 0.1,
+        maxStake: 100,
         stakeFee: 4,
         donationFee: 3,
-        selectedTheme: "dark",
-        twoFA: false,
+        swapFee: 0.02,
+        stakingWallet: "",
+        donationWallet: "",
+        swapWallet: "",
+        enableDonations: true,
+        enableSwaps: true,
+        enableStaking: true,
     });
 
     useEffect(() => {
         fetchSettings();
     }, []);
 
-    // ✅ Gauti dabartines nuostatas iš Supabase
+    // ✅ Gauna esamus nustatymus iš DB
     const fetchSettings = async () => {
-        let { data, error } = await supabase.from("admin_settings").select("*").single();
+        const { data, error } = await supabase.from("settings").select("*").single();
         if (error) {
-            toast.error("Nepavyko gauti nustatymų.");
-            console.error(error);
-        } else {
-            setSettings(data);
+            console.error("Nepavyko gauti nustatymų:", error);
+            return;
         }
+        setSettings(data);
     };
 
-    // ✅ Atnaujinti nustatymus
-    const updateSettings = async (field, value) => {
-        const updatedSettings = { ...settings, [field]: value };
-        setSettings(updatedSettings);
-
-        const { error } = await supabase.from("admin_settings").update(updatedSettings).eq("id", 1);
+    // ✅ Atlieka nustatymų atnaujinimą
+    const updateSettings = async () => {
+        const { error } = await supabase.from("settings").update(settings).eq("id", 1);
         if (error) {
-            toast.error("Nepavyko atnaujinti nustatymų.");
-            console.error(error);
-        } else {
-            toast.success("Nustatymai atnaujinti!");
+            toast.error("Nepavyko išsaugoti nustatymų.");
+            return;
         }
+        toast.success("Nustatymai išsaugoti!");
     };
 
     return (
         <div className="admin-settings-container fade-in">
-            <h1 className="admin-title">⚙️ Administravimo nustatymai</h1>
+            <h1 className="admin-title">⚙️ Admin Nustatymai</h1>
 
-            <div className="settings-box glass-morph">
-                <h2>💰 Mokesčių valdymas</h2>
-                <label>Swap Fee (%):</label>
+            {/* Mokesčių nustatymai */}
+            <div className="settings-section">
+                <h3>📊 Finansiniai nustatymai</h3>
+                <label>Minimalus staking kiekis (BNB)</label>
                 <input
                     type="number"
-                    value={settings.swapFee}
-                    onChange={(e) => updateSettings("swapFee", parseFloat(e.target.value))}
+                    value={settings.minStake}
+                    onChange={(e) => setSettings({ ...settings, minStake: e.target.value })}
                 />
-
-                <label>Stake Fee (%):</label>
+                <label>Maksimalus staking kiekis (BNB)</label>
+                <input
+                    type="number"
+                    value={settings.maxStake}
+                    onChange={(e) => setSettings({ ...settings, maxStake: e.target.value })}
+                />
+                <label>Staking fee (%)</label>
                 <input
                     type="number"
                     value={settings.stakeFee}
-                    onChange={(e) => updateSettings("stakeFee", parseFloat(e.target.value))}
+                    onChange={(e) => setSettings({ ...settings, stakeFee: e.target.value })}
                 />
-
-                <label>Donation Fee (%):</label>
+                <label>Aukojimų fee (%)</label>
                 <input
                     type="number"
                     value={settings.donationFee}
-                    onChange={(e) => updateSettings("donationFee", parseFloat(e.target.value))}
+                    onChange={(e) => setSettings({ ...settings, donationFee: e.target.value })}
                 />
-            </div>
-
-            <div className="settings-box glass-morph">
-                <h2>🎨 Dizaino nustatymai</h2>
-                <label>Pasirinkite temą:</label>
-                <select value={settings.selectedTheme} onChange={(e) => updateSettings("selectedTheme", e.target.value)}>
-                    <option value="dark">🌙 Tamsi</option>
-                    <option value="light">☀️ Šviesi</option>
-                </select>
-            </div>
-
-            <div className="settings-box glass-morph">
-                <h2>🔒 Saugumo nustatymai</h2>
-                <label>Įjungti 2FA autentifikaciją:</label>
+                <label>Swap fee (%)</label>
                 <input
-                    type="checkbox"
-                    checked={settings.twoFA}
-                    onChange={(e) => updateSettings("twoFA", e.target.checked)}
+                    type="number"
+                    value={settings.swapFee}
+                    onChange={(e) => setSettings({ ...settings, swapFee: e.target.value })}
                 />
             </div>
+
+            {/* Piniginės adresų nustatymai */}
+            <div className="settings-section">
+                <h3>💰 Piniginės adresai</h3>
+                <label>Staking fee wallet</label>
+                <input
+                    type="text"
+                    value={settings.stakingWallet}
+                    onChange={(e) => setSettings({ ...settings, stakingWallet: e.target.value })}
+                />
+                <label>Donation fee wallet</label>
+                <input
+                    type="text"
+                    value={settings.donationWallet}
+                    onChange={(e) => setSettings({ ...settings, donationWallet: e.target.value })}
+                />
+                <label>Swap fee wallet</label>
+                <input
+                    type="text"
+                    value={settings.swapWallet}
+                    onChange={(e) => setSettings({ ...settings, swapWallet: e.target.value })}
+                />
+            </div>
+
+            {/* Funkcijų įjungimas/išjungimas */}
+            <div className="settings-section">
+                <h3>🔧 Funkcijų valdymas</h3>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={settings.enableDonations}
+                        onChange={() => setSettings({ ...settings, enableDonations: !settings.enableDonations })}
+                    />
+                    Įjungti aukojimus
+                </label>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={settings.enableSwaps}
+                        onChange={() => setSettings({ ...settings, enableSwaps: !settings.enableSwaps })}
+                    />
+                    Įjungti keitimą
+                </label>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={settings.enableStaking}
+                        onChange={() => setSettings({ ...settings, enableStaking: !settings.enableStaking })}
+                    />
+                    Įjungti staking
+                </label>
+            </div>
+
+            <button className="save-btn" onClick={updateSettings}>💾 Išsaugoti</button>
         </div>
     );
 }

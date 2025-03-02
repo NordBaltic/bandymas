@@ -1,41 +1,86 @@
 /* 🎨 Teminės spalvos */
 :root {
-    --primary-color: #0A1E3A;
-    --accent-color: #FF9900;
-    --background-color: #0A1627;
-    --text-color: #ffffff;
+    --primary-color: #0A1E3A; /* Coinbase mėlyna (7-10% tamsesnė) */
+    --accent-color: #FF9900; /* Akcentinė oranžinė */
+    --background-color: #0A1627; /* Tamsus fonas */
+    --text-color: #ffffff; /* Balta tekstui */
     --input-bg: rgba(255, 255, 255, 0.1);
     --input-border: rgba(255, 255, 255, 0.3);
+    --glass-border: rgba(255, 255, 255, 0.2);
     --shadow-glow: rgba(255, 153, 0, 0.6);
 }
 
 /* 🔹 Dashboard specifiniai stiliai */
 .dashboard-container {
+    width: 90%;
     max-width: 900px;
     margin: auto;
-    padding: 30px;
     text-align: center;
+    padding: 40px 20px;
 }
 
-.dashboard-header {
-    font-size: 24px;
+/* 🔹 Piniginės informacija */
+.wallet-info {
+    background: var(--input-bg);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+/* 🔹 Balansas */
+.floating-balance {
+    font-size: 2rem;
     font-weight: bold;
     color: var(--text-color);
+    text-shadow: 0px 0px 10px var(--shadow-glow);
+    margin-bottom: 10px;
 }
 
 /* 🔹 Grafinio rodymo laukai */
 .chart-box {
+    width: 100%;
+    height: 320px;
     background: var(--input-bg);
+    border-radius: 15px;
     padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 Paskutinių transakcijų langas */
+.transactions-box {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--input-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.transactions-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transactions-box li {
+    padding: 10px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.transactions-box li:last-child {
+    border-bottom: none;
 }
 
 /* 🔥 Veiksmų mygtukai */
 .action-buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .action-btn {
@@ -45,10 +90,29 @@
     border-radius: 8px;
     font-weight: bold;
     transition: all 0.3s ease;
+    width: 18%;
+    min-width: 120px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
 
 .action-btn:hover {
     background: #cc7700;
+    transform: scale(1.05);
+}
+
+/* 🔥 Mygtukai su animacija */
+.primary-btn {
+    background: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0px 4px 10px var(--shadow-glow);
+    transition: all 0.3s ease-in-out;
+}
+
+.primary-btn:hover {
+    background: #cc7700;
+    transform: scale(1.05);
 }
 
 /* 🔥 Input laukai */
@@ -59,6 +123,7 @@
     background: var(--input-bg);
     color: #fff;
     border-radius: 6px;
+    font-size: 16px;
 }
 
 .input-box:focus {
@@ -95,4 +160,70 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🔹 Navbar dizainas */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+/* 🔹 Mobilus meniu */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .navbar .menu {
+        display: none;
+    }
+}
+
+/* 🔹 Patobulinti efektai mobiliajai versijai */
+@media (max-width: 1024px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-btn {
+        width: 80%;
+        margin: 5px 0;
+    }
+    
+    .dashboard-container {
+        padding: 20px;
+    }
+    
+    .chart-box {
+        height: 250px;
+    }
+    
+    .transactions-box {
+        padding: 15px;
+    }
+}
+
+/* 🔥 Slenkantys efektai */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
 }

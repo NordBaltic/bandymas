@@ -1,79 +1,81 @@
-/* === 💎 SETTINGS PAGE CONTAINER === */
+/* === 💎 PRABANGUS SETTINGS PAGE UI === */
 .settings-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   text-align: center;
-  background: rgba(1, 10, 23, 0.95);
-  backdrop-filter: blur(18px);
-  border-radius: 20px;
-  box-shadow: 0px 8px 35px var(--gold-color);
-  padding: 40px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  box-shadow: 0px 8px 30px rgba(181, 148, 16, 0.4);
+  padding: 50px;
   width: 90%;
   max-width: 600px;
-  animation: fadeInScale 1s ease-in-out;
+  animation: fadeInScale 1.2s ease-in-out;
 }
 
-/* === 🔥 USER INFO STYLING === */
+/* ✅ USER INFO TEKSTAS */
 .user-info p {
-  font-size: 18px;
+  font-size: 19px;
   color: var(--text-color);
-  margin: 10px 0;
-  text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+  margin: 12px 0;
+  text-shadow: 0px 0px 10px rgba(181, 148, 16, 0.3);
 }
 
-/* === 🌟 2FA SECTION === */
+/* ✅ 2FA SEKCIJA */
 .two-factor-section h3 {
-  color: var(--gold-color);
-  font-size: 20px;
-  text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.8);
-  margin-bottom: 15px;
+  color: var(--accent-color);
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0px 0px 14px rgba(181, 148, 16, 0.8);
+  margin-bottom: 18px;
 }
 
-/* === 🔥 QR CODE DESIGN === */
+/* 🔥 QR CODE STILIUS */
 .qr-code {
   width: 200px;
   height: auto;
-  margin: 20px 0;
-  border-radius: 12px;
-  box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.6);
+  margin: 25px 0;
+  border-radius: 14px;
+  box-shadow: 0px 0px 30px rgba(181, 148, 16, 0.6);
   transition: all 0.3s ease-in-out;
 }
 
 .qr-code:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 35px rgba(255, 215, 0, 1);
+  transform: scale(1.06);
+  box-shadow: 0px 0px 40px rgba(181, 148, 16, 1);
 }
 
-/* === 🔥 BUTTON STYLES === */
+/* 🔥 MYGTUKŲ STILIAI */
 .enable-2fa-button,
 .disable-2fa-button,
 .logout-button {
-  padding: 14px 26px;
+  padding: 15px 28px;
   font-size: 18px;
   font-weight: bold;
   background: linear-gradient(145deg, #9C7400, #FFD700);
   color: #000;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0px 6px 22px rgba(156, 116, 0, 0.6);
+  border-radius: 12px;
+  box-shadow: 0px 8px 22px rgba(181, 148, 16, 0.5);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
 }
 
-/* 🔥 BUTTON HOVER EFFECT */
+/* 🔥 MYGTUKO HOVER EFEKTAS */
 .enable-2fa-button:hover,
 .disable-2fa-button:hover,
 .logout-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0px 12px 30px rgba(156, 116, 0, 1);
+  transform: scale(1.1);
+  box-shadow: 0px 12px 32px rgba(181, 148, 16, 1);
 }
 
-/* 🔥 BUTTON CLICK EFFECT */
+/* 🔥 MYGTUKO PASPAUDIMO EFEKTAS */
 .enable-2fa-button:active::after,
 .disable-2fa-button:active::after,
 .logout-button:active::after {
@@ -82,33 +84,38 @@
   transition: transform 0.4s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-/* === 💡 INPUT FIELD STYLES === */
+/* ✅ INPUT LAUKŲ DIZAINAS */
 input {
   padding: 14px;
   font-size: 18px;
   text-align: center;
-  border: 2px solid var(--gold-color);
-  border-radius: 10px;
-  margin: 12px 0;
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+  margin: 14px 0;
   background: rgba(255, 255, 255, 0.08);
   color: var(--text-color);
-  box-shadow: 0px 6px 16px rgba(255, 215, 0, 0.3);
+  box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.3);
   transition: all 0.3s ease-in-out;
 }
 
-/* 🔥 INPUT FOCUS EFFECT */
+/* 🔥 INPUT FOCUS EFEKTAS */
 input:focus {
   outline: none;
-  border-color: var(--gold-color);
-  box-shadow: 0px 0px 22px var(--gold-color);
+  border-color: var(--accent-color);
+  box-shadow: 0px 0px 26px var(--accent-color);
   transform: scale(1.05);
 }
 
-/* === 📱 RESPONSIVE FIXES === */
+/* 🔥 NEON INPUT HOVER */
+input:hover {
+  box-shadow: 0px 0px 18px rgba(181, 148, 16, 0.6);
+}
+
+/* ✅ RESPONSYVUMAS */
 @media (max-width: 768px) {
   .settings-container {
-    padding: 30px;
-    max-width: 420px;
+    padding: 35px;
+    max-width: 450px;
   }
 
   input {
@@ -120,6 +127,6 @@ input:focus {
   .disable-2fa-button,
   .logout-button {
     font-size: 16px;
-    padding: 12px 22px;
+    padding: 12px 24px;
   }
 }

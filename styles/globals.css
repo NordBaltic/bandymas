@@ -1,17 +1,18 @@
-/* 🎨 Globalūs stiliai */
+/* 🎨 PRABANGUS AUKSINIO JUODO STILIAUS UI */
 :root {
-    --primary-color: #0A1E3A; /* Coinbase mėlyna (7-10% tamsesnė) */
-    --accent-color: #FF9900; /* Akcentinė oranžinė */
-    --background-color: #0A1627; /* Tamsus fonas */
-    --text-color: #ffffff; /* Balta tekstui */
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-glow: rgba(255, 153, 0, 0.6);
+    --primary-color: #000000;  /* Juodas fonas */
+    --accent-color: #B59410;  /* Auksinė */
+    --text-color: #FFFFF4;  /* Baltas auksas */
+    --input-bg: rgba(255, 255, 255, 0.05); /* Subtilus stiklo efektas */
+    --input-border: rgba(255, 255, 255, 0.15); /* Subtilūs rėmeliai */
+    --glass-border: rgba(181, 148, 16, 0.3); /* Auksinis subtilus glow */
+    --shadow-glow: rgba(181, 148, 16, 0.2); /* Vos matomas glow efektas */
 }
 
+/* 🔹 BENDRI STILIAI */
 html, body {
     font-family: 'Poppins', sans-serif;
-    background: var(--background-color);
+    background: var(--primary-color);
     color: var(--text-color);
     margin: 0;
     padding: 0;
@@ -20,44 +21,45 @@ html, body {
     overflow-x: hidden;
 }
 
-/* 🔹 Stiklinis efektas */
+/* 🔹 PRABANGUS STIKLO EFEKTAS */
 .glass-morph {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+    background: var(--input-bg);
+    backdrop-filter: blur(8px);
     border-radius: 12px;
     border: 1px solid var(--glass-border);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px var(--shadow-glow);
     padding: 20px;
 }
 
-/* 🔥 Mygtukų dizainas */
+/* 🔥 MYGTUKAI - PRABANGUS UI */
 button {
     font-size: 16px;
     font-weight: bold;
-    padding: 12px 20px;
+    padding: 14px 24px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
 }
 
 .primary-btn {
     background: var(--accent-color);
-    color: #ffffff;
-    box-shadow: 0px 4px 10px var(--shadow-glow);
+    color: var(--primary-color);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
 }
 
 .primary-btn:hover {
-    background: #cc7700;
+    background: #926F0D;
 }
 
-/* 🔹 Interaktyvūs input laukai */
+/* 🔹 INTERAKTYVŪS INPUT LAUKAI */
 input {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    color: #fff;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-color);
     border-radius: 6px;
     font-size: 16px;
 }
@@ -67,13 +69,13 @@ input:focus {
     border-color: var(--accent-color);
 }
 
-/* 🔹 Navbar dizainas */
+/* 🔹 NAVBAR PRABANGIAM STILIUI */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
     position: fixed;
     width: 100%;
@@ -81,7 +83,7 @@ input:focus {
     z-index: 100;
 }
 
-/* 🔹 Mobilus meniu */
+/* 🔹 MOBILUS MENIU */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;

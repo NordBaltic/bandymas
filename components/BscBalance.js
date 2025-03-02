@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import { supabase } from '../config/supabaseClient';
 import { useAccount } from 'wagmi';
 import { motion } from 'framer-motion';
+import '../styles/BscBalance.css'; // ✅ Importuojam CSS failą
 
 const BscBalance = () => {
     const { address, isConnected } = useAccount();

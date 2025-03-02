@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/Loading.css"; // Stilių importas
 
 export default function Loading({ 
   size = "medium", 
@@ -25,4 +26,15 @@ export default function Loading({
       style={{ background }}
       aria-label="Loading..."
       aria-live="polite"
-      aria-busy="true
+      aria-busy="true"
+    >
+      <div className={`loading-animation ${size} ${style}`} />
+
+      {timeoutReached && (
+        <p className="loading-fallback">
+          ⚠️ This is taking longer than expected...
+        </p>
+      )}
+    </div>
+  );
+}

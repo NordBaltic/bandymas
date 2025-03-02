@@ -1,32 +1,80 @@
-
+/* === 💎 PRABANGUS SWAP UI === */
 .swap-container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 600px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 18px;
+    max-width: 650px;
     margin: auto;
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0px 8px 30px rgba(181, 148, 16, 0.3);
+    border: 2px solid rgba(181, 148, 16, 0.5);
+    transition: all 0.3s ease-in-out;
 }
 
+/* 🔥 SWAP MYGTUKAS */
 .swap-btn {
     display: inline-block;
-    padding: 12px 20px;
-    margin: 15px 0;
-    background: #ffcc00;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 14px 24px;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
     color: #000;
-    text-decoration: none;
-    transition: all 0.3s;
+    background: linear-gradient(145deg, #9C7400, #FFD700);
+    box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.5);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
+/* 🔥 MYGTUKO HOVER EFEKTAS */
 .swap-btn:hover {
-    background: #ffd700;
+    transform: scale(1.07);
+    box-shadow: 0px 14px 32px rgba(181, 148, 16, 1);
 }
 
+/* 🔥 MYGTUKO PASPAUDIMO EFEKTAS */
+.swap-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0px 4px 10px rgba(181, 148, 16, 0.6);
+}
+
+/* 🔥 SWAP FRAME ANIMACIJA */
 .pancake-iframe {
     border: none;
-    border-radius: 12px;
-    margin-top: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+    width: 100%;
+    height: 480px;
+    box-shadow: 0px 8px 28px rgba(181, 148, 16, 0.4);
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* 🔥 IFRAME ATSIRADIMO EFEKTAS */
+.pancake-iframe.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ✅ RESPONSYVUMAS */
+@media (max-width: 768px) {
+    .swap-container {
+        padding: 25px;
+        max-width: 500px;
+    }
+
+    .swap-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    .pancake-iframe {
+        height: 400px;
+    }
 }

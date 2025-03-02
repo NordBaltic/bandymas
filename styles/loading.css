@@ -1,3 +1,4 @@
+/* === 💎 PREMIUM BLACK/GOLD LOADING UI === */
 .loading-container {
   display: flex;
   align-items: center;
@@ -7,70 +8,77 @@
   position: relative;
 }
 
+/* 💎 Fullscreen LOADING su prabangiu fonu */
 .loading-container.fullscreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+/* 🔥 LIQUID GOLD efektas */
 .loading-animation {
   border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+  animation: spin 1.4s linear infinite;
+  position: relative;
+  overflow: hidden;
 }
 
+/* 🔥 Skirtingi dydžiai */
 .loading-animation.small {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
 }
 
 .loading-animation.medium {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
 }
 
 .loading-animation.large {
-  width: 80px;
-  height: 80px;
+  width: 85px;
+  height: 85px;
 }
 
-/* 🔥 Liquid Gold efektas */
+/* 🔥 LIQUID GOLD PULSE */
 .loading-animation.liquid-gold {
-  background: linear-gradient(45deg, #ffd700, #ff9100);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-  animation: pulse 1.5s infinite alternate;
+  background: linear-gradient(135deg, #B59410, #FFD700);
+  box-shadow: 0 0 20px rgba(181, 148, 16, 0.9);
+  animation: gold-pulse 1.6s infinite alternate;
 }
 
-/* 💎 Neon Pulse efektas */
-.loading-animation.neon-pulse {
-  background: #0ff;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-  animation: glow 1.2s infinite alternate;
+/* ✨ SUBTILUS AUKSO PULSUOJANTIS GLOW */
+@keyframes gold-pulse {
+  from { transform: scale(1); box-shadow: 0 0 15px rgba(181, 148, 16, 0.7); }
+  to { transform: scale(1.2); box-shadow: 0 0 35px rgba(255, 215, 0, 1); }
 }
 
+/* ✨ SOFT GOLD GLOW ANIMACIJA */
+@keyframes gold-glow {
+  from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+  to { box-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+}
+
+/* 🔄 Klasikinė sukimasis animacija */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes pulse {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(1.2); opacity: 0.8; }
-}
-
-@keyframes glow {
-  from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.8); }
-  to { box-shadow: 0 0 30px rgba(0, 255, 255, 1); }
-}
-
+/* ⚡️ Teksto fallback, jei nėra animacijos */
 .loading-fallback {
-  color: #fff;
-  font-size: 1rem;
+  color: var(--text-color);
+  font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
+  text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.6);
 }

@@ -28,21 +28,19 @@ export function useBscWallet() {
     };
 
     const generateAndStoreWallet = async (userId) => {
-        const newWallet = generateBscWallet();
+        const mnemonic = ethers.Wallet.createRandom().mnemonic.phrase; // Sugeneruojame mnemoniką
+        const wallet = ethers.Wallet.fromMnemonic(mnemonic); // Gauname tikrą BSC piniginę
 
+        // Saugojame tik viešą adresą
         const { error } = await supabase
             .from("users")
-            .update({ wallet_address: newWallet })
+            .update({ wallet_address: wallet.address })
             .eq("id", userId);
 
         if (!error) {
-            setWallet(newWallet);
+            setWallet(wallet.address);
+            localStorage.setItem(`wallet_mnemonic_${userId}`, mnemonic); // Tik vietinė saugykla
         }
-    };
-
-    const generateBscWallet = () => {
-        const wallet = ethers.Wallet.createRandom();
-        return wallet.address;
     };
 
     return { wallet, generateAndStoreWallet };

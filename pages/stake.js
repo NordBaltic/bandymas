@@ -3,7 +3,6 @@ import { useAuth } from "../loginsystem/AuthProvider";
 import { supabase } from "../lib/supabaseClient";
 import { ethers } from "ethers";
 import toast from "react-hot-toast";
-import "../styles/stake.css";
 
 const STAKE_CONTRACT = "0x8c540F6C0f8a43B6A3C89aCE9D6FcD93C9c55AD5"; 
 const ADMIN_WALLET = process.env.NEXT_PUBLIC_STAKE_ADMIN_WALLET;

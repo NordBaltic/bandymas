@@ -5,9 +5,11 @@
   align-items: center;
   text-align: center;
   padding: 20px;
+  position: relative;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
-/* === 🔥 WALLET CONNECT BUTTONS === */
+/* 🔥 WALLET CONNECT BUTTONS */
 .wallet-button {
   display: flex;
   align-items: center;
@@ -27,33 +29,48 @@
   overflow: hidden;
 }
 
-/* === 🔥 BUTTON HOVER EFFECT === */
+/* 🔥 BUTTON HOVER EFFECT */
 .wallet-button:hover {
   transform: scale(1.08);
   box-shadow: 0px 12px 30px rgba(181, 148, 16, 0.8);
+  background: linear-gradient(145deg, #926F0D, #FFD700);
 }
 
-/* === 🔥 LOGOUT BUTTON === */
+/* 🔥 RIPPLE EFFECT */
+.wallet-button:active::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 80%);
+  opacity: 0.6;
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out;
+}
+
+/* 🔥 LOGOUT BUTTON */
 .wallet-button.logout {
   background: linear-gradient(145deg, #a83232, #ff4444);
   color: #fff;
   box-shadow: 0px 6px 18px rgba(255, 68, 68, 0.5);
 }
 
-/* === 🔥 LOGOUT BUTTON HOVER EFFECT === */
+/* 🔥 LOGOUT BUTTON HOVER EFFECT */
 .wallet-button.logout:hover {
   transform: scale(1.08);
   box-shadow: 0px 12px 30px rgba(255, 68, 68, 1);
 }
 
-/* === 🔥 DISABLED BUTTON === */
+/* 🔥 DISABLED BUTTON */
 .wallet-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* === 🔥 CONNECTED WALLET INFO BOX === */
+/* 🔥 CONNECTED WALLET INFO BOX */
 .connected-box {
   background: rgba(255, 255, 255, 0.08);
   padding: 20px;
@@ -62,18 +79,39 @@
   border: 2px solid rgba(181, 148, 16, 0.5);
   text-align: center;
   transition: all 0.3s ease-in-out;
+  animation: slideUp 0.8s ease-out;
+  position: relative;
 }
 
-/* === 🔥 WALLET ADDRESS STYLE === */
+/* 🔥 CONNECTED STATUS ICON */
+.connected-box::before {
+  content: "🟢 Connected";
+  font-size: 14px;
+  font-weight: bold;
+  color: #28a745;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+/* 🔥 WALLET ADDRESS STYLE */
 .wallet-address {
   font-size: 16px;
   font-weight: bold;
   color: var(--text-color);
   margin-top: 8px;
   text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.7);
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
 }
 
-/* === 🔥 WALLET ADDRESS HOVER EFFECT === */
+/* 🔥 WALLET ADDRESS COPY ANIMATION */
+.wallet-address:active {
+  animation: copyShake 0.3s ease-in-out;
+}
+
+/* 🔥 WALLET ADDRESS HOVER EFFECT */
 .wallet-address:hover {
   text-shadow: 0px 0px 18px rgba(255, 215, 0, 1);
   transform: scale(1.02);
@@ -93,4 +131,27 @@
   .wallet-address {
     font-size: 14px;
   }
+}
+
+/* 🔥 Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rippleEffect {
+  from { transform: scale(0); opacity: 0.6; }
+  to { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes copyShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
 }

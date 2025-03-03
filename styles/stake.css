@@ -1,146 +1,157 @@
-/* === 💎 PREMIUM STAKING UI === */
+/* === 💎 PREMIUM STAKING SYSTEM UI === */
 .stake-container {
-    max-width: 600px;
+    max-width: 650px;
     margin: 40px auto;
-    padding: 30px;
+    padding: 35px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
     border: 2px solid var(--glass-border);
-    box-shadow: 0px 8px 30px var(--shadow-glow);
-    backdrop-filter: blur(12px);
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 8px 35px var(--shadow-glow);
+    backdrop-filter: blur(15px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .stake-container:hover {
-    box-shadow: 0px 10px 40px rgba(181, 148, 16, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 50px rgba(181, 148, 16, 0.4);
 }
 
 /* === 🔥 HEADER STYLES === */
 .stake-container h3 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
     color: var(--accent-color);
     text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* === 📊 STAKED INFO BOX === */
 .stake-info {
     background: rgba(255, 255, 255, 0.08);
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 20px;
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 22px;
     border: 1px solid var(--glass-border);
-    box-shadow: 0px 4px 12px var(--shadow-glow);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.stake-info:hover {
+    box-shadow: 0px 8px 25px rgba(181, 148, 16, 0.5);
 }
 
 .stake-info p {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     color: var(--text-color);
-    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
-    margin: 5px 0;
+    text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.3);
+    margin: 6px 0;
 }
 
 /* === 🔥 INPUT FIELD === */
 .stake-container input {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     border: 2px solid var(--input-border);
     background: var(--input-bg);
     color: var(--text-color);
-    border-radius: 8px;
-    font-size: 17px;
+    border-radius: 10px;
+    font-size: 18px;
     transition: all 0.3s ease-in-out;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .stake-container input:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0px 4px 16px rgba(181, 148, 16, 0.5);
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 18px rgba(181, 148, 16, 0.6);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 /* === 🔥 BUTTON STYLES === */
 .stake-button {
     width: 100%;
-    padding: 14px;
-    font-size: 18px;
+    padding: 16px;
+    font-size: 19px;
     font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease-in-out;
     background: var(--btn-gradient);
     color: var(--primary-color);
-    box-shadow: 0px 6px 18px var(--shadow-glow);
-    margin-bottom: 10px;
+    box-shadow: 0px 6px 20px var(--shadow-glow);
+    margin-bottom: 12px;
 }
 
 .stake-button:hover {
     background: #926F0D;
-    box-shadow: 0px 8px 22px rgba(181, 148, 16, 0.5);
+    box-shadow: 0px 8px 25px rgba(181, 148, 16, 0.5);
 }
 
 /* === 🔥 UNSTAKE BUTTON === */
 .unstake-button {
     width: 100%;
-    padding: 14px;
-    font-size: 18px;
+    padding: 16px;
+    font-size: 19px;
     font-weight: bold;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     text-transform: uppercase;
     transition: all 0.3s ease-in-out;
     background: linear-gradient(145deg, #d40000, #ff4c4c);
     color: white;
-    box-shadow: 0px 6px 18px rgba(255, 0, 0, 0.4);
+    box-shadow: 0px 6px 20px rgba(255, 0, 0, 0.5);
 }
 
 .unstake-button:hover {
     background: linear-gradient(145deg, #ff1a1a, #ff6666);
-    box-shadow: 0px 8px 22px rgba(255, 0, 0, 0.6);
+    box-shadow: 0px 8px 25px rgba(255, 0, 0, 0.6);
 }
 
 /* === 🔥 REWARDS SECTION === */
 .rewards-box {
     background: rgba(255, 255, 255, 0.08);
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 20px;
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 22px;
     border: 1px solid var(--glass-border);
-    box-shadow: 0px 4px 12px var(--shadow-glow);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.rewards-box:hover {
+    box-shadow: 0px 8px 22px rgba(181, 148, 16, 0.5);
 }
 
 .rewards-box p {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: bold;
     color: var(--text-color);
-    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+    text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.3);
 }
 
 /* === 📱 RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
     .stake-container {
-        max-width: 90%;
-        padding: 25px;
+        max-width: 92%;
+        padding: 28px;
     }
 
     .stake-container h3 {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .stake-info p, .rewards-box p {
-        font-size: 16px;
+        font-size: 17px;
     }
 
     .stake-button, .unstake-button {
-        font-size: 16px;
-        padding: 12px;
+        font-size: 17px;
+        padding: 14px;
     }
 }

@@ -57,7 +57,8 @@ export default function Home() {
                         whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(255, 215, 0, 0.7)" }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        📩 LOGIN WITH EMAIL
+                        <img src="/email-icon.svg" alt="Email Login" className="button-icon" />
+                        LOGIN WITH EMAIL
                     </motion.button>
 
                     <motion.button 
@@ -65,18 +66,10 @@ export default function Home() {
                         whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(0, 255, 150, 0.7)" }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        🔗 LOGIN WITH WALLET
+                        <img src="/wallet-icon.svg" alt="Wallet Login" className="button-icon" />
+                        LOGIN WITH WALLET
                     </motion.button>
                 </div>
-
-                <motion.label 
-                    className="remember-me"
-                    whileHover={{ scale: 1.05 }}
-                >
-                    <input type="checkbox" />
-                    Remember Me
-                    <span className="tooltip">Keep me logged in for 30 days</span>
-                </motion.label>
 
                 <motion.p 
                     initial={{ opacity: 0, y: 5 }}

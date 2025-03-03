@@ -1,83 +1,65 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { loginWithEmail, registerWithEmail, signOut } from '../lib/auth';
-import { ethers } from 'ethers';
-import { supabase } from '../lib/supabaseClient';
+import { createContext, useContext, useEffect, useState } from "react";
+import { supabase } from "../lib/supabaseClient";
+import { useBscWallet } from "./useBscWallet";
+import { useRouter } from "next/router";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [wallet, setWallet] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { wallet, generateAndStoreWallet } = useBscWallet();
+    const router = useRouter();
 
     useEffect(() => {
-        async function fetchUser() {
-            const { data: session } = await supabase.auth.getSession();
-            if (session) {
-                setUser(session.user);
-                const { data: walletData } = await supabase
-                    .from('wallets')
-                    .select('*')
-                    .eq('user_id', session.user.id)
-                    .single();
-                if (walletData) {
-                    setWallet(walletData.wallet_address);
-                }
+        const fetchUser = async () => {
+            const { data } = await supabase.auth.getSession();
+            if (data?.session) {
+                setUser(data.session.user);
+                generateAndStoreWallet(data.session.user.id);
+            } else {
+                setUser(null);
             }
-            setLoading(false);
-        }
+        };
         fetchUser();
     }, []);
 
-    const createWallet = async (userId) => {
-        const wallet = ethers.Wallet.createRandom();
-        const walletAddress = wallet.address;
-        const encryptedPrivateKey = btoa(wallet.privateKey); // Šifruotas privatus raktas (saugomas lokaliai)
-        localStorage.setItem('bsc_private_key', encryptedPrivateKey);
+    const login = async (email, password) => {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
 
-        await supabase.from('wallets').insert({ user_id: userId, wallet_address: walletAddress });
-        return walletAddress;
+        if (error) return { success: false, error: error.message };
+
+        setUser(data.user);
+        generateAndStoreWallet(data.user.id);
+        return { success: true };
     };
 
     const register = async (email, password) => {
-        const result = await registerWithEmail(email, password);
-        if (result.success) {
-            setUser(result.user);
-            const walletAddress = await createWallet(result.user.id);
-            setWallet(walletAddress);
-        }
-    };
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+        });
 
-    const login = async (email, password) => {
-        const result = await loginWithEmail(email, password);
-        if (result.success) {
-            setUser(result.user);
-            const { data: walletData } = await supabase
-                .from('wallets')
-                .select('*')
-                .eq('user_id', result.user.id)
-                .single();
-            if (walletData) {
-                setWallet(walletData.wallet_address);
-            }
-        }
+        if (error) return { success: false, error: error.message };
+
+        setUser(data.user);
+        generateAndStoreWallet(data.user.id);
+        return { success: true };
     };
 
     const logout = async () => {
-        await signOut();
+        await supabase.auth.signOut();
         setUser(null);
-        setWallet(null);
-        localStorage.removeItem('bsc_private_key');
+        router.push("/login");
     };
 
     return (
-        <AuthContext.Provider value={{ user, wallet, login, register, logout, loading }}>
+        <AuthContext.Provider value={{ user, wallet, login, register, logout }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => {
-    return useContext(AuthContext);
-};
-
+export const useAuth = () => useContext(AuthContext);

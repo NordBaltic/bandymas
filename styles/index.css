@@ -1,15 +1,15 @@
-/* **SOLIDUS PRABANGUS FONAS** */
+/* **JUODA + AUKSINĖ SCHEMA – TOBULAI PRABANGU** */
 .container {
-    background: linear-gradient(135deg, #0A1F44 0%, #1d2f5b 50%, #b38e36 100%);
+    background: linear-gradient(135deg, #000000 0%, #111111 50%, rgba(255, 215, 0, 0.8) 100%);
     background-size: 400% 400%;
-    animation: gradientAnimation 20s ease infinite;
+    animation: gradientAnimation 25s ease infinite;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-/* Subtilus fonas juda labai lėtai */
+/* SMOOTH fono perėjimai, visiškai švarios spalvos */
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -18,11 +18,11 @@
 
 /* LOGIN UI */
 .login-container {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(15px);
     padding: 50px;
     border-radius: 15px;
-    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
     text-align: center;
 }
 
@@ -30,7 +30,7 @@
 .title {
     font-size: 2.5rem;
     color: white;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 .subtitle {
@@ -39,7 +39,7 @@
     margin-bottom: 20px;
 }
 
-/* PRABANGŪS LOGIN MYGTUKAI */
+/* LOGIN MYGTUKAI */
 .button-container {
     display: flex;
     justify-content: center;
@@ -52,24 +52,24 @@
     border: none;
     cursor: pointer;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: 0.4s;
     color: white;
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #1f2a48;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #222;
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .login-email-btn:hover, .login-wallet-btn:hover {
-    background: #283559;
+    background: #333;
 }
 
-/* FIX: Mygtukų ikonėlės nebe crash’ina telefone */
+/* MYGTUKŲ IKONĖLIŲ FIX */
 .button-icon {
     width: 24px;
     height: 24px;
-    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.1));
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.15));
 }
 
 /* Register link */

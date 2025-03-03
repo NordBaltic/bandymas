@@ -1,38 +1,52 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { useAuth } from "../loginsystem/AuthProvider";
+import { supabase } from "../lib/supabaseClient";
+import { ethers } from "ethers";
+import toast from "react-hot-toast";
+
+const PANCAKESWAP_IFRAME = "https://pancakeswap.finance/swap";
 
 export default function Swap() {
-    const [fromToken, setFromToken] = useState("BNB");
-    const [toToken, setToToken] = useState("USDT");
+    const { user, wallet } = useAuth();
+    const [swapWallet, setSwapWallet] = useState("");
 
-    const pancakeSwapUrl = `https://pancakeswap.finance/swap?outputCurrency=${toToken}&inputCurrency=${fromToken}&slippage=0.5`;
+    useEffect(() => {
+        if (user) {
+            fetchWallet();
+        }
+    }, [user]);
+
+    const fetchWallet = async () => {
+        if (wallet) {
+            setSwapWallet(wallet);
+        } else {
+            const { data } = await supabase.from("users").select("wallet").eq("id", user.id).single();
+            if (data?.wallet) {
+                setSwapWallet(data.wallet);
+            } else {
+                toast.error("No wallet found, please set up your wallet.");
+            }
+        }
+    };
 
     return (
-        <motion.div className="swap-container fade-in">
+        <div className="swap-container">
             <h2>Swap Tokens</h2>
+            <p>Exchange tokens seamlessly using PancakeSwap.</p>
 
-            <label>From:</label>
-            <select value={fromToken} onChange={(e) => setFromToken(e.target.value)}>
-                <option value="BNB">BNB</option>
-                <option value="0x55d398326f99059fF775485246999027B3197955">USDT</option>
-            </select>
-
-            <label>To:</label>
-            <select value={toToken} onChange={(e) => setToToken(e.target.value)}>
-                <option value="0x55d398326f99059fF775485246999027B3197955">USDT</option>
-                <option value="BNB">BNB</option>
-            </select>
-
-            <a href={pancakeSwapUrl} target="_blank" rel="noopener noreferrer" className="swap-btn">
-                Swap per PancakeSwap 🚀
-            </a>
-
-            <iframe
-                src={pancakeSwapUrl}
-                width="100%"
-                height="600px"
-                className="pancake-iframe"
-            ></iframe>
-        </motion.div>
+            {swapWallet ? (
+                <>
+                    <iframe
+                        src={PANCAKESWAP_IFRAME}
+                        width="100%"
+                        height="600px"
+                        className="swap-iframe"
+                    ></iframe>
+                    <p>Your connected wallet: <strong>{swapWallet}</strong></p>
+                </>
+            ) : (
+                <p className="error-text">No wallet connected. Please log in.</p>
+            )}
+        </div>
     );
 }

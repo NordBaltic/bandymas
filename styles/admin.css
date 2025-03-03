@@ -301,6 +301,24 @@
     text-align: center;  
 }  
 
-/* ✅ RESPONSYVUMAS */  
-@media (max-width: 768px) {  
-    .admin-container {
+/* ✅ RESPONSYVUMAS */
+@media (max-width: 768px) { 
+    .admin-container { 
+        max-width: 95%; 
+        padding: 30px; 
+    } 
+
+    .admin-title {  
+        font-size: 24px;  
+    }  
+
+    .admin-stat-card {  
+        width: 100%;  
+        margin-bottom: 15px;  
+    }  
+
+    .admin-form input, .admin-form select {  
+        font-size: 14px;  
+        padding: 12px;  
+    }  
+} /* ← ČIA BUVO PAMIRŠTAS UŽDARYMAS */

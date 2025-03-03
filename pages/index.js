@@ -21,12 +21,12 @@ export default function Home() {
                 className="login-container"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <motion.h1
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
                     className="title"
                 >
                     Welcome to <span className="highlight">NordBalticum</span>
@@ -35,7 +35,7 @@ export default function Home() {
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
+                    transition={{ duration: 0.7, delay: 0.6 }}
                     className="subtitle"
                 >
                     The Future of Secure & Decentralized Banking
@@ -47,7 +47,7 @@ export default function Home() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/email-icon.svg" alt="Email Login" className="button-icon" loading="lazy" />
+                        <img src="/email-icon.svg" alt="Email Login" className="button-icon" onError={(e) => { e.target.style.display = 'none'; }} />
                         LOGIN WITH EMAIL
                     </motion.button>
 
@@ -56,7 +56,7 @@ export default function Home() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/wallet-icon.svg" alt="Wallet Login" className="button-icon" loading="lazy" />
+                        <img src="/wallet-icon.svg" alt="Wallet Login" className="button-icon" onError={(e) => { e.target.style.display = 'none'; }} />
                         LOGIN WITH WALLET
                     </motion.button>
                 </div>
@@ -64,7 +64,7 @@ export default function Home() {
                 <motion.p 
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
+                    transition={{ duration: 0.7, delay: 0.8 }}
                     className="register-text"
                 >
                     New here? <a href="/register" className="register-link">Create an Account</a>

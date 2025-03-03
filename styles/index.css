@@ -1,103 +1,100 @@
-/* **TOBULAS PREMIUM FONAS SU AUKSINE ANIMACIJA (45% STIPRUMO, NEXT-GEN DESIGN)** */
-.container {
-    background: linear-gradient(135deg, #000000 0%, #0A0A0A 85%, rgba(255, 215, 0, 0.12) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
-/* **AUKSINĖ ANIMACIJA – DAR SMOOTH’ESNĖ, ULTRA QUALITY** */
-@keyframes goldenWave {
-    0% { opacity: 0.15; transform: translateX(-25%); }
-    50% { opacity: 0.45; transform: translateX(25%); }
-    100% { opacity: 0.15; transform: translateX(-25%); }
-}
+export default function Home() {
+    const router = useRouter();
 
-.gold-animation {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.14) 0%, rgba(255, 215, 0, 0.1) 60%, transparent 100%);
-    animation: goldenWave 7s infinite alternate ease-in-out;
-    filter: blur(10px);
-}
+    useEffect(() => {
+        const userLoggedIn = localStorage.getItem("user");
+        if (userLoggedIn) {
+            router.push("/dashboard");
+        }
+    }, []);
 
-/* LOGIN UI – NEXT-LEVEL GLASS EFFECT */
-.login-container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(40px);
-    padding: 70px;
-    border-radius: 35px;
-    box-shadow: 0px 0px 60px rgba(255, 215, 0, 0.5);
-    text-align: center;
-    border: none;
-}
+    useEffect(() => {
+        const adjustSize = () => {
+            const container = document.querySelector(".login-container");
+            if (container) {
+                if (window.innerWidth > 1024) {
+                    container.style.width = "800px";
+                    container.style.maxWidth = "90vw";
+                    container.style.border = "none";
+                    container.style.boxShadow = "none";
+                } else {
+                    container.style.width = "90%";
+                    container.style.maxWidth = "450px";
+                }
+            }
+        };
+        adjustSize();
+        window.addEventListener("resize", adjustSize);
+        return () => window.removeEventListener("resize", adjustSize);
+    }, []);
 
-/* LOGOTIPAS – MAXIMUM PRABANGUMAS */
-.logo {
-    width: 320px;
-    height: auto;
-    margin-bottom: 45px;
-    filter: drop-shadow(0px 0px 25px rgba(255, 215, 0, 0.5));
-}
+    const handleEmailLogin = () => {
+        router.push("/login-email");
+    };
 
-/* LOGIN MYGTUKAI */
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 45px;
-}
+    const handleWalletLogin = () => {
+        router.push("/login-wallet");
+    };
 
-/* LOGIN IKONOS – DIDŽIAUSIOS IR GRAŽIAUSIOS KOKIOS BUVO */
-.button-icon {
-    width: 130px;
-    height: 130px;
-    filter: drop-shadow(0px 0px 30px rgba(255, 215, 0, 0.4));
-}
+    const handleRegister = () => {
+        router.push("/register");
+    };
 
-/* MYGTUKŲ NEXT-LEVEL DESIGN */
-.login-email-btn, .login-wallet-btn {
-    padding: 35px 70px;
-    font-size: 1.8rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: 0.3s;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-    background: #111111;
-    border: 3px solid rgba(255, 215, 0, 0.7);
-    box-shadow: 0px 0px 50px rgba(255, 215, 0, 0.4);
-}
+    return (
+        <div className="container">
+            {router.pathname !== '/' && <Navbar />}
 
-/* LOGIN TEKSTAS */
-.login-text {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #FFD700;
-}
+            <motion.main 
+                className="login-container"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+            >
+                <motion.img
+                    src="/icons/nb-logo.svg"
+                    alt="Nord Balticum Logo"
+                    className="logo"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                />
 
-/* REGISTRACIJOS TEKSTAS */
-.register-text {
-    margin-top: 85px;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.95);
-}
+                <div className="button-container">
+                    <motion.button 
+                        className="login-email-btn"
+                        onClick={handleEmailLogin}
+                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <img src="/icons/email-icon.svg" alt="Email Login" className="button-icon" />
+                        <span className="login-text">Login</span>
+                    </motion.button>
 
-/* REGISTER LINK */
-.register-link {
-    color: #FFD700;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-}
+                    <motion.button 
+                        className="login-wallet-btn"
+                        onClick={handleWalletLogin}
+                        whileHover={{ scale: 1.05, rotate: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <img src="/icons/wallet-icon.svg" alt="Wallet Login" className="button-icon" />
+                        <span className="login-text">Login</span>
+                    </motion.button>
+                </div>
 
-.register-link:hover {
-    text-decoration: underline;
+                <motion.p 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="register-text"
+                >
+                    New here? <a onClick={handleRegister} className="register-link">Create an Account</a>
+                </motion.p>
+            </motion.main>
+        </div>
+    );
 }

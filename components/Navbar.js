@@ -1,19 +1,18 @@
-import styles from "../styles/Navbar.module.css";
 import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.logo}>
+    <nav className="navbar">
+      <div className="logo">
         <Link href="/">
-          <span className={styles.brand}>NordBalticum</span>
+          <span className="brand">NordBalticum</span>
         </Link>
       </div>
-      <div className={styles.navbarLinks}>
-        <Link href="/dashboard" className={styles.navLink}>Dashboard</Link>
-        <Link href="/stake" className={styles.navLink}>Stake</Link>
-        <Link href="/donate" className={styles.navLink}>Donate</Link>
-        <Link href="/profile" className={styles.navLink}>Profile</Link>
+      <div className="navbarLinks">
+        <Link href="/dashboard" className="navLink">Dashboard</Link>
+        <Link href="/stake" className="navLink">Stake</Link>
+        <Link href="/donate" className="navLink">Donate</Link>
+        <Link href="/profile" className="navLink">Profile</Link>
       </div>
     </nav>
   );

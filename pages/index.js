@@ -35,32 +35,14 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
             >
-                <motion.h1
-                    initial={{ opacity: 0, y: -10 }}
+                <motion.img
+                    src="/icons/nb-logo.svg"
+                    alt="Nord Balticum Logo"
+                    className="logo"
+                    initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.5 }}
-                    className="title"
-                >
-                    Nord Balticum
-                </motion.h1>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="subtitle"
-                >
-                    The Future of Secure & Decentralized Banking
-                </motion.p>
-
-                <motion.p 
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                    className="register-text"
-                >
-                    <a onClick={handleRegister} className="register-link">Sign Up Now</a>
-                </motion.p>
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                />
 
                 <div className="button-container">
                     <motion.button 
@@ -83,6 +65,15 @@ export default function Home() {
                         <span className="login-text">Login</span>
                     </motion.button>
                 </div>
+
+                <motion.p 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="register-text"
+                >
+                    New here? <a onClick={handleRegister} className="register-link">Create an Account</a>
+                </motion.p>
             </motion.main>
         </div>
     );

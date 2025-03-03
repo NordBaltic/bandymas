@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../styles/Loading.css"; // ✅ Stilių importas
 
 export default function Loading({ 
   size = "medium", 

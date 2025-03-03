@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../loginsystem/AuthProvider";
 import toast from "react-hot-toast";
-import "../styles/walletConnectButton.css";
 
 export default function WalletConnectButton() {
     const { loginWithWallet, wallet } = useAuth();

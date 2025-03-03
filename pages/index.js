@@ -18,13 +18,13 @@ export default function Home() {
             const container = document.querySelector(".login-container");
             if (container) {
                 if (window.innerWidth > 1024) {
-                    container.style.width = "800px";
-                    container.style.maxWidth = "90vw";
+                    container.style.width = "850px";
+                    container.style.maxWidth = "92vw";
                     container.style.border = "none";
                     container.style.boxShadow = "none";
                 } else {
                     container.style.width = "90%";
-                    container.style.maxWidth = "450px";
+                    container.style.maxWidth = "480px";
                 }
             }
         };
@@ -68,7 +68,7 @@ export default function Home() {
                     <motion.button 
                         className="login-email-btn"
                         onClick={handleEmailLogin}
-                        whileHover={{ scale: 1.05, rotate: 2 }}
+                        whileHover={{ scale: 1.1, rotate: 2 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         <img src="/icons/email-icon.svg" alt="Email Login" className="button-icon" />
@@ -78,7 +78,7 @@ export default function Home() {
                     <motion.button 
                         className="login-wallet-btn"
                         onClick={handleWalletLogin}
-                        whileHover={{ scale: 1.05, rotate: -2 }}
+                        whileHover={{ scale: 1.1, rotate: -2 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         <img src="/icons/wallet-icon.svg" alt="Wallet Login" className="button-icon" />

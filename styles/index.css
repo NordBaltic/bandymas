@@ -1,6 +1,6 @@
 /* Background Gradient */
 .container {
-    background: linear-gradient(135deg, #0A1F44 0%, #111d4b 50%, #FFD700 100%);
+    background: linear-gradient(135deg, #0A1F44 0%, #182c5a 50%, #d4af37 100%);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
     display: flex;
@@ -19,7 +19,7 @@
 /* Prabangus login UI */
 .login-container {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     padding: 50px;
     border-radius: 15px;
     box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
@@ -45,7 +45,7 @@
     margin-bottom: 20px;
 }
 
-/* Mygtukai su neon efektais */
+/* Mygtukai su ikonėlėmis */
 .button-container {
     display: flex;
     justify-content: center;
@@ -60,6 +60,9 @@
     border-radius: 8px;
     transition: 0.3s;
     color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .login-email-btn {
@@ -68,6 +71,11 @@
 
 .login-wallet-btn {
     background: linear-gradient(90deg, #00ff96, #008dff);
+}
+
+.button-icon {
+    width: 24px;
+    height: 24px;
 }
 
 /* Register link */

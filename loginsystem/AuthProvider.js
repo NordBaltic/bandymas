@@ -1,65 +1,60 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// context/AuthProvider.js
+import { createContext, useContext, useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { useBscWallet } from "./useBscWallet";
-import { useRouter } from "next/router";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const { wallet, generateAndStoreWallet } = useBscWallet();
-    const router = useRouter();
 
     useEffect(() => {
-        const fetchUser = async () => {
-            const { data } = await supabase.auth.getSession();
-            if (data?.session) {
-                setUser(data.session.user);
-                generateAndStoreWallet(data.session.user.id);
-            } else {
-                setUser(null);
-            }
-        };
-        fetchUser();
+        const session = supabase.auth.session();
+        setUser(session?.user ?? null);
+
+        supabase.auth.onAuthStateChange((_, session) => {
+            setUser(session?.user ?? null);
+        });
     }, []);
 
-    const login = async (email, password) => {
-        const { data, error } = await supabase.auth.signInWithPassword({
+    const loginWithEmail = async (email, password) => {
+        const { user, error } = await supabase.auth.signIn({
             email,
             password,
         });
 
-        if (error) return { success: false, error: error.message };
-
-        setUser(data.user);
-        generateAndStoreWallet(data.user.id);
-        return { success: true };
+        if (error) throw new Error(error.message);
+        return user;
     };
 
-    const register = async (email, password) => {
-        const { data, error } = await supabase.auth.signUp({
+    const registerWithEmail = async (email, password) => {
+        const { user, error } = await supabase.auth.signUp({
             email,
             password,
         });
 
-        if (error) return { success: false, error: error.message };
-
-        setUser(data.user);
-        generateAndStoreWallet(data.user.id);
-        return { success: true };
+        if (error) throw new Error(error.message);
+        return user;
     };
 
     const logout = async () => {
         await supabase.auth.signOut();
         setUser(null);
-        router.push("/login");
     };
 
     return (
-        <AuthContext.Provider value={{ user, wallet, login, register, logout }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                loginWithEmail,
+                registerWithEmail,
+                logout,
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+    return useContext(AuthContext);
+};

@@ -53,6 +53,15 @@ export default function Home() {
                     The Future of Secure & Decentralized Banking
                 </motion.p>
 
+                <motion.p 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="register-text"
+                >
+                    <a onClick={handleRegister} className="register-link">Sign Up Now</a>
+                </motion.p>
+
                 <div className="button-container">
                     <motion.button 
                         className="login-email-btn"
@@ -74,15 +83,6 @@ export default function Home() {
                         <span className="login-text">Login</span>
                     </motion.button>
                 </div>
-
-                <motion.p 
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="register-text"
-                >
-                    New here? <a onClick={handleRegister} className="register-link">Create an Account</a>
-                </motion.p>
             </motion.main>
         </div>
     );

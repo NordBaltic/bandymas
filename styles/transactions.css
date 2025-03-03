@@ -1,56 +1,195 @@
-.transaction-container {
-    max-width: 800px;
-    margin: auto;
+/* === 💎 PREMIUM TRANSACTIONS UI === */
+.transactions-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 35px;
     text-align: center;
-    padding: 30px;
-    background: var(--input-bg);
-    border-radius: 15px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0px 6px 18px var(--shadow-glow);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 18px;
+    border: 2px solid var(--glass-border);
+    box-shadow: 0px 8px 35px var(--shadow-glow);
+    backdrop-filter: blur(18px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+.transactions-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 50px rgba(181, 148, 16, 0.4);
+}
+
+/* === 🔥 TRANSACTIONS HEADER === */
+.transactions-container h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+/* === 📊 TRANSACTIONS TABLE === */
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.transactions-table th, .transactions-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--glass-border);
+    text-align: center;
+    font-size: 17px;
+}
+
+.transactions-table th {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+.transactions-table tr:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transition: background 0.3s ease-in-out;
+}
+
+/* === 🔥 TRANSACTION BUTTON === */
+.transactions-button {
+    padding: 14px 22px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background: var(--btn-gradient);
+    color: var(--primary-color);
+    box-shadow: 0px 6px 20px var(--shadow-glow);
+}
+
+.transactions-button:hover {
+    background: #926F0D;
+    box-shadow: 0px 8px 25px rgba(181, 148, 16, 0.5);
+    transform: scale(1.08);
+}
+
+/* === 🔥 TRANSACTION LIST === */
 .transaction-list {
     list-style: none;
     padding: 0;
+    margin-top: 25px;
 }
 
 .transaction-list li {
-    padding: 12px;
+    padding: 14px;
     border-bottom: 1px solid var(--glass-border);
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
 }
 
+.transaction-list li:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* === 🔥 SENT / RECEIVED COLORS === */
 .sent {
-    color: #ff4444;
+    color: #ff4d4d;
+    text-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
 }
 
 .received {
     color: #44ff44;
+    text-shadow: 0px 0px 10px rgba(68, 255, 68, 0.5);
 }
 
+/* === 🔥 SEND & RECEIVE BOX === */
 .send-container, .receive-container {
-    max-width: 500px;
+    max-width: 550px;
     margin: auto;
     text-align: center;
-    padding: 30px;
+    padding: 35px;
     background: var(--input-bg);
     border-radius: 15px;
+    backdrop-filter: blur(18px);
+    box-shadow: 0px 6px 25px var(--shadow-glow);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+.send-container:hover, .receive-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 30px rgba(181, 148, 16, 0.4);
+}
+
+/* === 🔥 QR CODE AREA === */
+.qr-code {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.qr-code:hover {
+    box-shadow: 0px 6px 20px rgba(181, 148, 16, 0.5);
+}
+
+/* === 🔥 WALLET ADDRESS COPY FUNCTION === */
 .wallet-address {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: var(--text-color);
-    margin-top: 10px;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
 }
 
+.wallet-address:hover {
+    color: var(--accent-color);
+}
+
+/* === 🔥 BUTTON STYLES === */
 button {
     background: var(--accent-color);
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 6px 20px var(--shadow-glow);
 }
 
 button:hover {
     background: #926F0D;
+    box-shadow: 0px 8px 25px rgba(181, 148, 16, 0.5);
+    transform: scale(1.05);
+}
+
+/* === 📱 RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .transactions-container {
+        max-width: 92%;
+        padding: 28px;
+    }
+
+    .transactions-table th, .transactions-table td {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .send-container, .receive-container {
+        max-width: 100%;
+        padding: 28px;
+    }
+
+    .wallet-address {
+        font-size: 16px;
+    }
+
+    .transactions-button {
+        font-size: 16px;
+        padding: 12px;
+    }
 }

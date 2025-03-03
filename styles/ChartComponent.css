@@ -1,16 +1,58 @@
+/* === 📊 CHART COMPONENT - PREMIUM UI === */
 .chart-container {
     width: 100%;
-    max-width: 700px;
-    height: 300px;
+    max-width: 800px;
+    height: 320px;
     margin: auto;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0px 4px 15px rgba(181, 148, 16, 0.3);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease-in-out;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.3);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInChart 1s ease-in-out forwards;
 }
 
+/* === 🔥 HOVER EFFECTS === */
 .chart-container:hover {
-    box-shadow: 0px 6px 25px rgba(181, 148, 16, 0.5);
+    box-shadow: 0px 8px 30px rgba(181, 148, 16, 0.5);
+    transform: scale(1.02);
+}
+
+/* === 📊 CHART TITLE === */
+.chart-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+}
+
+/* === 🎨 CHART GRID LINES === */
+.chart-container canvas {
+    filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.4));
+}
+
+/* === 🌟 RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .chart-container {
+        max-width: 95%;
+        padding: 20px;
+    }
+}
+
+/* === 🌀 CHART FADE-IN ANIMATION === */
+@keyframes fadeInChart {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

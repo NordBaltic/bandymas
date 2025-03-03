@@ -1,0 +1,80 @@
+/* === 📥 PRABANGUS RECEIVE PUSLAPIS === */
+.receive-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    background: var(--primary-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+/* ✅ TOKEN PASIRINKIMAS */
+.token-select {
+    margin-bottom: 20px;
+}
+.token-select select {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid var(--glass-border);
+    background: var(--input-bg);
+    color: var(--text-color);
+}
+
+/* ✅ QR KODAS */
+.qr-box {
+    padding: 25px;
+    background: var(--glass-bg);
+    border-radius: 15px;
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    border: 2px solid var(--glass-border);
+    margin-bottom: 25px;
+}
+.wallet-address {
+    font-size: 14px;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+/* ✅ COPY BUTTON */
+.copy-btn {
+    background: var(--btn-gradient);
+    color: black;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.copy-btn:hover {
+    background: #926F0D;
+    transform: scale(1.05);
+}
+
+/* ✅ BALANSO SKYRIUS */
+.balance-section {
+    margin-top: 30px;
+    background: var(--glass-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    border: 2px solid var(--glass-border);
+}
+.balance {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* ✅ RESPONSIVE FIXES */
+@media (max-width: 768px) {
+    .receive-container {
+        padding: 30px;
+    }
+    .qr-box {
+        padding: 20px;
+    }
+    .copy-btn {
+        padding: 10px 18px;
+    }
+}

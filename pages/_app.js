@@ -7,6 +7,7 @@ import '../styles/Loading.css';
 import '../styles/profile.css';
 import '../styles/receive.css';
 import "../styles/send.css";
+import "../styles/stake.css";
 import { AuthProvider } from "../loginsystem/AuthProvider";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { bsc } from "wagmi/chains";

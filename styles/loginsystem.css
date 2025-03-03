@@ -1,102 +1,152 @@
-/* 🌟 UNIVERSAL LOGIN/REGISTER STYLE */
+/* 🎨 Loginsystem - Premium UI Design */
+:root {
+    --primary-bg: #000000;
+    --accent-color: #B59410;
+    --text-color: #FFFFF4;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.15);
+    --shadow-glow: rgba(181, 148, 16, 0.3);
+}
+
+/* 🔹 Form Container */
 .auth-container {
+    width: 100%;
     max-width: 420px;
     margin: auto;
     padding: 40px;
+    background: var(--input-bg);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--shadow-glow);
+    box-shadow: 0px 6px 15px var(--shadow-glow);
     text-align: center;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 12px;
-    box-shadow: 0px 10px 30px rgba(255, 215, 0, 0.4);
-    animation: fadeIn 1s ease-in-out;
 }
 
-.auth-container h2 {
-    color: var(--accent-color);
-    margin-bottom: 15px;
-}
-
-.auth-container input {
+/* 🔹 Form Fields */
+.auth-input {
     width: 100%;
     padding: 14px;
-    margin: 10px 0;
-    border-radius: 8px;
     border: 2px solid var(--input-border);
     background: var(--input-bg);
     color: var(--text-color);
-    font-size: 16px;
-    text-align: center;
-    transition: 0.3s ease-in-out;
+    font-size: 17px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
 }
 
-.auth-container input:focus {
+.auth-input:focus {
     border-color: var(--accent-color);
-    box-shadow: 0px 0px 15px var(--shadow-glow);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
 }
 
-.primary-btn {
+/* 🔥 Buttons */
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(145deg, #9C7400, #FFD700);
+    color: #000;
+    box-shadow: 0px 6px 15px var(--shadow-glow);
+}
+
+.auth-btn:hover {
+    background: #926F0D;
+    box-shadow: 0px 8px 18px rgba(181, 148, 16, 0.5);
+}
+
+/* 🔥 Alternative Login Buttons */
+.wallet-btn, .email-btn {
     width: 100%;
     padding: 14px;
     margin-top: 15px;
-    font-size: 16px;
-    font-weight: bold;
     border-radius: 8px;
-    border: none;
-    background: var(--accent-color);
-    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-.primary-btn:hover {
-    background: #926F0D;
-    box-shadow: 0px 0px 18px var(--shadow-glow);
+.wallet-btn {
+    background: linear-gradient(135deg, #4C9AFF, #007AFF);
+    color: white;
 }
 
-.error-text {
-    color: #ff4444;
-    font-size: 14px;
-    margin-top: 5px;
+.wallet-btn:hover {
+    background: linear-gradient(135deg, #007AFF, #4C9AFF);
 }
 
-.switch-text {
+.email-btn {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: black;
+}
+
+.email-btn:hover {
+    background: linear-gradient(135deg, #FFA500, #FFD700);
+}
+
+/* 🔥 Separator */
+.separator {
+    margin: 20px 0;
     font-size: 14px;
     color: var(--text-color);
+    opacity: 0.7;
+    position: relative;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    width: 40%;
+    height: 1px;
+    background: var(--shadow-glow);
+    position: absolute;
+    top: 50%;
+}
+
+.separator::before {
+    left: 0;
+}
+
+.separator::after {
+    right: 0;
+}
+
+/* 🔹 Sign-up Link */
+.auth-footer {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
     margin-top: 15px;
 }
 
-.switch-text a {
+.auth-footer a {
     color: var(--accent-color);
-    font-weight: bold;
     text-decoration: none;
-}
-
-.loading-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
-    color: var(--text-color);
-    font-size: 18px;
     font-weight: bold;
 }
 
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 255, 255, 0.2);
-    border-top: 5px solid var(--accent-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
+.auth-footer a:hover {
+    text-decoration: underline;
 }
 
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
+/* ✅ Responsive */
+@media (max-width: 768px) {
+    .auth-container {
+        max-width: 360px;
+        padding: 30px;
     }
-    to {
-        transform: rotate(360deg);
+
+    .auth-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .separator::before,
+    .separator::after {
+        width: 30%;
     }
 }

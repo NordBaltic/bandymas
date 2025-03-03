@@ -1,70 +1,115 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useAuth } from "../loginsystem/AuthProvider";
 import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
+import "../styles/transactions.css";
 
-const BSC_RPC_URL = "https://bsc-dataseed.binance.org/"; // Oficialus BSC RPC
+const BSC_RPC = "https://bsc-dataseed.binance.org/"; // Oficialus Binance Smart Chain RPC
 const ADMIN_FEE_WALLET = process.env.NEXT_PUBLIC_ADMIN_FEE_WALLET;
 
 export default function SendTransaction() {
-    const { user } = useAuth();
-    const [to, setTo] = useState("");
+    const { user, wallet } = useAuth();
+    const [recipient, setRecipient] = useState("");
     const [amount, setAmount] = useState("");
     const [loading, setLoading] = useState(false);
+    const [balance, setBalance] = useState("0.00");
 
-    const sendTransaction = async () => {
-        if (!user) return toast.error("You must be logged in!");
+    useEffect(() => {
+        if (wallet) fetchBalance();
+    }, [wallet]);
+
+    // ✅ Gauna vartotojo balansą iš Blockchain
+    const fetchBalance = async () => {
+        try {
+            const provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+            const balanceWei = await provider.getBalance(wallet);
+            const balanceBNB = ethers.utils.formatEther(balanceWei);
+            setBalance(balanceBNB);
+        } catch (error) {
+            console.error("Error fetching balance:", error);
+        }
+    };
+
+    // ✅ Siunčia BNB transakciją ir saugo į Supabase
+    const handleSendTransaction = async () => {
+        if (!wallet || !user) return toast.error("⚠️ You must be logged in!");
+        if (!ethers.utils.isAddress(recipient)) return toast.error("❌ Invalid recipient address.");
+        if (isNaN(amount) || parseFloat(amount) <= 0) return toast.error("⚠️ Enter a valid amount.");
+        if (parseFloat(amount) > parseFloat(balance)) return toast.error("❌ Insufficient funds.");
 
         setLoading(true);
         try {
-            const provider = new ethers.providers.JsonRpcProvider(BSC_RPC_URL);
-            const { data: walletData } = await supabase
-                .from("users")
-                .select("wallet")
-                .eq("id", user.id)
-                .single();
-
-            if (!walletData?.wallet) return toast.error("No wallet assigned!");
-
+            const provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
             const signer = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIVATE_KEY, provider);
 
-            const adminFee = (parseFloat(amount) * 0.03).toFixed(4);
-            const finalAmount = (parseFloat(amount) - parseFloat(adminFee)).toFixed(4);
+            const fee = (parseFloat(amount) * 0.03).toFixed(4);
+            const finalAmount = (parseFloat(amount) - parseFloat(fee)).toFixed(4);
 
+            // ✅ Pagrindinė transakcija gavėjui
             const tx = await signer.sendTransaction({
-                to,
+                to: recipient,
                 value: ethers.utils.parseEther(finalAmount),
             });
 
+            // ✅ 3% admin fee transakcija
             const adminTx = await signer.sendTransaction({
                 to: ADMIN_FEE_WALLET,
-                value: ethers.utils.parseEther(adminFee),
+                value: ethers.utils.parseEther(fee),
             });
 
             await tx.wait();
             await adminTx.wait();
 
-            toast.success(`Transaction successful! Sent ${finalAmount} BNB (3% fee: ${adminFee} BNB)`);
-
+            // ✅ Išsaugojimas į duomenų bazę
             await supabase.from("transactions").insert([
-                { user_id: user.id, type: "sent", to, amount: finalAmount, fee: adminFee, timestamp: new Date().toISOString() },
+                {
+                    sender: wallet,
+                    recipient,
+                    amount: finalAmount,
+                    fee: fee,
+                    timestamp: new Date().toISOString(),
+                },
             ]);
+
+            toast.success(`✅ Sent ${finalAmount} BNB (Fee: ${fee} BNB)`);
+            fetchBalance();
         } catch (error) {
             console.error("Transaction failed:", error);
-            toast.error("Transaction failed.");
+            toast.error("❌ Transaction failed.");
         }
         setLoading(false);
     };
 
     return (
-        <div className="send-container">
-            <h3>📤 Send BNB</h3>
-            <input type="text" placeholder="Recipient Address" value={to} onChange={(e) => setTo(e.target.value)} />
-            <input type="number" placeholder="Amount BNB" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            <button onClick={sendTransaction} disabled={loading}>
-                {loading ? "Sending..." : "Send BNB"}
+        <div className="send-transaction-container fade-in">
+            <h1 className="send-title">📤 Send BNB</h1>
+
+            {/* ✅ Gavėjo adresas */}
+            <input
+                type="text"
+                className="recipient-input"
+                placeholder="Recipient Address"
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
+            />
+
+            {/* ✅ Suma */}
+            <input
+                type="number"
+                className="amount-input"
+                placeholder="Amount in BNB"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+            />
+
+            {/* ✅ Siuntimo mygtukas */}
+            <button className="send-btn" onClick={handleSendTransaction} disabled={loading}>
+                {loading ? "🚀 Sending..." : "📤 Send BNB"}
             </button>
+
+            {/* ✅ Balanso rodymas */}
+            <p className="balance-info">💰 Balance: {balance} BNB</p>
         </div>
     );
 }

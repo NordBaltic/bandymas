@@ -8,6 +8,7 @@ import '../styles/receive.css';
 import "../styles/send.css";
 import "../styles/stake.css";
 import "../styles/walletConnectButton.css";
+
 import { AuthProvider } from "../loginsystem/AuthProvider";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { bsc } from "wagmi/chains";
@@ -17,7 +18,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import dynamic from 'next/dynamic';
 
-// Dynamically load Navbar to fix "Navbar is not defined" issue
+// Navbar įkėlimas tik klientinėje pusėje (fix "Navbar is not defined" klaidoms)
 const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
 
 const { chains, publicClient } = configureChains([bsc], [publicProvider()]);
@@ -40,7 +41,7 @@ export default function MyApp({ Component, pageProps }) {
                         transition={{ duration: 0.5 }}
                         className="app-container"
                     >
-                        {/* Navbar rodome visur, išskyrus pagrindiniame puslapyje */}
+                        {/* Navbar rodomas visur, išskyrus pagrindiniame puslapyje */}
                         {router.pathname !== '/' && <Navbar />}
                         <Component {...pageProps} />
                     </motion.div>

@@ -7,7 +7,7 @@ import AdminSettings from "../admin/AdminSettings";
 import SwapMonitor from "../admin/SwapMonitor";
 import StakeMonitor from "../admin/StakeMonitor";
 import DonationsMonitor from "../admin/DonationsMonitor";
-import "../styles/admin.css";
+import styles from "../styles/admin.css";
 
 export default function AdminDashboard() {
     const { user, logout } = useAuth();

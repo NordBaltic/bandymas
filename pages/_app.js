@@ -1,5 +1,9 @@
 import "../styles/globals.css";
 import "../styles/theme.css";
+import "../styles/admin.css";
+import "../styles/donate.css";
+import "../styles/Loading.css";
+
 import { AuthProvider } from "../loginsystem/AuthProvider";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { bsc } from "wagmi/chains";

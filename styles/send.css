@@ -1,3 +1,4 @@
+/* === 💎 PREMIUM SEND TRANSACTION UI === */
 .send-container {
     max-width: 600px;
     margin: auto;
@@ -5,34 +6,137 @@
     padding: 30px;
     background: var(--input-bg);
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0px 4px 15px var(--shadow-glow);
+    backdrop-filter: blur(12px);
+    border: 2px solid var(--glass-border);
+    box-shadow: 0px 6px 20px var(--shadow-glow);
+    transition: all 0.3s ease-in-out;
 }
 
-input {
+.send-container:hover {
+    box-shadow: 0px 10px 25px rgba(255, 215, 0, 0.6);
+}
+
+/* === 🔥 FORM ELEMENTS === */
+.send-container input {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     background: var(--input-bg);
     color: var(--text-color);
-    margin: 10px 0;
-    font-size: 16px;
+    margin: 12px 0;
+    font-size: 17px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
-button {
-    background: var(--accent-color);
-    color: var(--primary-color);
-    padding: 12px 20px;
+.send-container input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0px 0px 10px var(--accent-color);
+}
+
+/* === 🔥 BUTTONS === */
+.send-container button {
+    background: linear-gradient(145deg, #CFA700, #FFD700);
+    color: black;
+    padding: 14px 22px;
     border-radius: 8px;
     font-weight: bold;
     transition: all 0.3s ease;
     width: 100%;
     cursor: pointer;
+    border: none;
+    box-shadow: 0px 6px 18px rgba(255, 215, 0, 0.4);
 }
 
-button:hover {
+.send-container button:hover {
+    background: linear-gradient(145deg, #B59410, #FFD700);
+    transform: scale(1.05);
+    box-shadow: 0px 8px 22px rgba(255, 215, 0, 0.6);
+}
+
+/* === 🔥 TRANSACTION HISTORY BOX === */
+.transactions-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.transactions-box h3 {
+    font-size: 20px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.transactions-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.transactions-box li {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: rgba(255, 215, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.transactions-box li:hover {
+    background: rgba(255, 215, 0, 0.25);
+    transform: scale(1.02);
+}
+
+/* === 🔥 QR CODE SECTION === */
+.qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: var(--glass-bg);
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.qr-box img {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 10px;
+}
+
+.copy-btn {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 6px 18px rgba(255, 215, 0, 0.4);
+}
+
+.copy-btn:hover {
     background: #926F0D;
     transform: scale(1.05);
+}
+
+/* === 📱 RESPONSIVE FIXES === */
+@media (max-width: 768px) {
+    .send-container {
+        max-width: 90%;
+        padding: 20px;
+    }
+    
+    .send-container button {
+        padding: 12px;
+    }
+
+    .transactions-box {
+        padding: 15px;
+    }
 }

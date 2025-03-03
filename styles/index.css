@@ -1,6 +1,6 @@
-/* **NAUJAS PREMIUM FONAS – ULTRA LUXURY DIZAINAS** */
+/* **NAUJAS PREMIUM FONAS – ULTRA MODERNUS LUXURY DIZAINAS** */
 .container {
-    background: linear-gradient(135deg, #050505 0%, #0D0D0D 50%, rgba(255, 215, 0, 0.25) 100%);
+    background: linear-gradient(135deg, #050505 0%, #0D0D0D 50%, rgba(255, 215, 0, 0.18) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,26 +13,17 @@
     backdrop-filter: blur(20px);
     padding: 50px;
     border-radius: 20px;
-    box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.2);
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.15);
     text-align: center;
-    border: 2px solid rgba(255, 215, 0, 0.45);
+    border: 2px solid rgba(255, 215, 0, 0.35);
 }
 
-/* PRABANGUS TEKSTAS */
-.title {
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.15);
-    letter-spacing: 2px;
-}
-
-/* REGISTRACIJOS TEKSTAS – PERKELTAS ŽEMIAU */
-.register-text {
-    margin-top: 20px;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+/* PRABANGUS LOGOTIPAS */
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.2));
 }
 
 /* LOGIN MYGTUKAI */
@@ -42,13 +33,7 @@
     gap: 25px;
 }
 
-/* DIDESNĖS IR PRABANGESNĖS IKONOS +70% */
-.button-icon {
-    width: 90px;
-    height: 90px;
-    filter: drop-shadow(0px 0px 12px rgba(255, 215, 0, 0.2));
-}
-
+/* PAŠALINTAS NEON GLOW, PALIKTAS PREMIUM SOLIDUS STILIUS */
 .login-email-btn, .login-wallet-btn {
     padding: 20px 50px;
     font-size: 1.2rem;
@@ -63,19 +48,38 @@
     gap: 15px;
     background: #121212;
     border: 2px solid rgba(255, 215, 0, 0.4);
-    box-shadow: 0px 0px 35px rgba(255, 215, 0, 0.25);
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.15);
 }
 
 .login-email-btn:hover, .login-wallet-btn:hover {
     background: #222222;
-    box-shadow: 0px 0px 50px rgba(255, 215, 0, 0.3);
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
 }
 
 /* LOGIN TEKSTAS */
 .login-text {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #FFD700;
+}
+
+/* REGISTRACIJOS TEKSTAS – PERKELTAS APAČION */
+.register-text {
+    margin-top: 40px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* REGISTER LINK */
+.register-link {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-link:hover {
+    text-decoration: underline;
 }
 
 /* RESPONSIVE UI – TELEFONAMS ŠIEK TIEK MAŽESNĖ LENTELĖ */
@@ -90,9 +94,8 @@
         gap: 15px;
     }
 
-    .button-icon {
-        width: 70px;
-        height: 70px;
+    .logo {
+        width: 120px;
     }
 
     .login-email-btn, .login-wallet-btn {

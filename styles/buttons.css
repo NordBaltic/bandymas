@@ -1,4 +1,4 @@
-/* 🎩 PRABANGŪS MYGTUKAI BLACK/GOLD UI */
+/* === 💎 PRABANGŪS MYGTUKAI BLACK/GOLD UI === */
 
 /* 🔥 PIRMINIS MYGTUKAS */
 .primary-button {
@@ -19,6 +19,26 @@
     background: #926F0D;
     transform: scale(1.05);
     box-shadow: 0px 0px 15px rgba(181, 148, 16, 0.4);
+}
+
+/* 🔥 ROYAL GLOW (AUKSINIS ŠVYTĖJIMAS) */
+@keyframes royalGlow {
+    0% { box-shadow: 0px 0px 10px rgba(181, 148, 16, 0.2); }
+    50% { box-shadow: 0px 0px 20px rgba(181, 148, 16, 0.4); }
+    100% { box-shadow: 0px 0px 10px rgba(181, 148, 16, 0.2); }
+}
+.royal-glow {
+    animation: royalGlow 2s infinite ease-in-out;
+}
+
+/* 🔥 LUXURY TEXT GLOW */
+@keyframes luxuryTextGlow {
+    0% { text-shadow: 0px 0px 5px rgba(181, 148, 16, 0.3); }
+    50% { text-shadow: 0px 0px 12px rgba(181, 148, 16, 0.6); }
+    100% { text-shadow: 0px 0px 5px rgba(181, 148, 16, 0.3); }
+}
+.text-glow {
+    animation: luxuryTextGlow 2s infinite ease-in-out;
 }
 
 /* 🔹 WALLET PRISIJUNGIMO MYGTUKAS */
@@ -70,4 +90,41 @@
     background: linear-gradient(90deg, #926F0D, #B59410);
     box-shadow: 0px 0px 25px rgba(181, 148, 16, 0.5);
     transform: scale(1.08);
+}
+
+/* 🔥 PREMIUM NEON OUTLINE */
+@keyframes neonOutline {
+    0% { border-color: rgba(255, 215, 0, 0.3); }
+    50% { border-color: rgba(255, 215, 0, 0.8); }
+    100% { border-color: rgba(255, 215, 0, 0.3); }
+}
+.neon-outline {
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    animation: neonOutline 3s infinite ease-in-out;
+}
+
+/* 🔥 SHIMMERING EDGE */
+@keyframes shimmeringEdge {
+    0% { box-shadow: 0px 0px 5px rgba(255, 215, 0, 0.2); }
+    50% { box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5); }
+    100% { box-shadow: 0px 0px 5px rgba(255, 215, 0, 0.2); }
+}
+.shimmering-edge {
+    animation: shimmeringEdge 3s infinite ease-in-out;
+}
+
+/* 🔥 BUTTON PRESS EFFECT */
+.pressed-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 8px rgba(255, 215, 0, 0.5);
+}
+
+/* 🔥 FLOATING ICONS */
+@keyframes floatingIcons {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+.floating-icons {
+    animation: floatingIcons 2s infinite ease-in-out;
 }

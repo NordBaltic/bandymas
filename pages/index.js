@@ -48,7 +48,7 @@ export default function Home() {
                     <motion.button 
                         className="login-email-btn"
                         onClick={handleEmailLogin}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, rotate: 2 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         <img src="/icons/email-icon.svg" alt="Email Login" className="button-icon" />
@@ -58,7 +58,7 @@ export default function Home() {
                     <motion.button 
                         className="login-wallet-btn"
                         onClick={handleWalletLogin}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, rotate: -2 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         <img src="/icons/wallet-icon.svg" alt="Wallet Login" className="button-icon" />

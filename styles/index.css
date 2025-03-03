@@ -7,22 +7,22 @@
     height: 100vh;
 }
 
-/* LOGIN UI – NUIMTAS RĖMELIS DESKTOP VERSIJOJE */
+/* LOGIN UI – PAŠALINTAS RĖMELIS DESKTOP VERSIJOJE */
 .login-container {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(35px);
     padding: 65px;
     border-radius: 30px;
-    box-shadow: 0px 0px 55px rgba(255, 215, 0, 0.4);
+    box-shadow: none; /* NO SHADOW */
     text-align: center;
-    border: 3px solid rgba(255, 215, 0, 0.65);
+    border: none; /* RĖMELIS PILNAI PAŠALINTAS */
 }
 
-/* RĖMELIS TIK MOBILIAJAI VERSIJAI */
+/* JEI VIS DAR NORI RĖMELIO TIK MOBILIUOSE, GALIMA AKTYVUOTI ČIA */
 @media screen and (max-width: 768px) {
     .login-container {
-        border: 3px solid rgba(255, 215, 0, 0.65);
-        box-shadow: 0px 0px 45px rgba(255, 215, 0, 0.4);
+        /* border: 3px solid rgba(255, 215, 0, 0.65); */  /* AKTYVINTI JEI NORI */
+        /* box-shadow: 0px 0px 45px rgba(255, 215, 0, 0.4); */
     }
 }
 

@@ -1,12 +1,12 @@
-/* === LUXURY THEME SETTINGS === */
+/* === ULTIMATE LUXURY THEME === */
 
 /* 1️⃣ PREMIUM JUODOS IR AUKSINĖS PALĖTĖ */
 :root {
     --primary-color: #000000;
     --secondary-color: #0D0D0D;
     --accent-color: #FFD700;
-    --text-color: rgba(255, 255, 255, 0.9);
-    --gradient: linear-gradient(135deg, #000000 0%, #0D0D0D 65%, rgba(255, 215, 0, 0.2) 100%);
+    --text-color: rgba(255, 255, 255, 0.95);
+    --gradient: linear-gradient(135deg, #000000 0%, #0D0D0D 65%, rgba(255, 215, 0, 0.3) 100%);
 }
 
 /* 2️⃣ DIZAINO SOLIDUMAS – BACKGROUND */
@@ -21,39 +21,39 @@ body {
 
 /* 4️⃣ Interaktyvūs UI efektai */
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
 }
 
 /* 5️⃣ Premium shadow efektas */
 .card:hover {
-    box-shadow: 0px 0px 35px rgba(255, 215, 0, 0.2);
+    box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.3);
 }
 
-/* 6️⃣ Interaktyvus border efektas */
+/* 6️⃣ Elegantiškas border efektas */
 .card:focus-within {
-    border: 2px solid rgba(255, 215, 0, 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.4);
 }
 
 /* 7️⃣ UI ANIMACIJOS */
 @keyframes glowPulse {
-    0% { box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2); }
-    50% { box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.3); }
-    100% { box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2); }
+    0% { box-shadow: 0px 0px 12px rgba(255, 215, 0, 0.25); }
+    50% { box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.35); }
+    100% { box-shadow: 0px 0px 12px rgba(255, 215, 0, 0.25); }
 }
 
 /* 8️⃣ PRABANGŪS MYGTUKAI */
 .btn {
-    padding: 15px 40px;
-    font-size: 1.2rem;
+    padding: 18px 50px;
+    font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
     background: #222;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: background 0.3s ease-in-out;
 }
 
@@ -64,7 +64,7 @@ body {
 
 /* 9️⃣ ELEGANTIŠKI BORDERAI */
 hr {
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 /* 10️⃣ TYPOGRAPHY ENHANCEMENTS */
@@ -74,4 +74,17 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
-/* 11️⃣ – 30️⃣ DAUGIAU ELITE DESIGN PATOBULINIMŲ – ULTRA MODERN HIGH-END UI */
+/* 11️⃣ KORTELIŲ ŠEŠĖLIŲ PATOBULINIMAI */
+.shadow-box {
+    box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.25);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* 12️⃣ AUTOMATINIS UI DYDŽIO PRITAIKYMAS */
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 85vw;
+        max-width: 1400px;
+    }
+}

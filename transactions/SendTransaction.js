@@ -5,7 +5,7 @@ import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
 import "../styles/transactions.css";
 
-const BSC_RPC = "https://bsc-dataseed.binance.org/"; // Oficialus Binance Smart Chain RPC
+const BSC_RPC = "https://bsc-dataseed.binance.org/"; // ✅ Oficialus Binance Smart Chain RPC
 const ADMIN_FEE_WALLET = process.env.NEXT_PUBLIC_ADMIN_FEE_WALLET;
 
 export default function SendTransaction() {

@@ -13,28 +13,17 @@ const TOKENS = [
 ];
 
 export default function Receive() {
-    const { wallet, balance } = useAuth();
+    const { wallet, balance, fetchBalance } = useAuth();
     const [selectedToken, setSelectedToken] = useState(TOKENS[0]);
     const [copySuccess, setCopySuccess] = useState(false);
     const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
-        fetchBalance();
-        fetchTransactionHistory();
-    }, [wallet, selectedToken]);
-
-    // ✅ Gauti realų balansą
-    const fetchBalance = async () => {
-        if (!wallet) return;
-        try {
-            const provider = new ethers.providers.JsonRpcProvider(BSC_MAINNET);
-            const balanceWei = await provider.getBalance(wallet);
-            const balanceBNB = ethers.utils.formatEther(balanceWei);
-            setBalance(balanceBNB);
-        } catch (error) {
-            console.error("Failed to fetch balance:", error);
+        if (wallet) {
+            fetchBalance();
+            fetchTransactionHistory();
         }
-    };
+    }, [wallet, selectedToken]);
 
     // ✅ Gauti paskutines transakcijas grafikui
     const fetchTransactionHistory = async () => {

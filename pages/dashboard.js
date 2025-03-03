@@ -1,63 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../loginsystem/AuthProvider";
-import { getBscBalance } from "../lib/bscUtils";
-import { getStakingInfo } from "../lib/stakingUtils";
+import { supabase } from "../lib/supabaseClient";
+import { ethers } from "ethers";
+import Link from "next/link";
 import toast from "react-hot-toast";
 
+const BSC_RPC = "https://bsc-dataseed.binance.org/";
+
 export default function Dashboard() {
-    const { user, wallet, logout } = useAuth();
-    const [balance, setBalance] = useState("0.00");
-    const [stakingData, setStakingData] = useState({ staked: "0.00", rewards: "0.00" });
+    const { user, wallet } = useAuth();
+    const [bnbBalance, setBnbBalance] = useState("0.00");
 
     useEffect(() => {
-        if (wallet) {
-            fetchBalance();
-            fetchStaking();
-        }
+        if (wallet) fetchBalance();
     }, [wallet]);
 
     const fetchBalance = async () => {
         try {
-            const bal = await getBscBalance(wallet);
-            setBalance(bal);
+            const provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+            const balance = await provider.getBalance(wallet);
+            setBnbBalance(ethers.utils.formatEther(balance));
         } catch (error) {
-            toast.error("Failed to fetch balance");
-        }
-    };
-
-    const fetchStaking = async () => {
-        try {
-            const data = await getStakingInfo(wallet);
-            setStakingData(data);
-        } catch (error) {
-            toast.error("Failed to fetch staking data");
+            console.error("Balance fetch error:", error);
         }
     };
 
     return (
         <div className="dashboard-container">
-            <h1 className="dashboard-title">Welcome, {user?.email}</h1>
-            <p className="dashboard-subtitle">Your Wallet: {wallet}</p>
-
-            <div className="balance-box glass-morph">
-                <h2>Balance</h2>
-                <p className="balance-amount">{balance} BNB</p>
+            <h1 className="dashboard-title">💎 Welcome to NordBalticum</h1>
+            <div className="wallet-info">
+                <p>Your Wallet: <span className="wallet-address">{wallet || "No wallet linked"}</span></p>
+                <p className="floating-balance">BNB Balance: {bnbBalance} BNB</p>
             </div>
 
-            <div className="staking-box glass-morph">
-                <h2>Staking</h2>
-                <p>Staked: {stakingData.staked} BNB</p>
-                <p>Rewards: {stakingData.rewards} BNB</p>
+            <div className="dashboard-buttons">
+                <Link href="/send"><button className="action-btn">Send BNB</button></Link>
+                <Link href="/swap"><button className="action-btn">Swap</button></Link>
+                <Link href="/stake"><button className="action-btn">Stake</button></Link>
+                <Link href="/donate"><button className="action-btn">Donate</button></Link>
             </div>
-
-            <div className="action-buttons">
-                <a href="/send" className="action-btn">Send</a>
-                <a href="/swap" className="action-btn">Swap</a>
-                <a href="/stake" className="action-btn">Stake</a>
-                <a href="/donate" className="action-btn">Donate</a>
-            </div>
-
-            <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
     );
 }

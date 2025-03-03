@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "../loginsystem/AuthProvider";
-import "../styles/navbar.css";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);

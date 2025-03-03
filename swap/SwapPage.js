@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../loginsystem/AuthProvider";
-import { useWeb3 } from "../hooks/useWeb3";
+import { useWeb3 } from "../loginsystem/AuthProvider";
 import { fetchSwapQuote, executeSwap } from "./SwapLogic";
 import toast from "react-hot-toast";
 import "./swap.css";

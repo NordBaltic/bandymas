@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
-import "../../styles/admin.css";
+import "../../styles/Admin.css"; // ✅ Teisingas kelias!
 
 export default function SwapMonitor() {
     const [swaps, setSwaps] = useState([]);

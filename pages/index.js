@@ -13,6 +13,18 @@ export default function Home() {
         }
     }, []);
 
+    const handleEmailLogin = () => {
+        router.push("/login-email");
+    };
+
+    const handleWalletLogin = () => {
+        router.push("/login-wallet");
+    };
+
+    const handleRegister = () => {
+        router.push("/register");
+    };
+
     return (
         <div className="container">
             {router.pathname !== '/' && <Navbar />}
@@ -44,20 +56,22 @@ export default function Home() {
                 <div className="button-container">
                     <motion.button 
                         className="login-email-btn"
+                        onClick={handleEmailLogin}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/email-icon.svg" alt="Email Login" className="button-icon" onError={(e) => { e.target.style.display = 'none'; }} />
-                        LOGIN WITH EMAIL
+                        <img src="/icons/email-icon.svg" alt="Email Login" className="button-icon" />
+                        Login with Email
                     </motion.button>
 
                     <motion.button 
                         className="login-wallet-btn"
+                        onClick={handleWalletLogin}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/wallet-icon.svg" alt="Wallet Login" className="button-icon" onError={(e) => { e.target.style.display = 'none'; }} />
-                        LOGIN WITH WALLET
+                        <img src="/icons/wallet-icon.svg" alt="Wallet Login" className="button-icon" />
+                        Login with Wallet
                     </motion.button>
                 </div>
 
@@ -67,7 +81,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.8 }}
                     className="register-text"
                 >
-                    New here? <a href="/register" className="register-link">Create an Account</a>
+                    New here? <a onClick={handleRegister} className="register-link">Create an Account</a>
                 </motion.p>
             </motion.main>
         </div>

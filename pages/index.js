@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../loginsystem/AuthProvider";
 import Loading from "../components/Loading";
-import "./styles/Onboarding.css"; 
+import "../styles/Onboarding.css"; // ✅ Teisingas importas
 
 export default function Index() {
     const { loginWithEmail, loginWithWallet, user, wallet } = useAuth();
@@ -14,7 +14,7 @@ export default function Index() {
     useEffect(() => {
         if (user || wallet) {
             // ✅ Automatinis admino nukreipimas
-            if (wallet && wallet.toLowerCase() === adminWallet.toLowerCase()) {
+            if (wallet && adminWallet && wallet.toLowerCase() === adminWallet.toLowerCase()) {
                 router.push("/admin");
             } else {
                 router.push("/dashboard");
@@ -25,7 +25,7 @@ export default function Index() {
     return (
         <div className="onboarding-container">
             {loading && <Loading fullscreen />}
-            
+
             {/* ✅ Logotipas */}
             <div className="logo-container">
                 <img src="/logo.svg" alt="NordBaltic Logo" className="logo fade-in-scale" />
@@ -37,16 +37,27 @@ export default function Index() {
                 <p className="subtext">The Future of Secure & Decentralized Banking</p>
 
                 {/* ✅ Prisijungimo mygtukai */}
-                <button className="primary-btn hover-scale" onClick={async () => { setLoading(true); await loginWithEmail(); setLoading(false); }}>
+                <button 
+                    className="primary-btn hover-scale" 
+                    onClick={async () => { setLoading(true); await loginWithEmail(); setLoading(false); }}
+                >
                     ✉️ Login with Email
                 </button>
-                <button className="wallet-btn hover-scale" onClick={async () => { setLoading(true); await loginWithWallet(); setLoading(false); }}>
+                <button 
+                    className="wallet-btn hover-scale" 
+                    onClick={async () => { setLoading(true); await loginWithWallet(); setLoading(false); }}
+                >
                     🔗 Login with Wallet
                 </button>
 
                 {/* ✅ Remember Me */}
                 <div className="remember-me">
-                    <input type="checkbox" id="remember" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
+                    <input 
+                        type="checkbox" 
+                        id="remember" 
+                        checked={rememberMe} 
+                        onChange={() => setRememberMe(!rememberMe)} 
+                    />
                     <label htmlFor="remember">Remember Me</label>
                 </div>
 

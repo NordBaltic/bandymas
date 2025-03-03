@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import toast from "react-hot-toast";
-import "../../styles/admin.css";
+import "../../styles/Admin.css"; // ✅ Teisingas kelias!
 
 export default function AdminUsers() {
     const [users, setUsers] = useState([]);
@@ -24,18 +24,6 @@ export default function AdminUsers() {
         }
     };
 
-    const toggleBlockUser = async (userId, isBlocked) => {
-        try {
-            let { error } = await supabase.from("users").update({ is_blocked: !isBlocked }).eq("id", userId);
-            if (error) throw error;
-            fetchUsers();
-            toast.success(`✅ Vartotojas ${isBlocked ? "atblokuotas" : "užblokuotas"}.`);
-        } catch (error) {
-            toast.error("❌ Nepavyko pakeisti statuso.");
-            console.error(error);
-        }
-    };
-
     return (
         <div className="admin-users-container fade-in">
             <h2 className="admin-title">👥 Vartotojų valdymas</h2>
@@ -53,12 +41,12 @@ export default function AdminUsers() {
                     </thead>
                     <tbody>
                         {users.map(user => (
-                            <tr key={user.id} className={user.is_blocked ? "blocked-user" : "active-user"}>
+                            <tr key={user.id}>
                                 <td>{user.email}</td>
                                 <td>{user.balance} BNB</td>
                                 <td>{user.is_blocked ? "❌ Blokuotas" : "✅ Aktyvus"}</td>
                                 <td>
-                                    <button onClick={() => toggleBlockUser(user.id, user.is_blocked)}>
+                                    <button onClick={() => alert("Blokuoti / atblokuoti vartotoją")}>
                                         {user.is_blocked ? "🔓 Atblokuoti" : "🔒 Blokuoti"}
                                     </button>
                                 </td>

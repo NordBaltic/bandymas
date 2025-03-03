@@ -21,12 +21,12 @@ export default function Home() {
                 className="login-container"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 1, ease: "easeOut" }}
             >
                 <motion.h1
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
+                    transition={{ duration: 0.7, delay: 0.5 }}
                     className="title"
                 >
                     Welcome to <span className="highlight">NordBalticum</span>
@@ -35,7 +35,7 @@ export default function Home() {
                 <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.6 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                     className="subtitle"
                 >
                     The Future of Secure & Decentralized Banking
@@ -64,7 +64,7 @@ export default function Home() {
                 <motion.p 
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.8 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
                     className="register-text"
                 >
                     New here? <a href="/register" className="register-link">Create an Account</a>

@@ -41,7 +41,7 @@ export default function Home() {
                     transition={{ duration: 0.7, delay: 0.5 }}
                     className="title"
                 >
-                    Welcome to <span className="highlight">NordBalticum</span>
+                    Welcome to <span className="highlight">Nord Balticum</span>
                 </motion.h1>
 
                 <motion.p

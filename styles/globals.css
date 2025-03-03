@@ -1,13 +1,14 @@
 /* === 💎 PREMIUM BLACK/GOLD DESIGN === */
 :root {
-    --primary-color: #000000; /* Juodas fonas */
-    --accent-color: #B59410; /* Auksinė */
-    --text-color: #FFFFF4; /* Baltas auksas */
-    --input-bg: rgba(255, 255, 255, 0.05); /* Stiklo efektas */
-    --input-border: rgba(255, 255, 255, 0.15); /* Subtilūs rėmeliai */
-    --glass-border: rgba(181, 148, 16, 0.3); /* Auksinis subtilus glow */
-    --shadow-glow: rgba(181, 148, 16, 0.15); /* Vos matomas glow */
+    --primary-color: #000000;
+    --accent-color: #B59410;
+    --text-color: #FFFFF4;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(181, 148, 16, 0.3);
+    --shadow-glow: rgba(181, 148, 16, 0.15);
     --btn-gradient: linear-gradient(145deg, #9C7400, #FFD700);
+    --gold-dust: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 80%);
 }
 
 /* 🔹 BENDRI STILIAI */
@@ -20,21 +21,22 @@ html, body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-/* 🔹 PRABANGUS STIKLO EFEKTAS */
+/* 🔹 STIKLO EFEKTAS */
 .glass-morph {
     background: var(--input-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     border-radius: 14px;
     border: 2px solid var(--glass-border);
-    box-shadow: 0px 6px 15px var(--shadow-glow);
+    box-shadow: 0px 8px 20px var(--shadow-glow);
     padding: 24px;
     transition: all 0.3s ease-in-out;
 }
 
 .glass-morph:hover {
-    box-shadow: 0px 8px 20px rgba(181, 148, 16, 0.4);
+    box-shadow: 0px 10px 30px rgba(181, 148, 16, 0.4);
 }
 
 /* 🔥 PREMIUM MYGTUKAI */
@@ -47,6 +49,22 @@ button {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🔥 LIQUID GOLD EFFECT */
+button:active::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: var(--gold-dust);
+    opacity: 0.6;
+    transform: scale(0);
+    animation: rippleEffect 0.6s ease-out;
 }
 
 .primary-btn {
@@ -60,7 +78,7 @@ button {
     box-shadow: 0px 8px 22px rgba(181, 148, 16, 0.5);
 }
 
-/* 🔹 INTERAKTYVŪS INPUT LAUKAI */
+/* 🔹 INPUT LAUKAI */
 input {
     width: 100%;
     padding: 14px;
@@ -95,18 +113,10 @@ input:focus {
     border-bottom: 2px solid var(--gold-color);
 }
 
-.navbar a {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--text-color);
-    text-decoration: none;
-    padding: 12px 20px;
-    transition: all 0.3s ease-in-out;
-}
-
-.navbar a:hover {
-    color: var(--accent-color);
-    text-shadow: 0px 4px 14px rgba(181, 148, 16, 0.7);
+/* 🔥 NAVBAR AKTYVUS PUSLAPIS */
+.navbar a.active {
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 4px;
 }
 
 /* 🔹 FOOTER */
@@ -129,4 +139,10 @@ input:focus {
         font-size: 16px;
         padding: 10px;
     }
+}
+
+/* 🔥 Keyframes */
+@keyframes rippleEffect {
+    from { transform: scale(0); opacity: 0.6; }
+    to { transform: scale(1.5); opacity: 0; }
 }

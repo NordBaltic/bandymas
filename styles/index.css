@@ -1,25 +1,27 @@
-/* **JUODA + AUKSINĖ SCHEMA – PRABANGIAUSIAS DIZAINAS** */
+/* **JUODA + AUKSINĖ SCHEMA – 100% SOLIDU IR PRABANGU** */
 .container {
-    background: linear-gradient(135deg, #000000 0%, #111111 50%, rgba(255, 215, 0, 0.3) 100%);
+    background: linear-gradient(135deg, #000000 0%, #111111 50%, rgba(255, 215, 0, 0.5) 100%);
     background-size: 400% 400%;
-    animation: subtleGoldFlow 40s ease infinite;
+    animation: ultraSmoothGoldFlow 50s linear infinite;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-/* **ULTRA SMOOTH AUKSINĖ ANIMACIJA – BE SPALVŲ LŪŽIMO** */
-@keyframes subtleGoldFlow {
-    0% { background-position: 0% 50%; opacity: 0.7; }
-    50% { background-position: 100% 50%; opacity: 0.5; }
-    100% { background-position: 0% 50%; opacity: 0.7; }
+/* **ULTIMATE SMOOTH AUKSINĖ ANIMACIJA** */
+@keyframes ultraSmoothGoldFlow {
+    0% { background-position: 0% 50%; opacity: 0.6; filter: blur(0px); }
+    25% { background-position: 25% 50%; opacity: 0.5; filter: blur(1px); }
+    50% { background-position: 50% 50%; opacity: 0.55; filter: blur(2px); }
+    75% { background-position: 75% 50%; opacity: 0.5; filter: blur(1px); }
+    100% { background-position: 100% 50%; opacity: 0.6; filter: blur(0px); }
 }
 
 /* LOGIN UI */
 .login-container {
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px);
     padding: 50px;
     border-radius: 15px;
     box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.2);

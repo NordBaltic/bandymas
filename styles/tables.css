@@ -1,27 +1,22 @@
 /* === 💎 PREMIUM BLACK/GOLD TABLE DESIGN === */
 :root {
-    --primary-bg: #000000; /* Juodas fonas */
-    --glass-bg: rgba(255, 255, 255, 0.05); /* Stiklinis efektas */
-    --gold-color: #B59410; /* Auksiniai akcentai */
-    --text-color: #FFFFF4; /* Baltas auksas */
-    --border-color: rgba(181, 148, 16, 0.5); /* Auksinis rėmelis */
-    --hover-bg: rgba(181, 148, 16, 0.1); /* Švelnus hover efektas */
-    --shadow-glow: rgba(181, 148, 16, 0.3); /* Minimalus glow */
-}
-
-/* 🔹 LENGVESNĖ (ŠVIESI) TEMA */
-.light-mode {
-    --primary-bg: #141414; /* Tamsiai pilkas */
-    --glass-bg: rgba(255, 255, 255, 0.15);
+    --primary-bg: #000000;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --gold-color: #B59410;
+    --text-color: #FFFFF4;
+    --border-color: rgba(181, 148, 16, 0.5);
+    --hover-bg: rgba(181, 148, 16, 0.1);
+    --shadow-glow: rgba(181, 148, 16, 0.3);
+    --gold-gradient: linear-gradient(90deg, #9C7400, #FFD700);
 }
 
 /* 🔹 TAMSIOJI (DARK) TEMA */
 .dark-mode {
-    --primary-bg: #000000; /* Juodas fonas */
+    --primary-bg: #000000;
     --glass-bg: rgba(255, 255, 255, 0.08);
 }
 
-/* === 🔥 LENTELĖS STILIAI === */
+/* 🔥 LENTELĖS KONTEINERIS */
 .table-container {
     width: 100%;
     max-width: 900px;
@@ -34,6 +29,21 @@
     border: 2px solid var(--border-color);
     text-align: center;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 🔥 Aukso linijos fone */
+.table-container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 80%);
+    opacity: 0.4;
+    animation: glowLines 4s infinite alternate;
 }
 
 /* 🔥 LENTELĖ */
@@ -44,7 +54,7 @@
 
 /* 🔥 LENTELĖS ANTRAŠTĖS */
 .table thead {
-    background: var(--gold-color);
+    background: var(--gold-gradient);
     color: #000;
     font-size: 18px;
     font-weight: bold;
@@ -57,27 +67,35 @@
     padding: 14px;
     border-bottom: 1px solid var(--border-color);
     text-align: center;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 /* 🔥 LENTELĖS EILUTĖS HOVER */
 .table tbody tr:hover {
     background: var(--hover-bg);
-    transition: background 0.3s ease-in-out;
+    transform: scale(1.02);
 }
 
-/* 🔥 LENTELĖS PASKUTINĖ EILUTĖ */
+/* 🔥 PASPAUSTOS EILUTĖS AKTYVAVIMAS */
+.table tbody tr:active {
+    transform: scale(1.04);
+    box-shadow: 0px 4px 18px rgba(181, 148, 16, 0.5);
+}
+
+/* 🔥 PASKUTINĖ EILUTĖ SU GLOW */
 .table tbody tr:last-child td {
     border-bottom: none;
+    box-shadow: 0px 0px 15px rgba(181, 148, 16, 0.3);
 }
 
-/* === 🌟 MYGTUKAI LENTELĖJE === */
+/* === 🌟 NEON MYGTUKAI LENTELĖJE === */
 .button-neon {
     display: inline-block;
     padding: 12px 18px;
     font-size: 16px;
     font-weight: bold;
     color: #000;
-    background: linear-gradient(145deg, #9C7400, #FFD700);
+    background: var(--gold-gradient);
     border-radius: 8px;
     box-shadow: 0px 4px 12px rgba(181, 148, 16, 0.5);
     cursor: pointer;
@@ -107,4 +125,10 @@
         font-size: 14px;
         padding: 10px 16px;
     }
+}
+
+/* 🔥 Keyframes */
+@keyframes glowLines {
+    from { opacity: 0.3; }
+    to { opacity: 0.6; }
 }

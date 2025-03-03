@@ -1,71 +1,55 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useAuth } from "../loginsystem/AuthProvider"; // ✅ Teisingas importas!
-import "../styles/Navbar.css";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../loginsystem/AuthProvider";
+import "../styles/navbar.css";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { user, wallet, logout, loginWithWallet } = useAuth(); // ✅ Pataisytas importas
-    const router = useRouter();
-    const adminWallet = process.env.NEXT_PUBLIC_ADMIN_WALLET; // ✅ Admino wallet iš .env
+    const { user, logout } = useAuth();
+    const location = useLocation();
 
     return (
         <nav className="navbar">
-            {/* ✅ Logotipas */}
             <div className="navbar-logo">
-                <Link href="/">
+                <Link to="/">
                     <img src="/logo.svg" alt="NordBalticum" className="logo" />
                 </Link>
             </div>
 
-            {/* ✅ Meniu */}
             <ul className={`navbar-links ${isOpen ? "open" : ""}`}>
                 <li>
-                    <Link href="/dashboard" className={router.pathname === "/dashboard" ? "active" : ""}>
+                    <Link to="/dashboard" className={location.pathname === "/dashboard" ? "active" : ""}>
                         Dashboard
                     </Link>
                 </li>
                 <li>
-                    <Link href="/stake" className={router.pathname === "/stake" ? "active" : ""}>
+                    <Link to="/stake" className={location.pathname === "/stake" ? "active" : ""}>
                         Staking
                     </Link>
                 </li>
                 <li>
-                    <Link href="/swap" className={router.pathname === "/swap" ? "active" : ""}>
+                    <Link to="/swap" className={location.pathname === "/swap" ? "active" : ""}>
                         Swap
                     </Link>
                 </li>
                 <li>
-                    <Link href="/donate" className={router.pathname === "/donate" ? "active" : ""}>
+                    <Link to="/donate" className={location.pathname === "/donate" ? "active" : ""}>
                         Donations
                     </Link>
                 </li>
-                {/* ✅ Admin panelė (rodoma tik adminui) */}
-                {wallet && adminWallet && wallet.toLowerCase() === adminWallet.toLowerCase() && (
-                    <li>
-                        <Link href="/admin" className={router.pathname === "/admin" ? "active" : ""}>
-                            Admin
-                        </Link>
-                    </li>
-                )}
             </ul>
 
-            {/* ✅ Prisijungimo ir Logout mygtukai */}
             <div className="auth-buttons">
-                {!user && !wallet ? (
+                {!user ? (
                     <>
-                        <Link href="/login" className="login-btn">Email Login</Link>
-                        <button className="wallet-login-btn" onClick={loginWithWallet}>
-                            Wallet Login
-                        </button>
+                        <Link to="/login" className="login-btn">Email Login</Link>
+                        <button className="wallet-login-btn">Wallet Login</button>
                     </>
                 ) : (
                     <button className="logout-btn" onClick={logout}>Logout</button>
                 )}
             </div>
 
-            {/* ✅ Mobiliam meniu */}
             <button className="navbar-toggle" onClick={() => setIsOpen(!isOpen)}>
                 <img src="/menu-icon.svg" alt="Menu" />
             </button>

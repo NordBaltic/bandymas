@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../loginsystem/AuthProvider";
 import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
-import "./styles/Profile.css"; // ✅ Importuojamas premium dizainas
+import "./styles/profile.css"; // ✅ Importuojamas premium dizainas
 
 export default function Profile() {
     const { user, logout } = useAuth();

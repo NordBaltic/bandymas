@@ -1,4 +1,4 @@
-/* === 💎 PREMIUM DONATIONS DESIGN === */
+/* === 💎 PREMIUM DONATION UI === */
 :root {
     --gold: #FFD700;
     --dark-gold: #B59410;
@@ -10,115 +10,113 @@
     --hover-bg: rgba(181, 148, 16, 0.1);
 }
 
-/* 🔥 PAGRINDINĖ KONTEINERIO STRUKTŪRA */
-.donations-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* === 🔥 MAIN DONATION CONTAINER === */
+.donate-container {
+    max-width: 700px;
+    margin: auto;
     text-align: center;
-    padding: 50px 20px;
+    padding: 30px;
     background: var(--primary-bg);
-    min-height: 100vh;
-}
-
-/* 🔥 TITULAS */
-.donations-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--gold);
-    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.6);
-    margin-bottom: 30px;
-}
-
-/* 🔥 DONATION CARD DESIGN */
-.donation-card {
-    background: var(--glass-bg);
-    padding: 25px;
-    border-radius: 18px;
+    border-radius: 15px;
     backdrop-filter: blur(12px);
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
     box-shadow: 0px 6px 18px var(--shadow-glow);
-    max-width: 450px;
+    color: var(--text-color);
     transition: all 0.3s ease-in-out;
 }
 
-.donation-card:hover {
-    box-shadow: 0px 10px 24px rgba(181, 148, 16, 0.4);
+/* === 🔥 TITLE === */
+.donate-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.6);
 }
 
-/* 🔥 FONDO NUOTRAUKA */
-.fund-image {
-    width: 100%;
-    border-radius: 14px;
-    margin-bottom: 15px;
-    box-shadow: 0px 4px 12px rgba(255, 215, 0, 0.3);
-}
-
-/* 🔥 APRAŠYMAS */
-.fund-description {
-    font-size: 18px;
-    color: var(--text-color);
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-/* 🔥 SLANKIKLIO KONTROLĖS */
-.carousel-controls {
+/* === 🔥 CHARITY CAROUSEL === */
+.charity-carousel {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 15px 0;
-    font-size: 20px;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 14px;
+    justify-content: center;
 }
 
-.carousel-controls button {
-    background: var(--gold);
-    color: #000;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 18px;
+.charity-card {
+    width: 200px;
+    min-width: 200px;
+    padding: 16px;
+    background: var(--glass-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: 0px 6px 16px var(--shadow-glow);
+    text-align: center;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-.carousel-controls button:hover {
-    background: var(--dark-gold);
-    box-shadow: 0px 6px 14px rgba(255, 215, 0, 0.5);
+.charity-card.active {
+    transform: scale(1.1);
+    border: 2px solid var(--gold);
+    box-shadow: 0px 8px 24px var(--gold);
 }
 
-/* 🔥 INPUT LAUKELIS */
-input {
+.charity-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0px 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.charity-card h3 {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.charity-card p {
+    font-size: 15px;
+    color: var(--secondary-text);
+}
+
+/* === 🔥 DONATION INPUT BOX === */
+.donation-box {
+    margin-top: 20px;
+}
+
+.donation-input {
     width: 100%;
     padding: 14px;
-    margin: 10px 0;
     border-radius: 10px;
     border: 2px solid var(--border-color);
-    text-align: center;
-    font-size: 18px;
     background: rgba(255, 255, 255, 0.07);
     color: var(--text-color);
+    font-size: 18px;
+    text-align: center;
     transition: all 0.3s ease-in-out;
 }
 
-input:focus {
-    outline: none;
+.donation-input:focus {
     border-color: var(--gold);
     box-shadow: 0px 0px 20px var(--gold);
     transform: scale(1.03);
 }
 
-/* 🔥 DONATE MYGTUKAS */
+/* === 🔥 DONATE BUTTON === */
 .donate-btn {
-    background: linear-gradient(145deg, #9C7400, #FFD700);
-    color: #000;
-    font-size: 20px;
-    padding: 14px 22px;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    margin-top: 18px;
     width: 100%;
+    padding: 14px;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(145deg, #9C7400, #FFD700);
+    color: black;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0px 8px 22px var(--shadow-glow);
 }
 
 .donate-btn:hover {
@@ -126,47 +124,69 @@ input:focus {
     box-shadow: 0px 12px 30px rgba(181, 148, 16, 0.8);
 }
 
-/* 🔥 SOCIAL ICONS */
-.fund-social {
-    margin-top: 15px;
+/* === 🔥 SLIDER CONTROLS === */
+.carousel-controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 22px;
+    gap: 20px;
+}
+
+.carousel-controls button {
+    background: var(--gold);
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.carousel-controls button:hover {
+    background: var(--dark-gold);
+    box-shadow: 0px 8px 18px rgba(255, 215, 0, 0.6);
+}
+
+/* === 🔥 SOCIAL ICONS === */
+.fund-social {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
 }
 
 .fund-social a {
     color: var(--gold);
-    font-size: 24px;
+    font-size: 26px;
     transition: all 0.3s ease-in-out;
 }
 
 .fund-social a:hover {
     color: var(--dark-gold);
-    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.7);
+    text-shadow: 0px 0px 18px rgba(255, 215, 0, 0.7);
 }
 
-/* ✅ RESPONSYVUMAS */
+/* === 📱 RESPONSIVE FIXES === */
 @media (max-width: 768px) {
-    .donations-container {
-        padding: 30px 15px;
+    .donate-container {
+        padding: 25px;
     }
 
-    .donations-title {
-        font-size: 28px;
+    .charity-card {
+        width: 160px;
+        min-width: 160px;
     }
 
-    .donation-card {
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    input {
+    .donation-input {
         font-size: 16px;
         padding: 12px;
     }
 
     .donate-btn {
         font-size: 18px;
-        padding: 12px 20px;
+        padding: 12px 18px;
     }
 }

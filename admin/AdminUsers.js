@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import toast from "react-hot-toast";
-import "./Admin.css";
+import "../../styles/admin.css";
 
 export default function AdminUsers() {
     const [users, setUsers] = useState([]);

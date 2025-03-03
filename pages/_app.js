@@ -1,15 +1,16 @@
-import '../styles/globals.css';
-import '../styles/theme.css';
-import { AuthProvider } from '../context/AuthContext';
-import { WagmiConfig, configureChains, createConfig, mainnet } from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
-import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
+import "../styles/globals.css";
+import "../styles/theme.css";
+import { AuthProvider } from "../loginsystem/AuthProvider";
+import { WagmiConfig, configureChains, createConfig } from "wagmi";
+import { bsc } from "wagmi/chains"; // ✅ Tiesiogiai naudojame BSC mainnet
+import { publicProvider } from "wagmi/providers/public";
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
-// ✅ Web3 konfiguracija (BSC)
+// ✅ Web3 konfiguracija (BSC Mainnet)
 const { chains, publicClient } = configureChains(
-    [mainnet],
+    [bsc], // ✅ Tik Binance Smart Chain (Mainnet)
     [publicProvider()]
 );
 
@@ -27,6 +28,7 @@ export default function MyApp({ Component, pageProps }) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5 }}
+                        className="app-container"
                     >
                         <Navbar />
                         <Component {...pageProps} />

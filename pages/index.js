@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../loginsystem/AuthProvider";
 import Loading from "../components/Loading";
-import "../styles/Onboarding.css"; 
+import "../styles/index.css"; 
 
 export default function Index() {
     const { loginWithEmail, loginWithWallet, user, wallet } = useAuth();

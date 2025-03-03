@@ -1,131 +1,160 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import toast from "react-hot-toast";
-import "./Admin.css";
+import "../../styles/admin.css";
 
 export default function AdminSettings() {
     const [settings, setSettings] = useState({
-        minStake: 0.1,
-        maxStake: 100,
-        stakeFee: 4,
+        transactionFee: 3,
+        stakingFee: 3,
         donationFee: 3,
-        swapFee: 0.02,
-        stakingWallet: "",
-        donationWallet: "",
-        swapWallet: "",
-        enableDonations: true,
-        enableSwaps: true,
-        enableStaking: true,
+        minWithdraw: 0.01,
+        adminWallet: "",
+        emailNotifications: true,
+        maintenanceMode: false,
     });
-
     const [loading, setLoading] = useState(false);
-    const [saving, setSaving] = useState(false);
+    const [admins, setAdmins] = useState([]);
+    const [newAdminEmail, setNewAdminEmail] = useState("");
 
     useEffect(() => {
         fetchSettings();
-        const interval = setInterval(() => {
-            fetchSettings();
-        }, 60000); // Kas 1 min. atnaujina nustatymus automatiškai
-        return () => clearInterval(interval);
+        fetchAdmins();
     }, []);
 
-    // ✅ Gauna esamus nustatymus iš DB
-    const fetchSettings = useCallback(async () => {
-        setLoading(true);
-        const { data, error } = await supabase.from("settings").select("*").single();
-        if (error) {
-            console.error("Nepavyko gauti nustatymų:", error);
-            toast.error("⚠️ Nepavyko atnaujinti nustatymų.");
-        } else {
+    // ✅ Gauti nustatymus iš DB
+    const fetchSettings = async () => {
+        try {
+            let { data, error } = await supabase.from("settings").select("*").single();
+            if (error) throw error;
             setSettings(data);
+        } catch (error) {
+            toast.error("⚠️ Nepavyko gauti nustatymų.");
+            console.error(error);
+        }
+    };
+
+    // ✅ Išsaugoti nustatymus į DB
+    const saveSettings = async () => {
+        setLoading(true);
+        try {
+            let { error } = await supabase.from("settings").update(settings).eq("id", 1);
+            if (error) throw error;
+            toast.success("✅ Nustatymai išsaugoti!");
+        } catch (error) {
+            toast.error("❌ Klaida saugant nustatymus.");
+            console.error(error);
         }
         setLoading(false);
-    }, []);
+    };
 
-    // ✅ Atlieka nustatymų atnaujinimą
-    const updateSettings = async () => {
-        if (!settings.stakingWallet || !settings.donationWallet || !settings.swapWallet) {
-            toast.error("⚠️ Visi piniginės adresai turi būti užpildyti!");
-            return;
-        }
-        if (settings.stakeFee < 0 || settings.donationFee < 0 || settings.swapFee < 0) {
-            toast.error("⚠️ Mokesčiai negali būti neigiami!");
-            return;
-        }
-        setSaving(true);
-        const { error } = await supabase.from("settings").update(settings).eq("id", 1);
-        setSaving(false);
+    // ✅ Keisti laukų reikšmes
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setSettings((prev) => ({
+            ...prev,
+            [name]: type === "checkbox" ? checked : value,
+        }));
+    };
 
-        if (error) {
-            toast.error("❌ Nepavyko išsaugoti nustatymų.");
-            return;
+    // ✅ Gauti visus administratorius
+    const fetchAdmins = async () => {
+        try {
+            let { data, error } = await supabase.from("admins").select("*");
+            if (error) throw error;
+            setAdmins(data);
+        } catch (error) {
+            toast.error("⚠️ Nepavyko gauti admin sąrašo.");
+            console.error(error);
         }
-        toast.success("✅ Nustatymai išsaugoti!");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // ✅ Pridėti naują administratorių
+    const addAdmin = async () => {
+        if (!newAdminEmail) return toast.error("⚠️ Įveskite el. paštą!");
+        try {
+            let { error } = await supabase.from("admins").insert([{ email: newAdminEmail }]);
+            if (error) throw error;
+            toast.success("✅ Administratorius pridėtas!");
+            setNewAdminEmail("");
+            fetchAdmins();
+        } catch (error) {
+            toast.error("❌ Klaida pridedant administratorių.");
+            console.error(error);
+        }
+    };
+
+    // ✅ Pašalinti administratorių
+    const removeAdmin = async (email) => {
+        try {
+            let { error } = await supabase.from("admins").delete().eq("email", email);
+            if (error) throw error;
+            toast.success("✅ Administratorius pašalintas!");
+            fetchAdmins();
+        } catch (error) {
+            toast.error("❌ Klaida šalinant administratorių.");
+            console.error(error);
+        }
     };
 
     return (
         <div className="admin-settings-container fade-in">
-            <h1 className="admin-title">⚙️ Admin Nustatymai</h1>
+            <h1 className="admin-title">⚙️ Sistemos nustatymai</h1>
 
-            {loading ? (
-                <p className="loading-text">⏳ Kraunama...</p>
-            ) : (
-                <>
-                    {/* 📊 Finansiniai nustatymai */}
-                    <div className="settings-section">
-                        <h3>📊 Finansiniai nustatymai</h3>
-                        <label>Minimalus staking kiekis (BNB)</label>
-                        <input type="number" value={settings.minStake} onChange={(e) => setSettings({ ...settings, minStake: e.target.value })} />
-                        
-                        <label>Maksimalus staking kiekis (BNB)</label>
-                        <input type="number" value={settings.maxStake} onChange={(e) => setSettings({ ...settings, maxStake: e.target.value })} />
+            <div className="settings-grid">
+                {/* 🔥 Mokesčių nustatymai */}
+                <div className="setting-item">
+                    <label>📊 Transakcijų mokestis (%)</label>
+                    <input type="number" name="transactionFee" value={settings.transactionFee} onChange={handleChange} />
+                </div>
+                <div className="setting-item">
+                    <label>🔥 Staking mokestis (%)</label>
+                    <input type="number" name="stakingFee" value={settings.stakingFee} onChange={handleChange} />
+                </div>
+                <div className="setting-item">
+                    <label>💰 Aukojimų mokestis (%)</label>
+                    <input type="number" name="donationFee" value={settings.donationFee} onChange={handleChange} />
+                </div>
+                <div className="setting-item">
+                    <label>🔽 Minimalus išmokėjimas (BNB)</label>
+                    <input type="number" name="minWithdraw" value={settings.minWithdraw} onChange={handleChange} />
+                </div>
+                <div className="setting-item">
+                    <label>🏦 Admin piniginė</label>
+                    <input type="text" name="adminWallet" value={settings.adminWallet} onChange={handleChange} />
+                </div>
 
-                        <label>Staking fee (%)</label>
-                        <input type="number" value={settings.stakeFee} onChange={(e) => setSettings({ ...settings, stakeFee: e.target.value })} />
+                {/* 🔥 Funkcijų perjungimai */}
+                <div className="setting-item toggle">
+                    <label>📧 El. pašto pranešimai</label>
+                    <input type="checkbox" name="emailNotifications" checked={settings.emailNotifications} onChange={handleChange} />
+                </div>
+                <div className="setting-item toggle">
+                    <label>🚧 Sistemos priežiūros režimas</label>
+                    <input type="checkbox" name="maintenanceMode" checked={settings.maintenanceMode} onChange={handleChange} />
+                </div>
+            </div>
 
-                        <label>Aukojimų fee (%)</label>
-                        <input type="number" value={settings.donationFee} onChange={(e) => setSettings({ ...settings, donationFee: e.target.value })} />
+            {/* 🔥 Išsaugoti nustatymus */}
+            <button className="save-btn" onClick={saveSettings} disabled={loading}>
+                {loading ? "⏳ Išsaugoma..." : "💾 Išsaugoti nustatymus"}
+            </button>
 
-                        <label>Swap fee (%)</label>
-                        <input type="number" value={settings.swapFee} onChange={(e) => setSettings({ ...settings, swapFee: e.target.value })} />
-                    </div>
+            {/* 🔥 Admin valdymas */}
+            <h2 className="admin-subtitle">👑 Administratorių valdymas</h2>
+            <div className="admin-management">
+                <input type="email" placeholder="🔍 Pridėti naują admin el. paštą..." value={newAdminEmail} onChange={(e) => setNewAdminEmail(e.target.value)} />
+                <button onClick={addAdmin}>➕ Pridėti admin</button>
+            </div>
 
-                    {/* 💰 Piniginės adresai */}
-                    <div className="settings-section">
-                        <h3>💰 Piniginės adresai</h3>
-                        <label>Staking fee wallet</label>
-                        <input type="text" value={settings.stakingWallet} onChange={(e) => setSettings({ ...settings, stakingWallet: e.target.value })} />
-
-                        <label>Donation fee wallet</label>
-                        <input type="text" value={settings.donationWallet} onChange={(e) => setSettings({ ...settings, donationWallet: e.target.value })} />
-
-                        <label>Swap fee wallet</label>
-                        <input type="text" value={settings.swapWallet} onChange={(e) => setSettings({ ...settings, swapWallet: e.target.value })} />
-                    </div>
-
-                    {/* 🔧 Funkcijų valdymas */}
-                    <div className="settings-section">
-                        <h3>🔧 Funkcijų valdymas</h3>
-                        <label>
-                            <input type="checkbox" checked={settings.enableDonations} onChange={() => setSettings({ ...settings, enableDonations: !settings.enableDonations })} />
-                            Įjungti aukojimus
-                        </label>
-                        <label>
-                            <input type="checkbox" checked={settings.enableSwaps} onChange={() => setSettings({ ...settings, enableSwaps: !settings.enableSwaps })} />
-                            Įjungti keitimą
-                        </label>
-                        <label>
-                            <input type="checkbox" checked={settings.enableStaking} onChange={() => setSettings({ ...settings, enableStaking: !settings.enableStaking })} />
-                            Įjungti staking
-                        </label>
-                    </div>
-
-                    <button className={`save-btn ${saving ? "saving" : ""}`} onClick={updateSettings} disabled={saving}>
-                        {saving ? "💾 Išsaugoma..." : "💾 Išsaugoti"}
-                    </button>
-                </>
-            )}
+            <ul className="admin-list">
+                {admins.map((admin) => (
+                    <li key={admin.email}>
+                        {admin.email}
+                        <button onClick={() => removeAdmin(admin.email)}>🗑️ Pašalinti</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
-                                                            }
+}

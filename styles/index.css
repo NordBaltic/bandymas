@@ -1,6 +1,6 @@
-/* **NAUJAS PREMIUM FONAS – ULTRA MODERNUS LUXURY DIZAINAS** */
+/* **JUODOS DOMINANCIJOS PREMIUM FONAS – LUXURY LOOK** */
 .container {
-    background: linear-gradient(135deg, #050505 0%, #0D0D0D 50%, rgba(255, 215, 0, 0.18) 100%);
+    background: linear-gradient(135deg, #000000 0%, #0A0A0A 60%, rgba(255, 215, 0, 0.18) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,16 +13,16 @@
     backdrop-filter: blur(20px);
     padding: 50px;
     border-radius: 20px;
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.15);
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
     text-align: center;
     border: 2px solid rgba(255, 215, 0, 0.35);
 }
 
-/* PRABANGUS LOGOTIPAS */
+/* PRABANGUS LOGOTIPAS – PADIDINTAS +35% */
 .logo {
-    width: 150px;
+    width: 180px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.2));
 }
 
@@ -33,7 +33,7 @@
     gap: 25px;
 }
 
-/* PAŠALINTAS NEON GLOW, PALIKTAS PREMIUM SOLIDUS STILIUS */
+/* SUSTIPRINTA JUODA DOMINANCIJA – 100% SOLIDUMAS */
 .login-email-btn, .login-wallet-btn {
     padding: 20px 50px;
     font-size: 1.2rem;
@@ -48,12 +48,7 @@
     gap: 15px;
     background: #121212;
     border: 2px solid rgba(255, 215, 0, 0.4);
-    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.15);
-}
-
-.login-email-btn:hover, .login-wallet-btn:hover {
-    background: #222222;
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.2);
 }
 
 /* LOGIN TEKSTAS */
@@ -61,13 +56,6 @@
     font-size: 1.4rem;
     font-weight: bold;
     color: #FFD700;
-}
-
-/* REGISTRACIJOS TEKSTAS – PERKELTAS APAČION */
-.register-text {
-    margin-top: 40px;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
 }
 
 /* REGISTER LINK */
@@ -80,25 +68,4 @@
 
 .register-link:hover {
     text-decoration: underline;
-}
-
-/* RESPONSIVE UI – TELEFONAMS ŠIEK TIEK MAŽESNĖ LENTELĖ */
-@media screen and (max-width: 768px) {
-    .login-container {
-        width: 90%;
-        padding: 40px;
-    }
-
-    .button-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .logo {
-        width: 120px;
-    }
-
-    .login-email-btn, .login-wallet-btn {
-        padding: 15px 40px;
-    }
 }

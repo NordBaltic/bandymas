@@ -1,23 +1,146 @@
+/* === 💎 PREMIUM SWAP UI === */
 .swap-container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 600px;
-    margin: auto;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
     text-align: center;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px solid var(--glass-border);
+    box-shadow: 0px 8px 30px var(--shadow-glow);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease-in-out;
 }
 
-.swap-btn {
-    padding: 12px 20px;
-    background: linear-gradient(135deg, #ffd700, #ff9900);
+.swap-container:hover {
+    box-shadow: 0px 10px 40px rgba(181, 148, 16, 0.4);
+}
+
+/* === 🔥 HEADER STYLES === */
+.swap-container h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+/* === 🔥 SWAP FORM STYLING === */
+.swap-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* === 🔥 INPUT FIELD === */
+.swap-container input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--text-color);
     border-radius: 8px;
-    font-size: 16px;
-    color: #000;
-    text-decoration: none;
-    transition: all 0.3s;
+    font-size: 17px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
 }
 
-.swap-btn:hover {
-    background: linear-gradient(135deg, #ff9900, #ffd700);
+.swap-container input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0px 4px 16px rgba(181, 148, 16, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* === 🔥 TOKEN SELECTOR === */
+.token-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    border: 2px solid var(--glass-border);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.token-selector:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
+}
+
+/* === 🔥 SWAP BUTTON === */
+.swap-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    background: var(--btn-gradient);
+    color: var(--primary-color);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* === 🔥 SWAP ANIMATION === */
+.swap-button::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.swap-button:active::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* === 🔥 SWAP FRAME STYLING === */
+.swap-iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* === 🔥 NETWORK INFO === */
+.network-info {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+}
+
+/* === 📱 RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .swap-container {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .swap-container h3 {
+        font-size: 22px;
+    }
+
+    .swap-button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .swap-iframe {
+        height: 400px;
+    }
 }

@@ -1,23 +1,45 @@
 .swap-container {
-    max-width: 800px;
+    background: var(--input-bg);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 650px;
     margin: auto;
     text-align: center;
-    padding: 30px;
-    background: var(--input-bg);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 6px 20px var(--shadow-glow);
+}
+
+.pancake-iframe {
+    border: none;
+    border-radius: 12px;
+    margin-top: 20px;
     box-shadow: 0px 4px 15px var(--shadow-glow);
 }
 
-.swap-iframe {
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0px 4px 10px rgba(181, 148, 16, 0.5);
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid var(--glass-border);
+    background: var(--input-bg);
+    color: var(--text-color);
+    text-align: center;
+    margin-top: 15px;
 }
 
-.error-text {
-    color: red;
+.swap-btn {
+    padding: 12px 18px;
+    background: var(--accent-color);
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: bold;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0px 6px 15px var(--shadow-glow);
+    margin: 10px;
+}
+
+.swap-btn:hover {
+    background: #926F0D;
+    transform: scale(1.05);
 }

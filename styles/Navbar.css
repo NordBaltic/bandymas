@@ -1,185 +1,35 @@
-/* === 💎 PREMIUM BLACK/GOLD NAVIGATION UI === */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 45px;
-  background: rgba(0, 0, 0, 0.7);
-  border-bottom: 2px solid var(--accent-color);
-  backdrop-filter: blur(18px);
-  box-shadow: 0px 10px 35px var(--shadow-glow);
-  border-radius: 15px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 45px;
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid var(--accent-color);
+    backdrop-filter: blur(18px);
+    box-shadow: 0px 10px 35px var(--shadow-glow);
+    border-radius: 15px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
 }
 
 .navbar:hover {
-  box-shadow: 0px 12px 40px rgba(255, 215, 0, 0.7);
-}
-
-/* === 🔥 NAVBAR LOGO === */
-.navbar-logo .logo {
-  width: 160px;
-  filter: drop-shadow(0px 0px 20px var(--accent-color));
-  transition: filter 0.3s ease-in-out;
-}
-
-.navbar-logo .logo:hover {
-  filter: drop-shadow(0px 0px 35px var(--accent-color));
-}
-
-/* === 🔥 NAVBAR LINKS === */
-.navbar-links {
-  display: flex;
-  gap: 24px;
-}
-
-.navbar-links li {
-  list-style: none;
-}
-
-.navbar-links a {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--text-color);
-  text-decoration: none;
-  padding: 14px 20px;
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-}
-
-.navbar-links a:hover {
-  color: var(--accent-color);
-  text-shadow: 0px 0px 15px var(--accent-color);
+    box-shadow: 0px 12px 40px rgba(255, 215, 0, 0.7);
 }
 
 .navbar-links a.active {
-  font-weight: bold;
-  background: rgba(255, 215, 0, 0.15);
-  border-radius: 12px;
-  padding: 14px 22px;
-  box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.6);
-  animation: goldenPulse 2s infinite alternate;
+    font-weight: bold;
+    background: rgba(255, 215, 0, 0.15);
+    border-radius: 12px;
+    padding: 14px 22px;
+    box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.6);
+    animation: goldenPulse 2s infinite alternate;
 }
 
 @keyframes goldenPulse {
-  from { box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.4); }
-  to { box-shadow: 0px 10px 30px rgba(255, 215, 0, 0.7); }
-}
-
-/* === 🔥 LOGIN & WALLET BUTTONS === */
-.auth-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.login-btn, .wallet-login-btn {
-  padding: 14px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(145deg, #9C7400, #FFD700);
-  color: black;
-  border: none;
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  box-shadow: 0px 6px 18px var(--shadow-glow);
-}
-
-.login-btn:hover, .wallet-login-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 10px 25px rgba(156, 116, 0, 1);
-}
-
-/* === 🔥 LOGOUT BUTTON === */
-.logout-btn {
-  padding: 14px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(145deg, #8B0000, #FF4500);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  box-shadow: 0px 6px 18px rgba(255, 0, 0, 0.4);
-}
-
-.logout-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0px 10px 28px rgba(255, 69, 0, 1);
-}
-
-/* === 🔥 THEME TOGGLE BUTTON === */
-.theme-toggle {
-  padding: 10px;
-  font-size: 18px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0px 0px 10px var(--accent-color));
-}
-
-/* === 🔥 NAVBAR TOGGLE BUTTON (MOBILE) === */
-.navbar-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.navbar-toggle img {
-  width: 34px;
-  height: 34px;
-  filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.6));
-  transition: transform 0.3s ease-in-out;
-}
-
-.navbar-toggle:hover img {
-  transform: rotate(90deg);
-}
-
-/* === 📱 RESPONSIVE FIXES (MOBILIEMS) === */
-@media (max-width: 1024px) {
-  .navbar {
-    padding: 12px 35px;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: row;
-    align-items: center;
-    padding: 12px 25px;
-  }
-
-  .navbar-links {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    padding: 20px 0;
-    box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
-  }
-
-  .navbar-links.open {
-    display: flex;
-  }
-
-  .navbar-toggle {
-    display: block;
-  }
+    from { box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.4); }
+    to { box-shadow: 0px 10px 30px rgba(255, 215, 0, 0.7); }
 }

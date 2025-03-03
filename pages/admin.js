@@ -1,39 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "../context/useAuth";
-import AdminSidebar from "../Admin/AdminSidebar";
-import AdminDashboard from "../Admin/AdminDashboard";
-import AdminUsers from "../Admin/AdminUsers";
-import AdminTransactions from "../Admin/AdminTransactions";
-import AdminSettings from "../Admin/AdminSettings";
-import Loading from "../components/Loading";
-import "./admin.css";
+import { useEffect, useState } from "react";
+import { useAuth } from "../loginsystem/AuthProvider";
+import { supabase } from "../lib/supabaseClient";
+import toast from "react-hot-toast";
+import AdminUsers from "../admin/AdminUsers";
+import AdminSettings from "../admin/AdminSettings";
+import SwapMonitor from "../admin/SwapMonitor";
+import StakeMonitor from "../admin/StakeMonitor";
+import DonationsMonitor from "../admin/DonationsMonitor";
 
-export default function Admin() {
-    const { user, loading } = useAuth();
-    const router = useRouter();
-    const [activeTab, setActiveTab] = useState("dashboard");
+export default function AdminDashboard() {
+    const { user, logout } = useAuth();
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Jei nėra prisijungęs adminas, nukreipiame atgal
     useEffect(() => {
-        if (!loading && (!user || !user.isAdmin)) {
-            router.push("/");
-        }
-    }, [user, loading, router]);
+        if (!user) return;
+        fetchUsers();
+    }, [user]);
 
-    if (loading) return <Loading fullscreen={true} />;
+    const fetchUsers = async () => {
+        const { data, error } = await supabase.from("users").select("*");
+        if (error) {
+            toast.error("Failed to load users.");
+        } else {
+            setUsers(data);
+        }
+        setLoading(false);
+    };
 
     return (
-        <div className="admin-page">
-            {/* 🔥 Šoninė Navigacija */}
-            <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className="admin-container">
+            <h2 className="admin-title">⚡ Admin Dashboard</h2>
+            <button onClick={logout} className="admin-logout-btn">Logout</button>
 
-            {/* 🔥 Pagrindinis Admin Content */}
-            <div className="admin-content">
-                {activeTab === "dashboard" && <AdminDashboard />}
-                {activeTab === "users" && <AdminUsers />}
-                {activeTab === "transactions" && <AdminTransactions />}
-                {activeTab === "settings" && <AdminSettings />}
+            <div className="admin-sections">
+                <AdminUsers users={users} loading={loading} />
+                <StakeMonitor />
+                <SwapMonitor />
+                <DonationsMonitor />
+                <AdminSettings />
             </div>
         </div>
     );

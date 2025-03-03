@@ -23,23 +23,13 @@ export default function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <motion.img 
-                    src="/logo.png" 
-                    alt="NordBalticum Logo" 
-                    className="logo"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    whileHover={{ scale: 1.1, rotate: 2 }}
-                />
-
                 <motion.h1
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
                     className="title"
                 >
-                    🚀 Welcome to <span className="highlight">NordBalticum</span>
+                    Welcome to <span className="highlight">NordBalticum</span>
                 </motion.h1>
 
                 <motion.p
@@ -54,19 +44,19 @@ export default function Home() {
                 <div className="button-container">
                     <motion.button 
                         className="login-email-btn"
-                        whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(255, 215, 0, 0.7)" }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/email-icon.svg" alt="Email Login" className="button-icon" />
+                        <img src="/email-icon.svg" alt="Email Login" className="button-icon" loading="lazy" />
                         LOGIN WITH EMAIL
                     </motion.button>
 
                     <motion.button 
                         className="login-wallet-btn"
-                        whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(0, 255, 150, 0.7)" }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <img src="/wallet-icon.svg" alt="Wallet Login" className="button-icon" />
+                        <img src="/wallet-icon.svg" alt="Wallet Login" className="button-icon" loading="lazy" />
                         LOGIN WITH WALLET
                     </motion.button>
                 </div>

@@ -1,7 +1,8 @@
 import '../styles/globals.css';
 import '../styles/theme.css';
 import '../styles/admin.css';
-import '../styles/donate.css';
+import '../styles/index.css';
+import '../styles/navbar.css';
 import '../styles/Loading.css';
 import { AuthProvider } from "../loginsystem/AuthProvider";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";

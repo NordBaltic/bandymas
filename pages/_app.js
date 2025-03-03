@@ -14,7 +14,6 @@ import { bsc } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { motion } from "framer-motion";
-import Navbar from "../components/Navbar";
 
 const { chains, publicClient } = configureChains([bsc], [publicProvider()]);
 

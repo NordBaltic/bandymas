@@ -1,145 +1,56 @@
-/* === 💎 PREMIUM BLACK/GOLD LOADING UI === */
 .loading-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: var(--loading-bg, rgba(0, 0, 0, 0.8));
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out;
 }
 
-/* 🔥 Fullscreen loading */
-.loading-container.fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  z-index: 9999;
+.loading-container.fade-in {
+    opacity: 1;
 }
 
-/* 🔥 Loading animacija */
 .loading-animation {
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top: 4px solid var(--primary-color, #ffd700);
+    animation: spin 1.2s linear infinite;
 }
 
 .loading-animation.small {
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
 }
 
 .loading-animation.medium {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .loading-animation.large {
-  width: 80px;
-  height: 80px;
+    width: 80px;
+    height: 80px;
 }
 
-/* 🔥 Liquid Gold efektas */
-.loading-animation.liquid-gold {
-  background: linear-gradient(45deg, #FFD700, #B59410);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-  animation: pulse 1.5s infinite alternate;
-}
-
-/* 🔥 Diamond Shine efektas */
-.loading-animation.diamond-shine {
-  background: linear-gradient(45deg, #FFD700, #FFFFFF);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-  animation: flicker 1.5s infinite alternate;
-}
-
-/* 🔥 Glowing Pulse efektas */
-.loading-animation.glow-pulse {
-  background: linear-gradient(90deg, #FFD700, #FFAA00);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
-  animation: glow 1.8s infinite alternate;
-}
-
-/* 🔥 Gold Ring efektas */
-.loading-animation.gold-ring {
-  width: 80px;
-  height: 80px;
-  border: 6px solid transparent;
-  border-top: 6px solid #FFD700;
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
-}
-
-/* 🔥 Neon Pulse efektas */
-.loading-animation.neon-pulse {
-  background: linear-gradient(135deg, #0ff, #00aaff);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-  animation: neonGlow 1.5s infinite alternate;
-}
-
-/* 🔥 Golden Halo efektas */
-.loading-animation.gold-halo {
-  width: 100px;
-  height: 100px;
-  border: 8px solid rgba(255, 215, 0, 0.3);
-  border-radius: 50%;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-  animation: halo 2s infinite alternate;
-}
-
-/* 🔥 Keyframes animacijos */
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-@keyframes pulse {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(1.2); opacity: 0.8; }
-}
-
-@keyframes glow {
-  from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
-  to { box-shadow: 0 0 30px rgba(255, 215, 0, 1); }
-}
-
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-@keyframes neonGlow {
-  from { box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); }
-  to { box-shadow: 0 0 30px rgba(0, 255, 255, 1); }
-}
-
-@keyframes halo {
-  from { transform: scale(0.9); opacity: 0.7; }
-  to { transform: scale(1.1); opacity: 1; }
-}
-
-/* 🔥 Fallback tekstas */
 .loading-fallback {
-  color: #FFFFF4;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-  text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.5);
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+    animation: fadein 1s ease-in-out infinite alternate;
 }
 
-/* === 📱 RESPONSIVE FIXES === */
-@media (max-width: 768px) {
-  .loading-animation {
-    width: 60px;
-    height: 60px;
-  }
-
-  .loading-animation.gold-ring {
-    width: 70px;
-    height: 70px;
-  }
+@keyframes fadein {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
 }

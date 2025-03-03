@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../loginsystem/AuthProvider";
 import { ethers } from "ethers";
-import styles from "../styles/donate.css";
+import styles from "../../styles/donate.css";
 
 const BSC_RPC = "https://bsc-dataseed.binance.org/";
 const ADMIN_WALLET = process.env.NEXT_PUBLIC_ADMIN_DONATION_WALLET;

@@ -41,7 +41,7 @@ export default function Home() {
                     transition={{ duration: 0.7, delay: 0.5 }}
                     className="title"
                 >
-                    Welcome to <span className="highlight">Nord Balticum</span>
+                    Nord Balticum
                 </motion.h1>
 
                 <motion.p
@@ -61,7 +61,7 @@ export default function Home() {
                         whileTap={{ scale: 0.95 }}
                     >
                         <img src="/icons/email-icon.svg" alt="Email Login" className="button-icon" />
-                        Login with Email
+                        <span className="login-text">Login</span>
                     </motion.button>
 
                     <motion.button 
@@ -71,7 +71,7 @@ export default function Home() {
                         whileTap={{ scale: 0.95 }}
                     >
                         <img src="/icons/wallet-icon.svg" alt="Wallet Login" className="button-icon" />
-                        Login with Wallet
+                        <span className="login-text">Login</span>
                     </motion.button>
                 </div>
 

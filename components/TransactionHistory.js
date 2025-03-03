@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useAuth } from "../loginsystem/AuthProvider";
-import "../styles/transactionHistory.css";
+import "../styles/TransactionHistory.css";
 
 export default function TransactionHistory() {
     const { wallet } = useAuth();

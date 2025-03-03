@@ -13,6 +13,26 @@ export default function Home() {
         }
     }, []);
 
+    useEffect(() => {
+        const adjustSize = () => {
+            const container = document.querySelector(".login-container");
+            if (container) {
+                if (window.innerWidth > 1024) {
+                    container.style.width = "800px";
+                    container.style.maxWidth = "90vw";
+                    container.style.border = "none";
+                    container.style.boxShadow = "none";
+                } else {
+                    container.style.width = "90%";
+                    container.style.maxWidth = "450px";
+                }
+            }
+        };
+        adjustSize();
+        window.addEventListener("resize", adjustSize);
+        return () => window.removeEventListener("resize", adjustSize);
+    }, []);
+
     const handleEmailLogin = () => {
         router.push("/login-email");
     };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/Loading.css"; // Stilių importas
+import "../styles/Loading.css"; // ✅ Stilių importas
 
 export default function Loading({ 
   size = "medium", 
@@ -12,7 +12,7 @@ export default function Loading({
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 30);
-    const timeoutTimer = setTimeout(() => setTimeoutReached(true), 10000); // Po 10s rodo fallback
+    const timeoutTimer = setTimeout(() => setTimeoutReached(true), 10000); // ✅ Po 10s rodo fallback
 
     return () => {
       clearTimeout(timer);
@@ -28,8 +28,10 @@ export default function Loading({
       aria-live="polite"
       aria-busy="true"
     >
+      {/* ✅ Premium animacija */}
       <div className={`loading-animation ${size} ${style}`} />
 
+      {/* ✅ Fallback tekstas po 10s */}
       {timeoutReached && (
         <p className="loading-fallback">
           ⚠️ This is taking longer than expected...

@@ -1,4 +1,4 @@
-/* === 💎 ONBOARDING PAGE STYLES === */
+/* === 💎 ONBOARDING PAGE - PREMIUM UI DESIGN === */
 .onboarding-container {
     display: flex;
     flex-direction: column;
@@ -11,53 +11,75 @@
     position: relative;
 }
 
+/* === 🔥 LOGO STYLING === */
 .logo-container {
     margin-bottom: 20px;
 }
 
 .logo {
-    width: 150px;
+    width: 160px;
     height: auto;
-    filter: drop-shadow(0px 0px 20px var(--gold-color));
-    animation: fadeInScale 1s ease-in-out;
+    filter: drop-shadow(0px 0px 25px var(--gold-color));
+    animation: fadeInScale 1s ease-in-out, goldenGlow 2s infinite alternate;
 }
 
+@keyframes fadeInScale {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes goldenGlow {
+    from { filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.6)); }
+    to { filter: drop-shadow(0px 0px 30px rgba(255, 215, 0, 0.9)); }
+}
+
+/* === 🔥 CARD STYLING === */
 .onboarding-card {
-    width: 380px;
-    max-width: 90%;
-    padding: 30px;
+    width: 400px;
+    max-width: 92%;
+    padding: 35px;
     text-align: center;
-    border-radius: 15px;
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0px 10px 30px rgba(181, 148, 16, 0.4);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 12px 35px rgba(181, 148, 16, 0.4);
     animation: fadeIn 1s ease-in-out;
 }
 
+/* === 🔥 TEXT STYLES === */
 .welcome-text {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: var(--text-color);
-    text-shadow: 0px 0px 15px var(--gold-color);
+    text-shadow: 0px 0px 18px var(--gold-color);
+    animation: textPulse 2s infinite alternate;
 }
 
 .subtext {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-color);
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     opacity: 0.9;
 }
 
+@keyframes textPulse {
+    from { text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5); }
+    to { text-shadow: 0px 0px 20px rgba(255, 215, 0, 0.9); }
+}
+
+/* === 🔥 BUTTONS STYLES === */
 .primary-btn, .wallet-btn {
     width: 100%;
-    padding: 14px;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin: 10px 0;
+    margin: 12px 0;
+    text-transform: uppercase;
+    box-shadow: 0px 6px 18px rgba(255, 215, 0, 0.4);
 }
 
 .primary-btn {
@@ -67,6 +89,8 @@
 
 .primary-btn:hover {
     background: #926F0D;
+    transform: scale(1.05);
+    box-shadow: 0px 8px 25px rgba(181, 148, 16, 0.6);
 }
 
 .wallet-btn {
@@ -76,23 +100,29 @@
 
 .wallet-btn:hover {
     background: linear-gradient(135deg, #3B3B98, #2D88FF);
+    transform: scale(1.05);
+    box-shadow: 0px 8px 25px rgba(45, 136, 255, 0.6);
 }
 
+/* === 🔥 SIGNUP LINK === */
 .signup-text {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 10px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 15px;
 }
 
 .signup-text a {
     color: var(--gold-color);
     text-decoration: none;
+    font-weight: bold;
+    transition: text-shadow 0.3s ease-in-out;
 }
 
 .signup-text a:hover {
-    text-shadow: 0px 0px 10px var(--gold-color);
+    text-shadow: 0px 0px 12px var(--gold-color);
 }
 
+/* === 🔥 BACKGROUND ANIMATION === */
 .background-animation {
     position: absolute;
     width: 100%;
@@ -104,6 +134,27 @@
 }
 
 @keyframes backgroundPulse {
-    from { opacity: 0.5; }
+    from { opacity: 0.4; }
     to { opacity: 1; }
+}
+
+/* === 📱 RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .onboarding-card {
+        max-width: 95%;
+        padding: 30px;
+    }
+
+    .logo {
+        width: 140px;
+    }
+
+    .primary-btn, .wallet-btn {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .signup-text {
+        font-size: 14px;
+    }
 }

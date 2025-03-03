@@ -1,13 +1,11 @@
-/* === 💎 PRABANGUS SETTINGS PAGE UI === */
+/* === 💎 PREMIUM BLACK/GOLD SETTINGS UI === */
 .settings-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: auto;
   min-height: 100vh;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.95);
+  background: linear-gradient(135deg, #000000, #0A0A0A);
   backdrop-filter: blur(20px);
   border-radius: 18px;
   box-shadow: 0px 8px 30px rgba(181, 148, 16, 0.4);
@@ -15,6 +13,20 @@
   width: 90%;
   max-width: 600px;
   animation: fadeInScale 1.2s ease-in-out;
+  position: relative;
+}
+
+/* ✅ Aukso bangos fone */
+.settings-container::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 80%);
+  opacity: 0.4;
+  animation: glowWaves 4s infinite alternate;
 }
 
 /* ✅ USER INFO TEKSTAS */
@@ -129,4 +141,15 @@ input:hover {
     font-size: 16px;
     padding: 12px 24px;
   }
+}
+
+/* 🔥 Keyframes */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glowWaves {
+  from { opacity: 0.3; }
+  to { opacity: 0.6; }
 }

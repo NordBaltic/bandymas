@@ -1,0 +1,56 @@
+.transaction-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    padding: 30px;
+    background: var(--input-bg);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+}
+
+.transaction-list {
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-list li {
+    padding: 12px;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.sent {
+    color: #ff4444;
+}
+
+.received {
+    color: #44ff44;
+}
+
+.send-container, .receive-container {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    padding: 30px;
+    background: var(--input-bg);
+    border-radius: 15px;
+}
+
+.wallet-address {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+button {
+    background: var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #926F0D;
+}

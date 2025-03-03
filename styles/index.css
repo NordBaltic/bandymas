@@ -1,42 +1,36 @@
-/* Background Gradient */
+/* **SOLIDUS PRABANGUS FONAS** */
 .container {
-    background: linear-gradient(135deg, #0A1F44 0%, #182c5a 50%, #d4af37 100%);
+    background: linear-gradient(135deg, #0A1F44 0%, #1d2f5b 50%, #b38e36 100%);
     background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
+    animation: gradientAnimation 20s ease infinite;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-/* Subtilus background judėjimas */
+/* Subtilus fonas juda labai lėtai */
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Prabangus login UI */
+/* LOGIN UI */
 .login-container {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
     padding: 50px;
     border-radius: 15px;
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.3);
+    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.1);
     text-align: center;
 }
 
-/* Logo efektai */
-.logo {
-    width: 120px;
-    filter: drop-shadow(0px 0px 20px rgba(255, 215, 0, 0.6));
-}
-
-/* High-end UI tekstai */
+/* PRABANGUS TEKSTAS */
 .title {
     font-size: 2.5rem;
     color: white;
-    text-shadow: 0px 0px 20px rgba(255, 215, 0, 0.8);
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
 }
 
 .subtitle {
@@ -45,7 +39,7 @@
     margin-bottom: 20px;
 }
 
-/* Mygtukai su ikonėlėmis */
+/* PRABANGŪS LOGIN MYGTUKAI */
 .button-container {
     display: flex;
     justify-content: center;
@@ -63,19 +57,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    background: #1f2a48;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.login-email-btn {
-    background: linear-gradient(90deg, #FFD700, #ff9d00);
+.login-email-btn:hover, .login-wallet-btn:hover {
+    background: #283559;
 }
 
-.login-wallet-btn {
-    background: linear-gradient(90deg, #00ff96, #008dff);
-}
-
+/* FIX: Mygtukų ikonėlės nebe crash’ina telefone */
 .button-icon {
     width: 24px;
     height: 24px;
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.1));
 }
 
 /* Register link */

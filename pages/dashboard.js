@@ -1,102 +1,63 @@
-import React, { useState, useEffect } from "react";
-import { supabase } from "../lib/supabaseClient";
-import ChartComponent from "../components/ChartComponent";
-import WalletConnectButton from "../components/WalletConnectButton";
-import SendBscTransaction from "../components/SendBscTransaction";
-import SwapComponent from "../components/swap/SwapComponent";
-import DonateComponent from "../components/donate/DonateComponent";
-import StakeComponent from "../components/stake/StakeComponent";
+import { useEffect, useState } from "react";
+import { useAuth } from "../loginsystem/AuthProvider";
+import { getBscBalance } from "../lib/bscUtils";
+import { getStakingInfo } from "../lib/stakingUtils";
 import toast from "react-hot-toast";
-import "./Dashboard.css";
 
 export default function Dashboard() {
-    const [balance, setBalance] = useState(0);
-    const [transactions, setTransactions] = useState([]);
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { user, wallet, logout } = useAuth();
+    const [balance, setBalance] = useState("0.00");
+    const [stakingData, setStakingData] = useState({ staked: "0.00", rewards: "0.00" });
 
     useEffect(() => {
-        fetchUserData();
-    }, []);
-
-    // ✅ Gauna vartotojo informaciją iš Supabase
-    const fetchUserData = async () => {
-        const { data: session } = await supabase.auth.getSession();
-        if (!session) return;
-
-        setUser(session.user);
-        const { data, error } = await supabase
-            .from("wallets")
-            .select("*")
-            .eq("user_id", session.user.id)
-            .single();
-
-        if (error) {
-            console.error("Klaida gaunant balansą:", error);
-            return;
+        if (wallet) {
+            fetchBalance();
+            fetchStaking();
         }
+    }, [wallet]);
 
-        setBalance(data.balance);
-        fetchTransactions(data.wallet_address);
+    const fetchBalance = async () => {
+        try {
+            const bal = await getBscBalance(wallet);
+            setBalance(bal);
+        } catch (error) {
+            toast.error("Failed to fetch balance");
+        }
     };
 
-    // ✅ Gauna transakcijų istoriją
-    const fetchTransactions = async (walletAddress) => {
-        const { data, error } = await supabase
-            .from("transactions")
-            .select("*")
-            .eq("wallet_address", walletAddress)
-            .order("created_at", { ascending: false });
-
-        if (error) {
-            console.error("Klaida gaunant transakcijas:", error);
-            return;
+    const fetchStaking = async () => {
+        try {
+            const data = await getStakingInfo(wallet);
+            setStakingData(data);
+        } catch (error) {
+            toast.error("Failed to fetch staking data");
         }
-
-        setTransactions(data);
-        setLoading(false);
     };
 
     return (
-        <div className="dashboard-container fade-in">
-            <h1 className="dashboard-title">🏦 Jūsų piniginė</h1>
+        <div className="dashboard-container">
+            <h1 className="dashboard-title">Welcome, {user?.email}</h1>
+            <p className="dashboard-subtitle">Your Wallet: {wallet}</p>
 
-            {/* 🔥 PINIGINĖS BALANSAS */}
-            <div className="wallet-info glass-morph">
-                <h2 className="floating-balance">💰 {balance} BNB</h2>
-                <WalletConnectButton />
+            <div className="balance-box glass-morph">
+                <h2>Balance</h2>
+                <p className="balance-amount">{balance} BNB</p>
             </div>
 
-            {/* 🔥 GRAFINIS RODMUO */}
-            <div className="chart-box">
-                <ChartComponent data={[0.5, 1.2, 2.5, balance]} currency="BNB" />
+            <div className="staking-box glass-morph">
+                <h2>Staking</h2>
+                <p>Staked: {stakingData.staked} BNB</p>
+                <p>Rewards: {stakingData.rewards} BNB</p>
             </div>
 
-            {/* 🔥 GREITI VEIKSMAI */}
             <div className="action-buttons">
-                <SendBscTransaction senderAddress={user?.wallet_address} />
-                <SwapComponent />
-                <DonateComponent />
-                <StakeComponent />
+                <a href="/send" className="action-btn">Send</a>
+                <a href="/swap" className="action-btn">Swap</a>
+                <a href="/stake" className="action-btn">Stake</a>
+                <a href="/donate" className="action-btn">Donate</a>
             </div>
 
-            {/* 🔥 TRANSAKCIJŲ ISTORIJA */}
-            <div className="transactions-box">
-                <h3>📜 Pavedimų istorija</h3>
-                {loading ? (
-                    <p>🔄 Kraunama...</p>
-                ) : transactions.length > 0 ? (
-                    <ul>
-                        {transactions.map((tx, index) => (
-                            <li key={index}>
-                                {tx.amount} BNB → {tx.to}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>❌ Transakcijų nėra</p>
-                )}
-            </div>
+            <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
     );
 }

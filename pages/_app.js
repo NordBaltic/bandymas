@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import '../styles/theme.css';
 import '../styles/admin.css';
 import '../styles/index.css';
-import '../styles/navbar.css';
+import '../../styles/Navbar.module.css';
 import '../styles/Loading.css';
 import '../styles/profile.css';
 import '../styles/receive.css';

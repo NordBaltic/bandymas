@@ -1,42 +1,55 @@
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useAuth } from "../loginsystem/useAuth";
+import Loading from "../components/Loading";
 
 export default function Login() {
-    const { loginWithEmail, registerWithEmail } = useAuth();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const { login } = useAuth();
+    const router = useRouter();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleLogin = async () => {
-        const { error } = await loginWithEmail(email, password);
-        if (error) setError(error.message);
-    };
-
-    const handleRegister = async () => {
-        const { error } = await registerWithEmail(email, password);
-        if (error) setError(error.message);
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+        
+        const result = await login(email, password);
+        if (result.success) {
+            router.push("/dashboard");
+        } else {
+            setError(result.message);
+        }
+        setLoading(false);
     };
 
     return (
         <div className="login-container">
-            <div className="login-box">
-                <h1>Sign In</h1>
-                <input 
-                    type="email" 
-                    placeholder="Email" 
-                    value={email} 
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input 
-                    type="password" 
-                    placeholder="Password" 
-                    value={password} 
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button onClick={handleLogin}>Login</button>
-                <button onClick={handleRegister} className="register-btn">Register</button>
-                {error && <p className="error-message">{error}</p>}
+            {loading && <Loading fullscreen />}
+            <div className="login-card glass-morph fade-in">
+                <h2>Login to Your Account</h2>
+                <form onSubmit={handleLogin}>
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Enter your password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    {error && <p className="error-text">{error}</p>}
+                    <button type="submit" className="primary-btn">Login</button>
+                </form>
+                <p>Don't have an account? <a href="/register">Sign Up</a></p>
             </div>
         </div>
     );
-                }
+}

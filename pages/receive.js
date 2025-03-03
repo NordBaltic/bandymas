@@ -4,7 +4,7 @@ import { supabase } from "../lib/supabaseClient";
 import { ethers } from "ethers";
 import QRCode from "qrcode.react";
 import toast from "react-hot-toast";
-import "../styles/Receive.css";
+import "../styles/receive.css";
 
 const BSC_MAINNET = "https://bsc-dataseed.binance.org/";
 const TOKENS = [

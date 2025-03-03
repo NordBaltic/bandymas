@@ -1,35 +1,43 @@
+// components/ResetPassword.js
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import toast from "react-hot-toast";
 
 export default function ResetPassword() {
     const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const handleResetPassword = async () => {
-        const { error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: "https://yourwebsite.com/reset-confirm",
-        });
+    const handlePasswordReset = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const { error } = await supabase.auth.api
+            .resetPasswordForEmail(email);
 
         if (error) {
-            setMessage("Error: " + error.message);
+            toast.error(error.message);
         } else {
-            setMessage("A password reset link has been sent to your email.");
+            toast.success("Password reset link sent!");
         }
+
+        setLoading(false);
     };
 
     return (
-        <div className="auth-container">
-            <h2>Reset Password</h2>
-            <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <button className="primary-btn" onClick={handleResetPassword}>
-                Send Reset Link
-            </button>
-            {message && <p className="status-text">{message}</p>}
+        <div className="reset-password-container">
+            <h2>Reset your password</h2>
+            <form onSubmit={handlePasswordReset}>
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+                <button type="submit" disabled={loading}>
+                    {loading ? "Sending..." : "Send Reset Link"}
+                </button>
+            </form>
         </div>
     );
 }

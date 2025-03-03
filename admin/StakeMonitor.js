@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../loginsystem/supabaseClient";
+import { supabase } from "../lib/supabaseClient";
 import { ethers } from "ethers";
 import toast from "react-hot-toast";
 

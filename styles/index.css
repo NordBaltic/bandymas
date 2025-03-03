@@ -23,28 +23,6 @@
     min-width: 320px;
 }
 
-/* MEDIA QUERIES – UŽTIKRINTAS TOBULAS PRITAIKYMAS VISIEMS ĮRENGINIAMS */
-@media screen and (max-width: 1024px) {
-    .login-container {
-        width: 70%;
-        max-width: 600px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .login-container {
-        width: 90%;
-        max-width: 450px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .login-container {
-        width: 95%;
-        max-width: 380px;
-    }
-}
-
 /* LOGOTIPAS – PRITAIKYTAS VISIEMS EKRANAMS */
 .logo {
     width: 35%;

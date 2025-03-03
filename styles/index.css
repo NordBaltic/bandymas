@@ -1,21 +1,10 @@
-/* **JUODA + AUKSINĖ SCHEMA – 100% SOLIDU IR PRABANGU** */
+/* **JUODA + AUKSINĖ SCHEMA – TOBULA PRABANGA** */
 .container {
     background: linear-gradient(135deg, #000000 0%, #111111 50%, rgba(255, 215, 0, 0.5) 100%);
-    background-size: 400% 400%;
-    animation: ultraSmoothGoldFlow 50s linear infinite;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-}
-
-/* **ULTIMATE SMOOTH AUKSINĖ ANIMACIJA** */
-@keyframes ultraSmoothGoldFlow {
-    0% { background-position: 0% 50%; opacity: 0.6; filter: blur(0px); }
-    25% { background-position: 25% 50%; opacity: 0.5; filter: blur(1px); }
-    50% { background-position: 50% 50%; opacity: 0.55; filter: blur(2px); }
-    75% { background-position: 75% 50%; opacity: 0.5; filter: blur(1px); }
-    100% { background-position: 100% 50%; opacity: 0.6; filter: blur(0px); }
 }
 
 /* LOGIN UI */
@@ -24,15 +13,16 @@
     backdrop-filter: blur(15px);
     padding: 50px;
     border-radius: 15px;
-    box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.2);
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
     text-align: center;
+    border: 2px solid rgba(255, 215, 0, 0.3);
 }
 
 /* PRABANGUS TEKSTAS */
 .title {
     font-size: 2.5rem;
     color: white;
-    text-shadow: 0px 0px 7px rgba(255, 255, 255, 0.05);
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
 }
 
 .subtitle {
@@ -57,21 +47,23 @@
     transition: 0.3s;
     color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     background: #222;
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.15);
 }
 
 .login-email-btn:hover, .login-wallet-btn:hover {
     background: #333;
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
 }
 
-/* FIX: Mygtukų ikonėlės nebe crash’ina telefone */
+/* MYGTUKŲ IKONOS */
 .button-icon {
-    width: 24px;
-    height: 24px;
-    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.15));
+    width: 40px;
+    height: 40px;
 }
 
 /* Register link */
@@ -79,6 +71,7 @@
     color: #FFD700;
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .register-link:hover {

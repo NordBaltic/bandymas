@@ -1,53 +1,80 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useAuth } from "../loginsystem/AuthProvider";
-import Loading from "../components/Loading";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
-export default function Index() {
-    const { loginWithEmail, loginWithWallet, user, wallet } = useAuth();
+export default function Home() {
     const router = useRouter();
-    const [loading, setLoading] = useState(false);
-    const [rememberMe, setRememberMe] = useState(false);
-    const adminWallet = process.env.NEXT_PUBLIC_ADMIN_WALLET;
 
     useEffect(() => {
-        if (user || wallet) {
-            if (wallet && wallet.toLowerCase() === adminWallet.toLowerCase()) {
-                router.push("/admin");
-            } else {
-                router.push("/dashboard");
-            }
+        // Jei vartotojas jau prisijungęs, nukreipiam į dashboard
+        const userLoggedIn = localStorage.getItem("user");
+        if (userLoggedIn) {
+            router.push("/dashboard");
         }
-    }, [user, wallet, router, adminWallet]);
+    }, []);
 
     return (
-        <div className="onboarding-container">
-            {loading && <Loading fullscreen />}
-            
-            <div className="logo-container">
-                <img src="/logo.svg" alt="NordBaltic Logo" className="logo fade-in-scale" />
-            </div>
+        <div className="container">
+            {router.pathname !== '/' && <Navbar />} {/* Paslepia navbar pagrindiniame puslapyje */}
 
-            <div className="onboarding-card glass-morph slide-up">
-                <h2 className="welcome-text">🚀 Welcome to <span>NordBalticum</span></h2>
-                <p className="subtext">The Future of Secure & Decentralized Banking</p>
+            <motion.main 
+                className="login-container"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+                <motion.img 
+                    src="/logo.png" 
+                    alt="NordBalticum Logo" 
+                    className="logo"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                />
 
-                <button className="primary-btn hover-scale" onClick={async () => { setLoading(true); await loginWithEmail(); setLoading(false); }}>
-                    ✉️ Login with Email
-                </button>
-                <button className="wallet-btn hover-scale" onClick={async () => { setLoading(true); await loginWithWallet(); setLoading(false); }}>
-                    🔗 Login with Wallet
-                </button>
+                <motion.h1
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                    🚀 Welcome to <span className="highlight">NordBalticum</span>
+                </motion.h1>
 
-                <div className="remember-me">
-                    <input type="checkbox" id="remember" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
-                    <label htmlFor="remember">Remember Me</label>
-                </div>
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                >
+                    The Future of Secure & Decentralized Banking
+                </motion.p>
+                
+                <motion.button 
+                    className="login-email-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    📩 LOGIN WITH EMAIL
+                </motion.button>
 
-                <p className="signup-text">New here? <a href="/register">Create an Account</a></p>
-            </div>
+                <motion.button 
+                    className="login-wallet-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    🔗 LOGIN WITH WALLET
+                </motion.button>
 
-            <div className="background-animation"></div>
+                <label className="remember-me">
+                    <input type="checkbox" />
+                    Remember Me
+                    <span className="tooltip">Keep me logged in for 30 days</span>
+                </label>
+
+                <p>
+                    New here? <a href="/register" className="register-link">Create an Account</a>
+                </p>
+            </motion.main>
         </div>
     );
 }

@@ -21,7 +21,7 @@ export default function SendBNB() {
         if (wallet) fetchTransactionHistory();
     }, [wallet]);
 
-    // ✅ Gauti transakcijų istoriją
+    // ✅ Gaunam paskutines transakcijas iš DB
     const fetchTransactionHistory = async () => {
         try {
             const { data, error } = await supabase

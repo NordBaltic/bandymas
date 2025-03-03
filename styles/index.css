@@ -1,121 +1,109 @@
-/* 🎨 ONBOARDING STILIUS */
+/* === 💎 ONBOARDING PAGE STYLES === */
 .onboarding-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    width: 100%;
-    background: linear-gradient(135deg, #000000, #1a1a1a);
+    text-align: center;
+    background: linear-gradient(135deg, #000000, #0A0A0A);
     animation: fadeIn 1s ease-in-out;
+    position: relative;
 }
 
-/* 🔥 Logotipo konteineris */
 .logo-container {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .logo {
-    width: 180px;
+    width: 150px;
     height: auto;
-    filter: drop-shadow(0px 0px 20px var(--accent-color));
+    filter: drop-shadow(0px 0px 20px var(--gold-color));
+    animation: fadeInScale 1s ease-in-out;
 }
 
-/* 🔥 Prisijungimo kortelė */
-.login-box {
-    width: 400px;
+.onboarding-card {
+    width: 380px;
     max-width: 90%;
-    padding: 35px;
+    padding: 30px;
     text-align: center;
     border-radius: 15px;
     backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0px 10px 30px rgba(255, 215, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 10px 30px rgba(181, 148, 16, 0.4);
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* 🔥 Pavadinimas */
 .welcome-text {
     font-size: 24px;
     font-weight: bold;
-    color: var(--accent-color);
-    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
+    color: var(--text-color);
+    text-shadow: 0px 0px 15px var(--gold-color);
 }
 
-.subtitle {
+.subtext {
     font-size: 16px;
     color: var(--text-color);
-    margin-bottom: 20px;
-    opacity: 0.8;
+    margin-bottom: 15px;
+    opacity: 0.9;
 }
 
-/* 🔹 Prisijungimo mygtukai */
-.login-button, .wallet-button {
+.primary-btn, .wallet-btn {
     width: 100%;
     padding: 14px;
-    margin: 10px 0;
     border-radius: 8px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    border: none;
+    margin: 10px 0;
 }
 
-.login-button {
-    background: linear-gradient(45deg, #FFD700, #FF8C00);
-    color: black;
+.primary-btn {
+    background: var(--gold-color);
+    color: var(--primary-color);
 }
 
-.wallet-button {
-    background: linear-gradient(45deg, #4C9AFF, #007AFF);
+.primary-btn:hover {
+    background: #926F0D;
+}
+
+.wallet-btn {
+    background: linear-gradient(135deg, #2D88FF, #3B3B98);
     color: white;
 }
 
-.login-button:hover {
-    background: linear-gradient(45deg, #FF8C00, #FFD700);
+.wallet-btn:hover {
+    background: linear-gradient(135deg, #3B3B98, #2D88FF);
 }
 
-.wallet-button:hover {
-    background: linear-gradient(45deg, #007AFF, #4C9AFF);
-}
-
-/* 🔹 Atsakomybės nuoroda */
-.disclaimer {
-    margin-top: 15px;
+.signup-text {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
 }
 
-.disclaimer a {
-    color: var(--accent-color);
+.signup-text a {
+    color: var(--gold-color);
     text-decoration: none;
 }
 
-.disclaimer a:hover {
-    text-decoration: underline;
+.signup-text a:hover {
+    text-shadow: 0px 0px 10px var(--gold-color);
 }
 
-/* 🔥 ANIMACIJOS */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.background-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 80%);
+    animation: backgroundPulse 3s infinite alternate;
 }
 
-/* 📱 RESPONSIVE FIXES */
-@media (max-width: 480px) {
-    .login-box {
-        width: 90%;
-        padding: 25px;
-    }
-
-    .welcome-text {
-        font-size: 22px;
-    }
+@keyframes backgroundPulse {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
 }

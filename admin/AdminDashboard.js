@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabaseClient";
 import toast from "react-hot-toast";
-import "./Admin.css";
+import "./admin.css";
 
 export default function AdminDashboard() {
     const [stats, setStats] = useState({

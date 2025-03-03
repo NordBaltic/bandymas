@@ -1,4 +1,4 @@
-import { supabase } from "../lib/supabaseClient";
+simport { supabase } from "../lib/supabaseClient";
 import { ethers } from "ethers";
 import { ADMIN_DONATION_WALLET } from "./donationsData";
 

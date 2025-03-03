@@ -1,82 +1,56 @@
-/* === 💎 DASHBOARD DESIGN === */
 .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
     text-align: center;
-    background: linear-gradient(135deg, #000000, #1a1a1a);
+    padding: 40px 20px;
 }
 
-.dashboard-title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #B59410;
-    text-shadow: 0px 0px 12px rgba(181, 148, 16, 0.8);
-}
-
-.dashboard-subtitle {
-    font-size: 16px;
-    color: #FFFFF4;
-    margin-bottom: 20px;
-}
-
-.balance-box, .staking-box {
-    width: 350px;
-    padding: 25px;
+.wallet-info {
+    background: var(--input-bg);
+    padding: 20px;
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
-    box-shadow: 0px 6px 20px rgba(181, 148, 16, 0.3);
-    text-align: center;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 15px var(--shadow-glow);
     margin-bottom: 20px;
 }
 
-.balance-amount {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFFFF4;
-    text-shadow: 0px 0px 10px rgba(181, 148, 16, 0.6);
+.wallet-address {
+    font-size: 16px;
+    color: var(--accent-color);
 }
 
-/* === 🔥 ACTION BUTTONS === */
-.action-buttons {
+.floating-balance {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0px 0px 10px var(--shadow-glow);
+    margin-bottom: 10px;
+}
+
+.dashboard-buttons {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-between;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .action-btn {
-    padding: 14px 20px;
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 20px;
     border-radius: 8px;
-    background: linear-gradient(45deg, #FFD700, #B59410);
-    color: black;
     font-weight: bold;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    width: 22%;
+    min-width: 120px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
 }
 
 .action-btn:hover {
-    background: linear-gradient(45deg, #B59410, #FFD700);
-    transform: scale(1.05);
-}
-
-/* === 🔥 LOGOUT BUTTON === */
-.logout-btn {
-    margin-top: 30px;
-    padding: 12px 20px;
-    border-radius: 8px;
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.logout-btn:hover {
-    background: rgba(255, 0, 0, 1);
+    background: #926F0D;
     transform: scale(1.05);
 }

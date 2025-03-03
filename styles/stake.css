@@ -1,44 +1,146 @@
+/* === 💎 PREMIUM STAKING UI === */
 .stake-container {
-    background: var(--input-bg);
+    max-width: 600px;
+    margin: 40px auto;
     padding: 30px;
-    border-radius: 12px;
-    max-width: 500px;
-    margin: auto;
     text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px solid var(--glass-border);
+    box-shadow: 0px 8px 30px var(--shadow-glow);
     backdrop-filter: blur(12px);
-    box-shadow: 0px 6px 20px var(--shadow-glow);
+    transition: all 0.3s ease-in-out;
 }
 
-.staked-balance {
-    font-size: 18px;
+.stake-container:hover {
+    box-shadow: 0px 10px 40px rgba(181, 148, 16, 0.4);
+}
+
+/* === 🔥 HEADER STYLES === */
+.stake-container h3 {
+    font-size: 22px;
     font-weight: bold;
     color: var(--accent-color);
+    text-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
     margin-bottom: 15px;
 }
 
-input {
+/* === 📊 STAKED INFO BOX === */
+.stake-info {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
+}
+
+.stake-info p {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+    margin: 5px 0;
+}
+
+/* === 🔥 INPUT FIELD === */
+.stake-container input {
     width: 100%;
     padding: 14px;
-    border-radius: 8px;
-    border: 2px solid var(--glass-border);
+    border: 2px solid var(--input-border);
     background: var(--input-bg);
     color: var(--text-color);
-    text-align: center;
-}
-
-.stake-btn, .unstake-btn {
-    padding: 12px 18px;
-    background: var(--accent-color);
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0px 6px 15px var(--shadow-glow);
-    margin: 10px;
+    font-size: 17px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-.stake-btn:hover, .unstake-btn:hover {
+.stake-container input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0px 4px 16px rgba(181, 148, 16, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* === 🔥 BUTTON STYLES === */
+.stake-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    background: var(--btn-gradient);
+    color: var(--primary-color);
+    box-shadow: 0px 6px 18px var(--shadow-glow);
+    margin-bottom: 10px;
+}
+
+.stake-button:hover {
     background: #926F0D;
-    transform: scale(1.05);
+    box-shadow: 0px 8px 22px rgba(181, 148, 16, 0.5);
+}
+
+/* === 🔥 UNSTAKE BUTTON === */
+.unstake-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(145deg, #d40000, #ff4c4c);
+    color: white;
+    box-shadow: 0px 6px 18px rgba(255, 0, 0, 0.4);
+}
+
+.unstake-button:hover {
+    background: linear-gradient(145deg, #ff1a1a, #ff6666);
+    box-shadow: 0px 8px 22px rgba(255, 0, 0, 0.6);
+}
+
+/* === 🔥 REWARDS SECTION === */
+.rewards-box {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
+}
+
+.rewards-box p {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+}
+
+/* === 📱 RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .stake-container {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .stake-container h3 {
+        font-size: 20px;
+    }
+
+    .stake-info p, .rewards-box p {
+        font-size: 16px;
+    }
+
+    .stake-button, .unstake-button {
+        font-size: 16px;
+        padding: 12px;
+    }
 }

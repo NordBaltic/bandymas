@@ -1,6 +1,6 @@
-/* **JUODOS DOMINANCIJOS PREMIUM FONAS – LUXURY LOOK** */
+/* **TOBULAS PREMIUM FONAS – LUXURY STYLE** */
 .container {
-    background: linear-gradient(135deg, #000000 0%, #0A0A0A 60%, rgba(255, 215, 0, 0.18) 100%);
+    background: linear-gradient(135deg, #000000 0%, #0A0A0A 65%, rgba(255, 215, 0, 0.16) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,21 +9,21 @@
 
 /* LOGIN UI */
 .login-container {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(22px);
     padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.2);
+    border-radius: 22px;
+    box-shadow: 0px 0px 35px rgba(255, 215, 0, 0.22);
     text-align: center;
-    border: 2px solid rgba(255, 215, 0, 0.35);
+    border: 2px solid rgba(255, 215, 0, 0.40);
 }
 
-/* PRABANGUS LOGOTIPAS – PADIDINTAS +35% */
+/* PRABANGUS LOGOTIPAS – PADIDINTAS DAR +33% */
 .logo {
-    width: 180px;
+    width: 240px;
     height: auto;
-    margin-bottom: 25px;
-    filter: drop-shadow(0px 0px 10px rgba(255, 215, 0, 0.2));
+    margin-bottom: 30px;
+    filter: drop-shadow(0px 0px 12px rgba(255, 215, 0, 0.25));
 }
 
 /* LOGIN MYGTUKAI */
@@ -33,10 +33,10 @@
     gap: 25px;
 }
 
-/* SUSTIPRINTA JUODA DOMINANCIJA – 100% SOLIDUMAS */
+/* PASKUTINIAI PREMIUM DIZAINO TOBULINIMAI */
 .login-email-btn, .login-wallet-btn {
-    padding: 20px 50px;
-    font-size: 1.2rem;
+    padding: 22px 52px;
+    font-size: 1.3rem;
     border: none;
     cursor: pointer;
     border-radius: 12px;
@@ -46,16 +46,23 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    background: #121212;
-    border: 2px solid rgba(255, 215, 0, 0.4);
-    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.2);
+    background: #131313;
+    border: 2px solid rgba(255, 215, 0, 0.45);
+    box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.2);
 }
 
 /* LOGIN TEKSTAS */
 .login-text {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
     color: #FFD700;
+}
+
+/* CREATE AN ACCOUNT TEKSTAS – IDEALIAI SUBALANSUOTAS CENTRE */
+.register-text {
+    margin-top: 50px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* REGISTER LINK */

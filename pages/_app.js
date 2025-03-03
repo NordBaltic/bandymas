@@ -14,6 +14,11 @@ import { bsc } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
+import dynamic from 'next/dynamic';
+
+// Dynamically load Navbar to fix "Navbar is not defined" issue
+const Navbar = dynamic(() => import("../components/Navbar"), { ssr: false });
 
 const { chains, publicClient } = configureChains([bsc], [publicProvider()]);
 
@@ -23,6 +28,8 @@ const wagmiConfig = createConfig({
 });
 
 export default function MyApp({ Component, pageProps }) {
+    const router = useRouter();
+
     return (
         <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains} theme={darkTheme()}>
@@ -33,7 +40,8 @@ export default function MyApp({ Component, pageProps }) {
                         transition={{ duration: 0.5 }}
                         className="app-container"
                     >
-                        <Navbar />
+                        {/* Navbar rodome visur, išskyrus pagrindiniame puslapyje */}
+                        {router.pathname !== '/' && <Navbar />}
                         <Component {...pageProps} />
                     </motion.div>
                 </AuthProvider>

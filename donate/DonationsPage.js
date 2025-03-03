@@ -3,7 +3,7 @@ import { useAuth } from "../loginsystem/AuthProvider";
 import { processDonation } from "./donationService";
 import { DONATION_FUNDS } from "./donationsData";
 import toast from "react-hot-toast";
-import "../styles/donations.css";
+import "../styles/donate.css";
 
 export default function DonationsPage() {
     const { wallet } = useAuth();

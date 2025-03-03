@@ -61,10 +61,10 @@ button:hover {
 }
 
 /* 10️⃣ Optimizuotas `container` UI */
+/* *10️⃣ FIXED* */
 .container {
-    max-width: 1200px;
+    max-width: 100vw !important;  /* Dabar užims pilną ekraną */
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 !important;  /* Pašalinam padding, jei trukdys */
 }
 
-/* 11️⃣ – 30️⃣ DAUGIAU HIGH-END PATOBULINIMŲ – VISKAS ABSOLIUČIAI POLIRUOTA */

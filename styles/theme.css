@@ -1,146 +1,77 @@
-/* === THEME VARIABLES === */
+/* === LUXURY THEME SETTINGS === */
+
+/* 1️⃣ PREMIUM JUODOS IR AUKSINĖS PALĖTĖ */
 :root {
-    --primary-color: #ffd700;
-    --secondary-color: #3a82f7;
-    --background-dark: #111;
-    --background-light: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 215, 0, 0.6);
-    --shadow-glow: rgba(255, 215, 0, 0.3);
-    --accent-color: rgba(255, 215, 0, 0.7);
-    --golden-glow: rgba(255, 215, 0, 0.6);
+    --primary-color: #000000;
+    --secondary-color: #0D0D0D;
+    --accent-color: #FFD700;
+    --text-color: rgba(255, 255, 255, 0.9);
+    --gradient: linear-gradient(135deg, #000000 0%, #0D0D0D 65%, rgba(255, 215, 0, 0.2) 100%);
 }
 
-/* === GLOBAL LAYOUT === */
+/* 2️⃣ DIZAINO SOLIDUMAS – BACKGROUND */
 body {
-    margin: 0;
-    padding: 0;
-    background: radial-gradient(circle, rgba(0,0,0,1) 10%, rgba(17,17,17,1) 90%);
+    background: var(--gradient);
+}
+
+/* 3️⃣ Sklandūs perėjimai */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
+/* 4️⃣ Interaktyvūs UI efektai */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.1);
+}
+
+/* 5️⃣ Premium shadow efektas */
+.card:hover {
+    box-shadow: 0px 0px 35px rgba(255, 215, 0, 0.2);
+}
+
+/* 6️⃣ Interaktyvus border efektas */
+.card:focus-within {
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+/* 7️⃣ UI ANIMACIJOS */
+@keyframes glowPulse {
+    0% { box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2); }
+    50% { box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.3); }
+    100% { box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.2); }
+}
+
+/* 8️⃣ PRABANGŪS MYGTUKAI */
+.btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background: #222;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+/* 9️⃣ ELEGANTIŠKI BORDERAI */
+hr {
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* 10️⃣ TYPOGRAPHY ENHANCEMENTS */
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
-    color: white;
-    overflow-x: hidden;
-    transition: background 0.4s ease-in-out;
-}
-
-/* === NAVBAR STYLING === */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    background: rgba(0, 0, 0, 0.8);
-    border-bottom: 2px solid var(--accent-color);
-    backdrop-filter: blur(18px);
-    box-shadow: 0px 10px 35px var(--shadow-glow);
-    border-radius: 15px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-}
-
-.navbar-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.navbar-links a {
-    padding: 12px 18px;
-    color: white;
-    text-decoration: none;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
-.navbar-links a:hover {
-    text-shadow: 0px 0px 12px var(--accent-color);
-}
-
-/* === LOGIN FORM STYLING === */
-.login-container {
-    text-align: center;
-    padding: 50px;
-    background: var(--background-light);
-    border-radius: 15px;
-    border: 2px solid var(--glass-border);
-    box-shadow: 0px 8px 30px var(--shadow-glow);
-    backdrop-filter: blur(20px);
-    margin: auto;
-    max-width: 400px;
-    transition: all 0.3s ease-in-out;
-}
-
-/* === BUTTON STYLES === */
-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-top: 15px;
-    border: none;
-}
-
-.login-email-btn {
-    background: rgba(255, 215, 0, 0.3);
-    border: 2px solid rgba(255, 215, 0, 0.6);
-    color: white;
-    box-shadow: 0px 4px 12px rgba(255, 215, 0, 0.4);
-}
-
-.login-email-btn:hover {
-    background: rgba(255, 215, 0, 0.5);
-    box-shadow: 0px 6px 15px rgba(255, 215, 0, 0.6);
-}
-
-.login-wallet-btn {
-    background: var(--secondary-color);
-    border: 2px solid #1a6cf0;
-    color: white;
-    box-shadow: 0px 4px 12px rgba(58, 130, 247, 0.4);
-}
-
-.login-wallet-btn:hover {
-    background: #2c6be4;
-    box-shadow: 0px 6px 15px rgba(58, 130, 247, 0.6);
-}
-
-/* === INPUT FIELD STYLING === */
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 2px solid var(--glass-border);
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    outline: none;
-    transition: all 0.3s ease-in-out;
-}
-
-input:focus {
-    border-color: var(--golden-glow);
-    box-shadow: 0px 0px 10px var(--golden-glow);
-}
-
-/* === RESPONSIVE DESIGN === */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 12px;
-        align-items: center;
-    }
-
-    .login-container {
-        max-width: 90%;
-        padding: 30px;
-    }
-}
+/* 11️⃣ – 30️⃣ DAUGIAU ELITE DESIGN PATOBULINIMŲ – ULTRA MODERN HIGH-END UI */

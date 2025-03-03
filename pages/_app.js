@@ -2,17 +2,13 @@ import "../styles/globals.css";
 import "../styles/theme.css";
 import { AuthProvider } from "../loginsystem/AuthProvider";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
-import { bsc } from "wagmi/chains"; // ✅ Binance Smart Chain (Mainnet)
+import { bsc } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 
-// ✅ Web3 konfiguracija (BSC Mainnet)
-const { chains, publicClient } = configureChains(
-    [bsc], // ✅ Tik Binance Smart Chain (Mainnet)
-    [publicProvider()]
-);
+const { chains, publicClient } = configureChains([bsc], [publicProvider()]);
 
 const wagmiConfig = createConfig({
     autoConnect: true,

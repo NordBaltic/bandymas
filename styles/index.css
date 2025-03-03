@@ -1,6 +1,6 @@
-/* **TOBULAS PREMIUM FONAS – LUXURY STYLE** */
+/* **TOBULIAUSIAS PREMIUM FONAS** */
 .container {
-    background: linear-gradient(135deg, #000000 0%, #0A0A0A 65%, rgba(255, 215, 0, 0.16) 100%);
+    background: linear-gradient(135deg, #000000 0%, #0A0A0A 70%, rgba(255, 215, 0, 0.14) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,34 +9,41 @@
 
 /* LOGIN UI */
 .login-container {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(22px);
-    padding: 50px;
-    border-radius: 22px;
-    box-shadow: 0px 0px 35px rgba(255, 215, 0, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(25px);
+    padding: 55px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.25);
     text-align: center;
-    border: 2px solid rgba(255, 215, 0, 0.40);
+    border: 2px solid rgba(255, 215, 0, 0.50);
 }
 
-/* PRABANGUS LOGOTIPAS – PADIDINTAS DAR +33% */
+/* LOGOTIPAS – PADIDINTAS, TOBULINTAS */
 .logo {
-    width: 240px;
+    width: 260px;
     height: auto;
     margin-bottom: 30px;
-    filter: drop-shadow(0px 0px 12px rgba(255, 215, 0, 0.25));
+    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.3));
 }
 
 /* LOGIN MYGTUKAI */
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
 }
 
-/* PASKUTINIAI PREMIUM DIZAINO TOBULINIMAI */
+/* PADIDINTOS IKONOS – DABAR DOMINUOJA */
+.button-icon {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.25));
+}
+
+/* LOGIN MYGTUKŲ TOBULINIMAI */
 .login-email-btn, .login-wallet-btn {
-    padding: 22px 52px;
-    font-size: 1.3rem;
+    padding: 25px 55px;
+    font-size: 1.5rem;
     border: none;
     cursor: pointer;
     border-radius: 12px;
@@ -45,23 +52,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     background: #131313;
-    border: 2px solid rgba(255, 215, 0, 0.45);
-    box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
 }
 
 /* LOGIN TEKSTAS */
 .login-text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #FFD700;
 }
 
-/* CREATE AN ACCOUNT TEKSTAS – IDEALIAI SUBALANSUOTAS CENTRE */
+/* REGISTRACIJOS TEKSTAS – IDEALIAI SUBALANSUOTAS */
 .register-text {
-    margin-top: 50px;
-    font-size: 1.1rem;
+    margin-top: 60px;
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
 }
 

@@ -1,84 +1,46 @@
-.transaction-history {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    box-shadow: 0px 4px 15px var(--shadow-glow);
-    color: var(--text-color);
+.transaction-history-container {
     max-width: 600px;
     margin: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0px 4px 12px var(--shadow-glow);
+}
+
+.transaction-history-container h3 {
     text-align: center;
-}
-
-.history-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
     color: var(--accent-color);
-}
-
-.loading-text {
-    font-size: 16px;
-    color: var(--secondary-text);
-}
-
-.transaction-list {
-    list-style: none;
-    padding: 0;
+    text-shadow: 0px 0px 10px var(--accent-color);
 }
 
 .transaction-item {
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
     background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 3px 10px var(--shadow-glow);
-    transition: all 0.3s ease-in-out;
-}
-
-.transaction-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0px 6px 20px var(--accent-color);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0px 2px 8px var(--shadow-glow);
 }
 
 .tx-amount {
-    font-size: 18px;
     font-weight: bold;
+    color: var(--accent-color);
 }
 
-.tx-direction {
-    font-size: 16px;
-    color: var(--gold);
-}
-
-.tx-wallet {
+.tx-recipient {
     font-size: 14px;
-    color: var(--secondary-text);
-    word-break: break-all;
+    color: var(--text-color);
 }
 
 .tx-timestamp {
     font-size: 12px;
-    color: var(--text-muted);
+    color: var(--secondary-text);
 }
 
-/* 🔥 Transaction Type Styling */
-.transaction-item.sent {
-    border-left: 4px solid red;
-}
-
-.transaction-item.received {
-    border-left: 4px solid green;
-}
-
-/* 📱 Responsive */
-@media (max-width: 768px) {
-    .transaction-history {
-        padding: 15px;
-    }
-    
-    .transaction-item {
-        padding: 8px;
-    }
+.no-transactions {
+    text-align: center;
+    font-size: 16px;
+    color: var(--secondary-text);
 }

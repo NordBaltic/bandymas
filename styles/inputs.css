@@ -29,6 +29,16 @@
   transform: scale(1.05);
 }
 
+/* === 🔥 ANIMUOTAS AUKSO KRAŠTAS */
+@keyframes royalBorderGlow {
+  0% { border-color: rgba(181, 148, 16, 0.3); }
+  50% { border-color: rgba(181, 148, 16, 0.8); }
+  100% { border-color: rgba(181, 148, 16, 0.3); }
+}
+.royal-border {
+  animation: royalBorderGlow 3s infinite ease-in-out;
+}
+
 /* === 🔥 INPUT INNER GLOW EFFECT === */
 .input-field::after {
   content: "";

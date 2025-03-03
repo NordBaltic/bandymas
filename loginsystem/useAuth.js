@@ -1,74 +1,94 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { loginWithEmail, registerWithEmail, logout } from "./auth";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../lib/supabaseClient";
+import { useRouter } from "next/router";
 
-// ✅ Autentifikacijos konteksto sukūrimas
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [wallet, setWallet] = useState(null);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
-    // ✅ Tikriname sesiją kai puslapis užkraunamas
     useEffect(() => {
-        async function fetchUser() {
-            const { data: session } = await supabase.auth.getSession();
-
-            if (session?.user) {
-                setUser(session.user);
-
-                // ✅ Tikriname, ar vartotojas turi priskirtą BSC wallet
-                const { data: walletData } = await supabase
-                    .from("users")
-                    .select("wallet")
-                    .eq("id", session.user.id)
-                    .single();
-
-                if (walletData?.wallet) {
-                    setWallet(walletData.wallet);
-                } else {
-                    console.warn("Vartotojas neturi priskirtos piniginės!");
-                }
+        const fetchUser = async () => {
+            const { data, error } = await supabase.auth.getSession();
+            if (data?.session) {
+                setUser(data.session.user);
+                fetchWallet(data.session.user.id);
+            } else {
+                setUser(null);
             }
-
             setLoading(false);
-        }
+        };
 
         fetchUser();
     }, []);
 
-    // ✅ Registracija
-    const register = async (email, password) => {
-        const result = await registerWithEmail(email, password);
-        if (result.success) {
-            setUser(result.user);
-            setWallet(result.wallet.address);
-        }
+    const fetchWallet = async (userId) => {
+        const { data, error } = await supabase
+            .from("users")
+            .select("wallet_address")
+            .eq("id", userId)
+            .single();
+
+        if (data) setWallet(data.wallet_address);
     };
 
-    // ✅ Prisijungimas
     const login = async (email, password) => {
-        const result = await loginWithEmail(email, password);
-        if (result.success) {
-            setUser(result.user);
-            setWallet(result.wallet);
-        }
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
+
+        if (error) return { success: false, error: error.message };
+
+        setUser(data.user);
+        fetchWallet(data.user.id);
+        return { success: true };
     };
 
-    // ✅ Atsijungimas
-    const handleLogout = async () => {
-        await logout();
+    const register = async (email, password) => {
+        const { data, error } = await supabase.auth.signUp({
+            email,
+            password,
+        });
+
+        if (error) return { success: false, error: error.message };
+
+        // Po registracijos automatiškai priskiria BSC wallet'ą
+        await assignWalletToUser(data.user.id);
+
+        setUser(data.user);
+        fetchWallet(data.user.id);
+        return { success: true };
+    };
+
+    const assignWalletToUser = async (userId) => {
+        const generatedWallet = generateBscWallet();
+        await supabase.from("users").upsert({
+            id: userId,
+            wallet_address: generatedWallet,
+        });
+        setWallet(generatedWallet);
+    };
+
+    const generateBscWallet = () => {
+        return "0x" + Math.random().toString(36).substr(2, 40).toUpperCase(); // Dummy BSC wallet generator (vėliau pakeisti į tikrą generaciją)
+    };
+
+    const logout = async () => {
+        await supabase.auth.signOut();
         setUser(null);
         setWallet(null);
+        router.push("/login");
     };
 
     return (
-        <AuthContext.Provider value={{ user, wallet, login, register, handleLogout, loading }}>
+        <AuthContext.Provider value={{ user, wallet, login, register, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-// ✅ Lengvas būdas naudoti autentifikacijos informaciją
 export const useAuth = () => useContext(AuthContext);

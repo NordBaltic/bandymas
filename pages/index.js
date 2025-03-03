@@ -15,7 +15,7 @@ export default function Home() {
 
     return (
         <div className="container">
-            {router.pathname !== '/' && <Navbar />} {/* Paslepia navbar pagrindiniame puslapyje */}
+            {router.pathname !== '/' && <Navbar />}
 
             <motion.main 
                 className="login-container"
@@ -30,12 +30,14 @@ export default function Home() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
+                    whileHover={{ scale: 1.1, rotate: 2 }}
                 />
 
                 <motion.h1
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.5 }}
+                    className="title"
                 >
                     🚀 Welcome to <span className="highlight">NordBalticum</span>
                 </motion.h1>
@@ -44,35 +46,46 @@ export default function Home() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
+                    className="subtitle"
                 >
                     The Future of Secure & Decentralized Banking
                 </motion.p>
-                
-                <motion.button 
-                    className="login-email-btn"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    📩 LOGIN WITH EMAIL
-                </motion.button>
 
-                <motion.button 
-                    className="login-wallet-btn"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    🔗 LOGIN WITH WALLET
-                </motion.button>
+                <div className="button-container">
+                    <motion.button 
+                        className="login-email-btn"
+                        whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(255, 215, 0, 0.7)" }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        📩 LOGIN WITH EMAIL
+                    </motion.button>
 
-                <label className="remember-me">
+                    <motion.button 
+                        className="login-wallet-btn"
+                        whileHover={{ scale: 1.1, boxShadow: "0px 0px 15px rgba(0, 255, 150, 0.7)" }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        🔗 LOGIN WITH WALLET
+                    </motion.button>
+                </div>
+
+                <motion.label 
+                    className="remember-me"
+                    whileHover={{ scale: 1.05 }}
+                >
                     <input type="checkbox" />
                     Remember Me
                     <span className="tooltip">Keep me logged in for 30 days</span>
-                </label>
+                </motion.label>
 
-                <p>
+                <motion.p 
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    className="register-text"
+                >
                     New here? <a href="/register" className="register-link">Create an Account</a>
-                </p>
+                </motion.p>
             </motion.main>
         </div>
     );

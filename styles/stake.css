@@ -1,82 +1,44 @@
-/* === 💎 PRABANGUS STAKING UI === */
 .stake-container {
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--input-bg);
     padding: 30px;
-    border-radius: 18px;
-    max-width: 600px;
+    border-radius: 12px;
+    max-width: 500px;
     margin: auto;
     text-align: center;
-    backdrop-filter: blur(15px);
-    box-shadow: 0px 8px 30px rgba(181, 148, 16, 0.3);
-    border: 2px solid rgba(181, 148, 16, 0.5);
-    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 6px 20px var(--shadow-glow);
 }
 
-/* 🔥 STAKING MYGTUKAI */
-.stake-btn, .unstake-btn {
-    padding: 14px;
-    background: linear-gradient(145deg, #9C7400, #FFD700);
-    border: none;
-    border-radius: 10px;
-    font-size: 17px;
+.staked-balance {
+    font-size: 18px;
     font-weight: bold;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 6px 18px rgba(181, 148, 16, 0.5);
-    position: relative;
-    overflow: hidden;
+    color: var(--accent-color);
+    margin-bottom: 15px;
 }
 
-/* 🔥 MYGTUKŲ HOVER EFEKTAS */
-.stake-btn:hover, .unstake-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 12px 28px rgba(181, 148, 16, 1);
-}
-
-/* 🔥 MYGTUKŲ PASPAUDIMO EFEKTAS */
-.stake-btn:active, .unstake-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0px 4px 10px rgba(181, 148, 16, 0.6);
-}
-
-/* 🔥 FORMOS ELEMENTAI */
-select, input {
+input {
     width: 100%;
     padding: 14px;
-    margin: 12px 0;
-    border-radius: 10px;
-    border: 2px solid var(--accent-color);
-    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    border: 2px solid var(--glass-border);
+    background: var(--input-bg);
     color: var(--text-color);
-    font-size: 17px;
     text-align: center;
-    box-shadow: 0px 6px 16px rgba(181, 148, 16, 0.3);
-    transition: all 0.3s ease-in-out;
 }
 
-/* 🔥 INPUT FOCUS EFEKTAS */
-select:focus, input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0px 0px 26px var(--accent-color);
+.stake-btn, .unstake-btn {
+    padding: 12px 18px;
+    background: var(--accent-color);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0px 6px 15px var(--shadow-glow);
+    margin: 10px;
+}
+
+.stake-btn:hover, .unstake-btn:hover {
+    background: #926F0D;
     transform: scale(1.05);
-}
-
-/* ✅ RESPONSYVUMAS */
-@media (max-width: 768px) {
-    .stake-container {
-        padding: 25px;
-        max-width: 500px;
-    }
-
-    select, input {
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    .stake-btn, .unstake-btn {
-        font-size: 16px;
-        padding: 12px;
-    }
 }

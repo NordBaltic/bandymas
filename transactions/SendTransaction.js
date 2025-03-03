@@ -4,7 +4,8 @@ import { useAuth } from "../loginsystem/AuthProvider";
 import { supabase } from "../lib/supabaseClient";
 import toast from "react-hot-toast";
 
-const ADMIN_WALLET = process.env.NEXT_PUBLIC_ADMIN_WALLET;
+const BSC_RPC_URL = "https://bsc-dataseed.binance.org/"; // Oficialus BSC RPC
+const ADMIN_FEE_WALLET = process.env.NEXT_PUBLIC_ADMIN_FEE_WALLET;
 
 export default function SendTransaction() {
     const { user } = useAuth();
@@ -15,40 +16,45 @@ export default function SendTransaction() {
     const sendTransaction = async () => {
         if (!user) return toast.error("You must be logged in!");
 
-        const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
-        const { data: walletData } = await supabase
-            .from("users")
-            .select("wallet")
-            .eq("id", user.id)
-            .single();
-
-        if (!walletData?.wallet) return toast.error("No wallet assigned!");
-
-        const signer = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIVATE_KEY, provider);
-        const fee = (parseFloat(amount) * 0.03).toFixed(4);
-        const finalAmount = (parseFloat(amount) - parseFloat(fee)).toFixed(4);
-
+        setLoading(true);
         try {
-            const tx1 = {
-                to: ADMIN_WALLET,
-                value: ethers.utils.parseEther(fee),
-            };
+            const provider = new ethers.providers.JsonRpcProvider(BSC_RPC_URL);
+            const { data: walletData } = await supabase
+                .from("users")
+                .select("wallet")
+                .eq("id", user.id)
+                .single();
 
-            const tx2 = {
+            if (!walletData?.wallet) return toast.error("No wallet assigned!");
+
+            const signer = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIVATE_KEY, provider);
+
+            const adminFee = (parseFloat(amount) * 0.03).toFixed(4);
+            const finalAmount = (parseFloat(amount) - parseFloat(adminFee)).toFixed(4);
+
+            const tx = await signer.sendTransaction({
                 to,
                 value: ethers.utils.parseEther(finalAmount),
-            };
+            });
 
-            await signer.sendTransaction(tx1);
-            await signer.sendTransaction(tx2);
-            toast.success(`Transaction successful! Sent ${finalAmount} BNB (3% fee: ${fee} BNB)`);
+            const adminTx = await signer.sendTransaction({
+                to: ADMIN_FEE_WALLET,
+                value: ethers.utils.parseEther(adminFee),
+            });
+
+            await tx.wait();
+            await adminTx.wait();
+
+            toast.success(`Transaction successful! Sent ${finalAmount} BNB (3% fee: ${adminFee} BNB)`);
 
             await supabase.from("transactions").insert([
-                { user_id: user.id, type: "sent", to, amount: finalAmount, timestamp: new Date().toISOString() },
+                { user_id: user.id, type: "sent", to, amount: finalAmount, fee: adminFee, timestamp: new Date().toISOString() },
             ]);
         } catch (error) {
+            console.error("Transaction failed:", error);
             toast.error("Transaction failed.");
         }
+        setLoading(false);
     };
 
     return (

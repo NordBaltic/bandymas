@@ -1,6 +1,6 @@
-/* **TOBULIAUSIAS PREMIUM FONAS** */
+/* **TOBULAS PREMIUM FONAS – AUKŠČIAUSIO LYGIO LUXURY** */
 .container {
-    background: linear-gradient(135deg, #000000 0%, #0A0A0A 70%, rgba(255, 215, 0, 0.14) 100%);
+    background: linear-gradient(135deg, #000000 0%, #0A0A0A 75%, rgba(255, 215, 0, 0.12) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,66 +9,66 @@
 
 /* LOGIN UI */
 .login-container {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(25px);
-    padding: 55px;
-    border-radius: 25px;
-    box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.25);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(30px);
+    padding: 60px;
+    border-radius: 28px;
+    box-shadow: 0px 0px 50px rgba(255, 215, 0, 0.3);
     text-align: center;
-    border: 2px solid rgba(255, 215, 0, 0.50);
+    border: 3px solid rgba(255, 215, 0, 0.6);
 }
 
-/* LOGOTIPAS – PADIDINTAS, TOBULINTAS */
+/* LOGOTIPAS – IDEALIAI SUBALANSUOTAS */
 .logo {
-    width: 260px;
+    width: 280px;
     height: auto;
-    margin-bottom: 30px;
-    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.3));
+    margin-bottom: 35px;
+    filter: drop-shadow(0px 0px 18px rgba(255, 215, 0, 0.35));
 }
 
 /* LOGIN MYGTUKAI */
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 35px;
 }
 
-/* PADIDINTOS IKONOS – DABAR DOMINUOJA */
+/* PADIDINTOS IKONOS – DABAR JOS VIZUALIAI DOMINUOJA */
 .button-icon {
-    width: 100px;
-    height: 100px;
-    filter: drop-shadow(0px 0px 15px rgba(255, 215, 0, 0.25));
+    width: 110px;
+    height: 110px;
+    filter: drop-shadow(0px 0px 20px rgba(255, 215, 0, 0.3));
 }
 
 /* LOGIN MYGTUKŲ TOBULINIMAI */
 .login-email-btn, .login-wallet-btn {
-    padding: 25px 55px;
-    font-size: 1.5rem;
+    padding: 28px 60px;
+    font-size: 1.6rem;
     border: none;
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 15px;
     transition: 0.3s;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    background: #131313;
-    border: 2px solid rgba(255, 215, 0, 0.5);
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
+    gap: 12px;
+    background: #111111;
+    border: 3px solid rgba(255, 215, 0, 0.55);
+    box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.3);
 }
 
 /* LOGIN TEKSTAS */
 .login-text {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #FFD700;
 }
 
-/* REGISTRACIJOS TEKSTAS – IDEALIAI SUBALANSUOTAS */
+/* REGISTRACIJOS TEKSTAS – PERKELTAS, OPTIMIZUOTAS */
 .register-text {
-    margin-top: 60px;
-    font-size: 1.2rem;
+    margin-top: 70px;
+    font-size: 1.3rem;
     color: rgba(255, 255, 255, 0.9);
 }
 

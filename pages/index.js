@@ -7,7 +7,6 @@ export default function Home() {
     const router = useRouter();
 
     useEffect(() => {
-        // Jei vartotojas jau prisijungęs, nukreipiam į dashboard
         const userLoggedIn = localStorage.getItem("user");
         if (userLoggedIn) {
             router.push("/dashboard");

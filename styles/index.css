@@ -1,26 +1,34 @@
-/* **PREMIUM SPALVŲ PALEČIŲ OPTIMIZACIJA – JOKIŲ SULŪŽIMŲ** */
+/* **TOBULAS PREMIUM FONAS – SPALVOS 100% OPTIMIZUOTOS** */
 .container {
-    background: linear-gradient(135deg, #000000 0%, #050505 80%, rgba(255, 215, 0, 0.10) 100%);
+    background: linear-gradient(135deg, #000000 0%, #0A0A0A 80%, rgba(255, 215, 0, 0.10) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-/* LOGIN UI */
+/* LOGIN UI – NUIMTAS RĖMELIS DESKTOP VERSIJOJE */
 .login-container {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(35px);
     padding: 65px;
     border-radius: 30px;
-    box-shadow: 0px 0px 55px rgba(255, 215, 0, 0.35);
+    box-shadow: 0px 0px 55px rgba(255, 215, 0, 0.4);
     text-align: center;
     border: 3px solid rgba(255, 215, 0, 0.65);
 }
 
-/* LOGOTIPAS – IDEALIAI SUBALANSUOTAS */
+/* RĖMELIS TIK MOBILIAJAI VERSIJAI */
+@media screen and (max-width: 768px) {
+    .login-container {
+        border: 3px solid rgba(255, 215, 0, 0.65);
+        box-shadow: 0px 0px 45px rgba(255, 215, 0, 0.4);
+    }
+}
+
+/* LOGOTIPAS – FINALINĖ KOREKCIJA */
 .logo {
-    width: 290px;
+    width: 300px;
     height: auto;
     margin-bottom: 40px;
     filter: drop-shadow(0px 0px 20px rgba(255, 215, 0, 0.4));
@@ -33,14 +41,14 @@
     gap: 40px;
 }
 
-/* PADIDINTOS IKONOS – DABAR JOS VIZUALIAI DOMINUOJA */
+/* LOGIN IKONOS – JOS DABAR 100% DOMINUOJA */
 .button-icon {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0px 0px 22px rgba(255, 215, 0, 0.35));
+    filter: drop-shadow(0px 0px 25px rgba(255, 215, 0, 0.35));
 }
 
-/* LOGIN MYGTUKŲ TOBULINIMAI */
+/* MYGTUKŲ TOBULINIMAI */
 .login-email-btn, .login-wallet-btn {
     padding: 30px 65px;
     font-size: 1.7rem;
@@ -52,10 +60,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
-    background: #101010;
+    gap: 15px;
+    background: #121212;
     border: 3px solid rgba(255, 215, 0, 0.6);
-    box-shadow: 0px 0px 50px rgba(255, 215, 0, 0.4);
+    box-shadow: 0px 0px 45px rgba(255, 215, 0, 0.35);
 }
 
 /* LOGIN TEKSTAS */
@@ -65,9 +73,9 @@
     color: #FFD700;
 }
 
-/* REGISTRACIJOS TEKSTAS – PERKELTAS, OPTIMIZUOTAS */
+/* REGISTRACIJOS TEKSTAS */
 .register-text {
-    margin-top: 75px;
+    margin-top: 80px;
     font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.9);
 }
@@ -82,26 +90,4 @@
 
 .register-link:hover {
     text-decoration: underline;
-}
-
-/* **SUBTILUS AUKSINIS KAMPAS – BE ANIMACIJOS, BET SU PREMIUM GLOW** */
-.container::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 30%;
-    height: 30%;
-    background: radial-gradient(circle at bottom right, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-    filter: blur(25px);
-    pointer-events: none;
-}
-
-/* MOBILIOS VERSIJOS RĖMAS – TIK TELEFONAMS */
-@media (max-width: 768px) {
-    .container {
-        border: 5px solid rgba(255, 215, 0, 0.3);
-        border-radius: 20px;
-        padding: 15px;
-    }
 }

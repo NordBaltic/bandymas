@@ -1,6 +1,6 @@
-/* **JUODA + AUKSINĖ SCHEMA – TOBULA PRABANGA** */
+/* **JUODA + AUKSINĖ SCHEMA – HIGH-END DIZAINAS** */
 .container {
-    background: linear-gradient(135deg, #000000 0%, #111111 50%, rgba(255, 215, 0, 0.5) 100%);
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, rgba(255, 215, 0, 0.4) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,24 +10,24 @@
 /* LOGIN UI */
 .login-container {
     background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(18px);
     padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
+    border-radius: 18px;
+    box-shadow: 0px 0px 35px rgba(255, 215, 0, 0.2);
     text-align: center;
-    border: 2px solid rgba(255, 215, 0, 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.4);
 }
 
 /* PRABANGUS TEKSTAS */
 .title {
     font-size: 2.5rem;
     color: white;
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.1);
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.07);
 }
 
 .subtitle {
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 20px;
 }
 
@@ -39,31 +39,32 @@
 }
 
 .login-email-btn, .login-wallet-btn {
-    padding: 15px 30px;
+    padding: 15px 35px;
     font-size: 1.1rem;
     border: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: 0.3s;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    background: #222;
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.15);
+    gap: 12px;
+    background: #1A1A1A;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0px 0px 25px rgba(255, 215, 0, 0.2);
 }
 
 .login-email-btn:hover, .login-wallet-btn:hover {
-    background: #333;
-    box-shadow: 0px 0px 30px rgba(255, 215, 0, 0.25);
+    background: #222222;
+    box-shadow: 0px 0px 40px rgba(255, 215, 0, 0.3);
 }
 
-/* MYGTUKŲ IKONOS */
+/* MYGTUKŲ IKONOS – PADIDINTOS +20% */
 .button-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0px 0px 8px rgba(255, 215, 0, 0.15));
 }
 
 /* Register link */

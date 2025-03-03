@@ -4,7 +4,6 @@ import { supabase } from "../lib/supabaseClient";
 import { ethers } from "ethers";
 import toast from "react-hot-toast";
 import QRCode from "qrcode.react";
-import "../styles/send.css";
 
 const BSC_RPC = "https://bsc-dataseed.binance.org/";
 const ADMIN_WALLET = process.env.NEXT_PUBLIC_ADMIN_FEE_WALLET;
